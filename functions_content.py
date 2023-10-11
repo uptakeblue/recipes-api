@@ -104,6 +104,9 @@ def content_DELETE(util: u.Global_Utility, contentId) -> dict:
     try:
         with util.pymysqlConnection.cursor() as cursor:
             cursor.callproc("dbo.rcp_content_Delete", args)
+
+            util.pymysqlConnection.commit()
+            
             response = {
                 "message": f"Content was deleted",
                 "contentId": contentId
@@ -117,3 +120,61 @@ def content_DELETE(util: u.Global_Utility, contentId) -> dict:
     return response
 
 
+
+
+def content_POST(util: u.Global_Utility, contentDto:dto.content_dto) -> dict:
+    response = None
+    contentId = None
+    args=[
+        contentDto.Title,
+        contentDto.Ingredients,
+        contentDto.Instructions,
+        contentDto.RecipeId,
+        contentId
+    ]
+    try:
+        with util.pymysqlConnection.cursor() as cursor:
+            cursor.callproc("dbo.rcp_content_Post", args)
+            cursor.execute('SELECT @_dbo.rcp_content_Post_4')
+            contentId = cursor.fetchone()[0]
+
+            util.pymysqlConnection.commit()
+
+            response = {
+                "message": f"Content was created",
+                "contentId": contentId
+            }
+
+    except Exception as e:
+        raise u.UptakeblueException(
+            e, source=f"{MODULE}.content_POST()", paramarge=args
+        )
+
+    return response
+
+
+def content_PUT(util: u.Global_Utility, contentDto:dto.content_dto) -> dict:
+    response = None
+    args=[
+        contentDto.ContentId,
+        contentDto.Title,
+        contentDto.Ingredients,
+        contentDto.Instructions,
+    ]
+    try:
+        with util.pymysqlConnection.cursor() as cursor:
+            cursor.callproc("dbo.rcp_content_Put", args)
+
+            util.pymysqlConnection.commit()
+
+            response = {
+                "message": f"Content was updated",
+                "contentId": contentDto.ContentId
+            }
+
+    except Exception as e:
+        raise u.UptakeblueException(
+            e, source=f"{MODULE}.content_POST()", paramarge=args
+        )
+
+    return response

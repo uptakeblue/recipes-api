@@ -109,10 +109,12 @@ def content_GET_DELETE(contentid):
 def content_PUT_POST():
     response = None
     if request.method == 'PUT':
-        # returns a specific resipe
+        # updates a specific content
+        response = fn_r.content_PUT()
         pass
     elif request.method == 'POST':
-        # deletes a specific recipe
+        # creates a new content
+        response = fn_r.content_POST()
         pass
     return response
 

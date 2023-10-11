@@ -1,6 +1,6 @@
 # Author:       Michael Rubin
 # Created:      10/9/2023
-# Modified:     10/9/2023
+# Modified:     10/10/2023
 #
 # Copyright 2023 © Uptakeblue.com, All Rights Reserved
 # -----------------------------------------------------------
@@ -54,6 +54,7 @@ class content_dto:
             self.Instructions = dataRow[3]
             self.OrderId = dataRow[4] if len(dataRow) > 4 else None
             self.RecipeCount = dataRow[5] if len(dataRow) > 5 else None
+            self.RecipeId = None
         elif isinstance(initObject, dict):
             recipeDict:dict = initObject
             self.ContentId = recipeDict['contentId'] if "contentId" in recipeDict else None
@@ -62,6 +63,7 @@ class content_dto:
             self.Instructions = recipeDict['instructions']
             self.OrderId = recipeDict['orderId'] if "orderId" in recipeDict else None
             self.RecipeCount = recipeDict['recipeCount'] if "recipeCount" in recipeDict else False
+            self.RecipeId = recipeDict['recipeId'] if "recipeId" in recipeDict else False
         else:
             raise u.UptakeblueException(Exception("initObject type not recognized"), f"{MODULE} content_dto.init()")
 
@@ -73,5 +75,6 @@ class content_dto:
             "instructions": self.Instructions,
             "orderId": self.OrderId,
             "recipeCount": self.RecipeCount,
+            "recipeId":self.RecipeId,
         }
                 

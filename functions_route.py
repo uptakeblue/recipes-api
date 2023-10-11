@@ -6,7 +6,7 @@
 # -----------------------------------------------------------
 from flask import request
 
-import functions_recipe as fn
+import functions_recipe as fn_r
 import functions_utility as fn_u
 import functions_content as fn_c
 import recipe_dto as dto
@@ -25,7 +25,7 @@ def recipe_GET_Map():
         "recipetitles":[]
     }
     try:
-        recipeDictArray = fn.recipe_GET_List(util)
+        recipeDictArray = fn_r.recipe_GET_List(util)
         for recipe in recipeDictArray:
             result['recipes'].append(recipe)
             result['recipetitles'].append({
@@ -45,7 +45,7 @@ def recipe_GET_ListSearch(keyword:str):
     util = u.Global_Utility(app_settings)
     response = None
     try:
-        result = fn.recipe_GET_ListSearch(util, keyword)
+        result = fn_r.recipe_GET_ListSearch(util, keyword)
         response = (result, u.RESPONSECODE_OK)
     
     except Exception as err:
@@ -59,7 +59,7 @@ def recipe_GET(recipeId:int):
     util = u.Global_Utility(app_settings)
     response = None
     try:
-        result = fn.recipe_GET(util, recipeId)
+        result = fn_r.recipe_GET(util, recipeId)
         result['contents'] = fn_c.content_GET_ListByRecipe(util, recipeId)       
 
         response = (result, u.RESPONSECODE_OK)
@@ -75,7 +75,7 @@ def recipe_DELETE(recipeId:int):
     util = u.Global_Utility(app_settings)
     response = None
     try:
-        result = fn.recipe_DELETE(util, recipeId)
+        result = fn_r.recipe_DELETE(util, recipeId)
         response = (result, u.RESPONSECODE_OK)
     
     except Exception as err:
@@ -90,7 +90,7 @@ def recipe_PUT():
     response = None
     try:
         recipeDto = dto.recipe_dto(request.json)
-        result = fn.recipe_PUT(util, recipeDto)
+        result = fn_r.recipe_PUT(util, recipeDto)
 
         response = (result, u.RESPONSECODE_OK)
     
@@ -106,7 +106,7 @@ def recipe_POST():
     response = None
     try:
         recipeDto = dto.recipe_dto(request.json)
-        result = fn.recipe_POST(util, recipeDto)
+        result = fn_r.recipe_POST(util, recipeDto)
 
         response = (result, u.RESPONSECODE_OK)
     
@@ -174,6 +174,38 @@ def content_DELETE(contentId):
     
     except Exception as err:
         e = u.UptakeblueException(err, f"{MODULE}.content_DELETE()")
+        response = fn_u.exceptionResponse(e)
+    finally:
+        return response
+
+
+def content_PUT():
+    util = u.Global_Utility(app_settings)
+    response = None
+    try:
+        contentDto = dto.content_dto(request.json)
+        result = fn_c.content_PUT(util, contentDto)
+
+        response = (result, u.RESPONSECODE_OK)
+    
+    except Exception as err:
+        e = u.UptakeblueException(err, f"{MODULE}.content_PUT()")
+        response = fn_u.exceptionResponse(e)
+    finally:
+        return response
+
+
+def content_POST():
+    util = u.Global_Utility(app_settings)
+    response = None
+    try:
+        contentDto = dto.content_dto(request.json)
+        result = fn_c.content_POST(util, contentDto)
+
+        response = (result, u.RESPONSECODE_OK)
+    
+    except Exception as err:
+        e = u.UptakeblueException(err, f"{MODULE}.recipe_POST()")
         response = fn_u.exceptionResponse(e)
     finally:
         return response

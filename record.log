@@ -1073,3 +1073,293 @@ TypeError: The view function for 'recipe_PUT_POST' did not return a valid respon
 2023-10-10 17:33:13,642 INFO : [33mPress CTRL+C to quit[0m
 2023-10-10 17:33:22,690 INFO : 127.0.0.1 - - [10/Oct/2023 17:33:22] "PUT /recipe/ HTTP/1.1" 200 -
 2023-10-10 17:33:35,476 INFO : 127.0.0.1 - - [10/Oct/2023 17:33:35] "GET /recipe/2483/ HTTP/1.1" 200 -
+2023-10-10 18:26:18,285 INFO : [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2023-10-10 18:26:18,285 INFO : [33mPress CTRL+C to quit[0m
+2023-10-10 18:26:25,090 INFO : 127.0.0.1 - - [10/Oct/2023 18:26:25] "[35m[1mPOST /content/ HTTP/1.1[0m" 500 -
+2023-10-10 18:26:25,137 ERROR : Error on request:
+Traceback (most recent call last):
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\werkzeug\serving.py", line 364, in run_wsgi
+    execute(self.server.app)
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\werkzeug\serving.py", line 325, in execute
+    application_iter = app(environ, start_response)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 2213, in __call__
+    return self.wsgi_app(environ, start_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 2193, in wsgi_app
+    response = self.handle_exception(e)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask_cors\decorator.py", line 130, in wrapped_function
+    resp = make_response(f(*args, **kwargs))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\helpers.py", line 178, in make_response
+    return current_app.make_response(args)  # type: ignore
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 1801, in make_response
+    raise TypeError(
+TypeError: The view function for 'content_PUT_POST' did not return a valid response. The function either returned None or ended without a return statement.
+2023-10-10 19:03:24,410 INFO : [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2023-10-10 19:03:24,410 INFO : [33mPress CTRL+C to quit[0m
+2023-10-10 19:03:41,939 INFO : 127.0.0.1 - - [10/Oct/2023 19:03:41] "[33mPOST /content/ HTTP/1.1[0m" 404 -
+2023-10-10 19:05:15,151 INFO : 127.0.0.1 - - [10/Oct/2023 19:05:15] "[33mPOST /recipe/ HTTP/1.1[0m" 404 -
+2023-10-10 19:05:30,100 INFO : 127.0.0.1 - - [10/Oct/2023 19:05:30] "[33mPOST /recipe/ HTTP/1.1[0m" 404 -
+2023-10-10 19:05:41,332 INFO : 127.0.0.1 - - [10/Oct/2023 19:05:41] "[33mPOST /recipe/ HTTP/1.1[0m" 404 -
+2023-10-10 19:05:41,503 INFO : 127.0.0.1 - - [10/Oct/2023 19:05:41] "[33mPOST /recipe/ HTTP/1.1[0m" 404 -
+2023-10-10 19:07:27,506 INFO : [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2023-10-10 19:07:27,506 INFO : [33mPress CTRL+C to quit[0m
+2023-10-10 19:07:29,517 INFO : 127.0.0.1 - - [10/Oct/2023 19:07:29] "POST /recipe/ HTTP/1.1" 200 -
+2023-10-10 19:08:04,714 INFO : 127.0.0.1 - - [10/Oct/2023 19:08:04] "[31m[1mPOST /content/ HTTP/1.1[0m" 400 -
+2023-10-10 19:08:20,052 INFO : 127.0.0.1 - - [10/Oct/2023 19:08:20] "POST /content/ HTTP/1.1" 200 -
+2023-10-10 19:08:43,906 INFO : 127.0.0.1 - - [10/Oct/2023 19:08:43] "GET /content/2580/ HTTP/1.1" 200 -
+2023-10-10 19:09:09,553 INFO : 127.0.0.1 - - [10/Oct/2023 19:09:09] "[35m[1mPUT /content/ HTTP/1.1[0m" 500 -
+2023-10-10 19:09:09,603 ERROR : Error on request:
+Traceback (most recent call last):
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\werkzeug\serving.py", line 364, in run_wsgi
+    execute(self.server.app)
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\werkzeug\serving.py", line 325, in execute
+    application_iter = app(environ, start_response)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 2213, in __call__
+    return self.wsgi_app(environ, start_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 2193, in wsgi_app
+    response = self.handle_exception(e)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask_cors\decorator.py", line 130, in wrapped_function
+    resp = make_response(f(*args, **kwargs))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\helpers.py", line 178, in make_response
+    return current_app.make_response(args)  # type: ignore
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 1801, in make_response
+    raise TypeError(
+TypeError: The view function for 'content_PUT_POST' did not return a valid response. The function either returned None or ended without a return statement.
+2023-10-10 19:09:54,946 INFO : 127.0.0.1 - - [10/Oct/2023 19:09:54] "[35m[1mPUT /content/ HTTP/1.1[0m" 500 -
+2023-10-10 19:09:54,950 ERROR : Error on request:
+Traceback (most recent call last):
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\werkzeug\serving.py", line 364, in run_wsgi
+    execute(self.server.app)
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\werkzeug\serving.py", line 325, in execute
+    application_iter = app(environ, start_response)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 2213, in __call__
+    return self.wsgi_app(environ, start_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 2193, in wsgi_app
+    response = self.handle_exception(e)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask_cors\decorator.py", line 130, in wrapped_function
+    resp = make_response(f(*args, **kwargs))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\helpers.py", line 178, in make_response
+    return current_app.make_response(args)  # type: ignore
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 1801, in make_response
+    raise TypeError(
+TypeError: The view function for 'content_PUT_POST' did not return a valid response. The function either returned None or ended without a return statement.
+2023-10-10 19:11:17,210 INFO : 127.0.0.1 - - [10/Oct/2023 19:11:17] "[35m[1mPUT /content/ HTTP/1.1[0m" 500 -
+2023-10-10 19:11:17,213 ERROR : Error on request:
+Traceback (most recent call last):
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\werkzeug\serving.py", line 364, in run_wsgi
+    execute(self.server.app)
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\werkzeug\serving.py", line 325, in execute
+    application_iter = app(environ, start_response)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 2213, in __call__
+    return self.wsgi_app(environ, start_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 2193, in wsgi_app
+    response = self.handle_exception(e)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask_cors\decorator.py", line 130, in wrapped_function
+    resp = make_response(f(*args, **kwargs))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\helpers.py", line 178, in make_response
+    return current_app.make_response(args)  # type: ignore
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 1801, in make_response
+    raise TypeError(
+TypeError: The view function for 'content_PUT_POST' did not return a valid response. The function either returned None or ended without a return statement.
+2023-10-10 19:12:33,228 INFO : 127.0.0.1 - - [10/Oct/2023 19:12:33] "[35m[1mPUT /content/ HTTP/1.1[0m" 500 -
+2023-10-10 19:12:33,232 ERROR : Error on request:
+Traceback (most recent call last):
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\werkzeug\serving.py", line 364, in run_wsgi
+    execute(self.server.app)
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\werkzeug\serving.py", line 325, in execute
+    application_iter = app(environ, start_response)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 2213, in __call__
+    return self.wsgi_app(environ, start_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 2193, in wsgi_app
+    response = self.handle_exception(e)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask_cors\decorator.py", line 130, in wrapped_function
+    resp = make_response(f(*args, **kwargs))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\helpers.py", line 178, in make_response
+    return current_app.make_response(args)  # type: ignore
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 1801, in make_response
+    raise TypeError(
+TypeError: The view function for 'content_PUT_POST' did not return a valid response. The function either returned None or ended without a return statement.
+2023-10-10 19:13:10,503 INFO : 127.0.0.1 - - [10/Oct/2023 19:13:10] "[35m[1mPUT /content/ HTTP/1.1[0m" 500 -
+2023-10-10 19:13:10,507 ERROR : Error on request:
+Traceback (most recent call last):
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\werkzeug\serving.py", line 364, in run_wsgi
+    execute(self.server.app)
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\werkzeug\serving.py", line 325, in execute
+    application_iter = app(environ, start_response)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 2213, in __call__
+    return self.wsgi_app(environ, start_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 2193, in wsgi_app
+    response = self.handle_exception(e)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask_cors\decorator.py", line 130, in wrapped_function
+    resp = make_response(f(*args, **kwargs))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\helpers.py", line 178, in make_response
+    return current_app.make_response(args)  # type: ignore
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 1801, in make_response
+    raise TypeError(
+TypeError: The view function for 'content_PUT_POST' did not return a valid response. The function either returned None or ended without a return statement.
+2023-10-10 19:14:39,249 INFO : 127.0.0.1 - - [10/Oct/2023 19:14:39] "PUT /content/ HTTP/1.1" 200 -
+2023-10-10 19:15:14,301 INFO : [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2023-10-10 19:15:14,301 INFO : [33mPress CTRL+C to quit[0m
+2023-10-10 19:15:22,422 INFO : 127.0.0.1 - - [10/Oct/2023 19:15:22] "GET /content/2580/ HTTP/1.1" 200 -
+2023-10-10 19:15:43,730 INFO : 127.0.0.1 - - [10/Oct/2023 19:15:43] "[35m[1mDELETE /content/2580/ HTTP/1.1[0m" 500 -
+2023-10-10 19:16:44,853 INFO : 127.0.0.1 - - [10/Oct/2023 19:16:44] "[35m[1mDELETE /content/2580/ HTTP/1.1[0m" 500 -
+2023-10-10 19:17:19,364 INFO : [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2023-10-10 19:17:19,364 INFO : [33mPress CTRL+C to quit[0m
+2023-10-10 19:17:29,070 INFO : 127.0.0.1 - - [10/Oct/2023 19:17:29] "DELETE /content/2580/ HTTP/1.1" 200 -
+2023-10-10 19:17:50,376 INFO : 127.0.0.1 - - [10/Oct/2023 19:17:50] "GET /content/2580/ HTTP/1.1" 200 -
+2023-10-10 19:21:21,734 INFO : 127.0.0.1 - - [10/Oct/2023 19:21:21] "[33mPOST /content/ HTTP/1.1[0m" 404 -
+2023-10-10 19:22:20,705 INFO : [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2023-10-10 19:22:20,706 INFO : [33mPress CTRL+C to quit[0m
+2023-10-10 19:23:08,692 INFO : 127.0.0.1 - - [10/Oct/2023 19:23:08] "POST /recipe/ HTTP/1.1" 200 -
+2023-10-10 19:24:33,393 INFO : 127.0.0.1 - - [10/Oct/2023 19:24:33] "GET /recipe/2485/ HTTP/1.1" 200 -
+2023-10-10 19:24:48,527 INFO : 127.0.0.1 - - [10/Oct/2023 19:24:48] "PUT /recipe/ HTTP/1.1" 200 -
+2023-10-10 19:25:04,778 INFO : 127.0.0.1 - - [10/Oct/2023 19:25:04] "GET /recipe/2485/ HTTP/1.1" 200 -
+2023-10-10 19:25:58,729 INFO : 127.0.0.1 - - [10/Oct/2023 19:25:58] "POST /content/ HTTP/1.1" 200 -
+2023-10-10 19:26:21,908 INFO : 127.0.0.1 - - [10/Oct/2023 19:26:21] "PUT /content/ HTTP/1.1" 200 -
+2023-10-10 19:27:18,123 INFO : 127.0.0.1 - - [10/Oct/2023 19:27:18] "GET /content/2581/ HTTP/1.1" 200 -
+2023-10-10 19:28:18,604 INFO : 127.0.0.1 - - [10/Oct/2023 19:28:18] "DELETE /content/2581/ HTTP/1.1" 200 -
+2023-10-10 19:28:26,410 INFO : 127.0.0.1 - - [10/Oct/2023 19:28:26] "[33mGET /content/2581/ HTTP/1.1[0m" 404 -
+2023-10-10 19:28:37,791 INFO : 127.0.0.1 - - [10/Oct/2023 19:28:37] "[33mGET /recipe/2485/ HTTP/1.1[0m" 404 -
