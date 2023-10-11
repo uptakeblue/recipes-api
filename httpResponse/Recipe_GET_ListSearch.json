@@ -1,0 +1,245 @@
+[
+  {
+    "description": "Derived from a \"Grill It! With Bobby Flay\" episode",
+    "imageFile": null,
+    "isFavorite": false,
+    "note": "Serves 2",
+    "recipeId": 139,
+    "title": "Bloody Mary With Horseradish",
+    "urlRoute": "bloody-mary-with-horseradish"
+  },
+  {
+    "description": "This is the pork loin dish I prepared Mike and Dana Marchetti while visiting in August of 2005.  This dish works extremely well with chicken as well; you just cut up a 4lb fryer into 8 pieces and remove the skin, then proceed exactly as you would with the pork.",
+    "imageFile": null,
+    "isFavorite": false,
+    "note": null,
+    "recipeId": 36,
+    "title": "Braised Pork With Tomatillo Sauce",
+    "urlRoute": "braised-pork-with-tomatillo-sauce"
+  },
+  {
+    "description": "Modified from a terrific <a href='http://www.bonappetit.com/recipe/curried-ground-shrimp-and-noodles' target='_blank'>Bon Appetit recipe</a>, which we cut in half and replaced cilanto for the basil the original recipe calls for.",
+    "imageFile": "13371_curried-ground-shrimp-and-noodles.jpg",
+    "isFavorite": false,
+    "note": "Serves two hungry, late middle-aged adults.",
+    "recipeId": 325,
+    "title": "Curried Ground Shrimp And Noodles",
+    "urlRoute": "curried-ground-shrimp-and-noodles"
+  },
+  {
+    "description": "Found on the <a href='http://lpoli.50webs.com/index.htm' target='_blank'>Sonoma Mountain Sausages</a> website.",
+    "imageFile": null,
+    "isFavorite": false,
+    "note": "",
+    "recipeId": 278,
+    "title": "Fresh Jalape\u00f1o Sausage",
+    "urlRoute": "fresh-jalape\u00f1o-sausage"
+  },
+  {
+    "description": null,
+    "imageFile": null,
+    "isFavorite": false,
+    "note": null,
+    "recipeId": 378,
+    "title": "Grilled Broccoli with Avocado and Sesame",
+    "urlRoute": "grilled-broccoli-with-avocado-and-sesame"
+  },
+  {
+    "description": "I pulled this together one night for Jessica's son Julien.  It's a summer recipe, entirely dependent upon the quality of the ingredients.",
+    "imageFile": null,
+    "isFavorite": false,
+    "note": null,
+    "recipeId": 244,
+    "title": "Grilled Prawns And Corn With Mango Salsa",
+    "urlRoute": "grilled-prawns-and-corn-with-mango-salsa"
+  },
+  {
+    "description": "Modified from an SF Chronicle <a href='http://www.sfgate.com/food/recipes/detail/?rid=18341&sorig=qs' target='_blank'>recipe</a>, from San Francisco's Green Chile Kitchen.",
+    "imageFile": null,
+    "isFavorite": false,
+    "note": "Green Chile Kitchen owner Trevor Logan says the sauce may be made 1-2 days ahead.  The tortillas may be fried for more texture prior to assembling the dish.",
+    "recipeId": 334,
+    "title": "Homestyle Green Chile Chicken Enchiladas",
+    "urlRoute": "homestyle-green-chile-chicken-enchiladas"
+  },
+  {
+    "description": "This stuff is great.  The recipe is from Rosie Hawthorne's <a href='http://www.kitchensaremonkeybusiness.com/2012/09/rosie-makes-tangy-buttermilk-cole-slaw.html' target='_blank'>Kitchens Are Monkey Business</a> blog, and she got it from Lisa Fain's <a href='http://www.homesicktexan.com/2009/06/buttermilk-dressing.html' target='_blank'>Homesick Texan</a> blog.  Needless to say, I did not need to modify it!",
+    "imageFile": null,
+    "isFavorite": false,
+    "note": null,
+    "recipeId": 294,
+    "title": "Jalapeno Buttermilk Dressing",
+    "urlRoute": "jalapeno-buttermilk-dressing"
+  },
+  {
+    "description": "Lunch at Oakland's Wood Tavern was all pastrami sandwiches and surprisingly refreshing coleslaw.  Unable to find the recipe online, we tried to replicate it - and got pretty close!",
+    "imageFile": null,
+    "isFavorite": false,
+    "note": "",
+    "recipeId": 199,
+    "title": "Jalapeno Cilantro Coleslaw",
+    "urlRoute": "jalapeno-cilantro-coleslaw"
+  },
+  {
+    "description": "Roasted chicken with Jalapeno wheels inserted under the skin.  Serves 4",
+    "imageFile": null,
+    "isFavorite": false,
+    "note": null,
+    "recipeId": 25,
+    "title": "Jalapeno Roasted Chicken",
+    "urlRoute": "jalapeno-roasted-chicken"
+  },
+  {
+    "description": "Spice-rubbed chicken stuffed with Jalapenos",
+    "imageFile": null,
+    "isFavorite": false,
+    "note": null,
+    "recipeId": 26,
+    "title": "Jalapeno Stuffed Chicken",
+    "urlRoute": "jalapeno-stuffed-chicken"
+  },
+  {
+    "description": "Inspired by Melissa Clark's <a href='https://cooking.nytimes.com/recipes/1022867-one-pot-turkey-chili-and-biscuits' target = '_blank'>One-Pot Turkey Chili and Biscuits</a> recipe, this is a great use of the Impossible Beef product",
+    "imageFile": null,
+    "isFavorite": false,
+    "note": null,
+    "recipeId": 2457,
+    "title": "Jessica's Cast Iron Chili and Cheddar Biscuits",
+    "urlRoute": "jessicas-cast-iron-chili-and-cheddar-biscuits"
+  },
+  {
+    "description": "A pretty common recipe, jazzed up a little.  It is completely dependent upon the quality of the ingredients, so don't make this in the winter! ",
+    "imageFile": null,
+    "isFavorite": false,
+    "note": "",
+    "recipeId": 245,
+    "title": "Mango Salsa",
+    "urlRoute": "mango-salsa"
+  },
+  {
+    "description": "Modified from an amazing Yotam Ottolenghi recipe <a href='https://cooking.nytimes.com/recipes/1023784-lamb-meatball-and-semolina-dumpling-soup-with-collard-greens' target='_blank'>Lamb Meatball and Semolina Dumpling Soup With Collard Greens</a>, substituting Impossible Beef for Ottolenghi's lamb.",
+    "imageFile": "2466_lamb-meatball-and-semolina-dumpling-soup-with-collard-greens.jpg",
+    "isFavorite": false,
+    "note": "Although the recipe says it takes 50 minutes to prepare, this will actually take 2-1/2 hours from start to finish",
+    "recipeId": 2466,
+    "title": "Meatball and Semolina Dumpling Stew With Collard Greens",
+    "urlRoute": "meatball-and-semolina-dumpling-stew-with-collard-greens"
+  },
+  {
+    "description": "A mash-up from a few different sources, I this this one right the first time out (beginner's luck).",
+    "imageFile": null,
+    "isFavorite": false,
+    "note": "Displace some the tomato sauce with a 7-ounce can Salsa Casera as an alternative.",
+    "recipeId": 392,
+    "title": "Mexican Rice",
+    "urlRoute": "mexican-rice"
+  },
+  {
+    "description": "Cobbled together from a number of sources, other pepper types and other spices may be substituted in this flexible recipe.",
+    "imageFile": "277_pickled-jalapeno-peppers.JPG",
+    "isFavorite": false,
+    "note": null,
+    "recipeId": 249,
+    "title": "Pickled Jalapeno Peppers",
+    "urlRoute": "pickled-jalapeno-peppers"
+  },
+  {
+    "description": "Inspired from a Poached Eggs & Corn Cakes <a href='http://www.tasteofhome.com/Recipes/Corn-Cakes-with-Poached-Eggs-and-Mango-Salsa' target='_blank'>recipe</a>.",
+    "imageFile": null,
+    "isFavorite": false,
+    "note": "",
+    "recipeId": 246,
+    "title": "Poached Eggs with Corn Cakes & Mango Salsa",
+    "urlRoute": "poached-eggs-with-corn-cakes-and-mango-salsa"
+  },
+  {
+    "description": "Porchetta is traditionally a roasted whole, de-boned suckling pig; this ain't that. ;-)  <br />I compiled the ingredients list from a number of sources, but I followed Alabama Chef Haller Magee's <a href='http://www.abc3340.com/story/19792511/chef-haller-magees-porchetta' target='_blank'>cooking instructions</a>.<br />My mother-in-law told my wife this was the best meal she had in her entire life!",
+    "imageFile": "302_porchetta.jpg",
+    "isFavorite": false,
+    "note": "Serves at least twelve.  This dish is great with grilled bread, mustards, and pickles. Although I cook potatoes in the roasting pan (it's unbelievable what pork fat does to potatoes over a few hours), it can also be served with polenta or other vegetables.<br /><b>Note</b>: the interior temperature should be no less than 140F, but don't worry if it exceeds 180F: the goal is to cook the belly correctly, and that takes six hours.",
+    "recipeId": 271,
+    "title": "Porchetta",
+    "urlRoute": "porchetta"
+  },
+  {
+    "description": "Slightly tart and wonderfully roasty, this <a href='http://www.inspiredtaste.net/901/roasted-tomatillo-salsa-salsa-verde' target='_blank'>recipe</a>, which doubles nicely, goes beautifully with <a href='http://recipes.uptakeblue.com/RecipeDetail.aspx?recipeId=291' target='_blank'>Carnitas</a>.",
+    "imageFile": null,
+    "isFavorite": false,
+    "note": "",
+    "recipeId": 262,
+    "title": "Roasted Salsa Verde",
+    "urlRoute": "roasted-salsa-verde"
+  },
+  {
+    "description": "by the Editors of Publications International, Ltd.",
+    "imageFile": null,
+    "isFavorite": false,
+    "note": "",
+    "recipeId": 155,
+    "title": "Roasted Tomatillo Salsa",
+    "urlRoute": "roasted-tomatillo-salsa"
+  },
+  {
+    "description": "Classic salsa; very fast, simple and delicious.  This one comes from a Susan Feniger <a href='http://www.foodnetwork.com/recipes/salsa-fresca-recipe2/index.html' target='_blank'>recipe</a>.",
+    "imageFile": null,
+    "isFavorite": false,
+    "note": "Getting good tomatoes and removing everything from their insides is key.  This is a carefully calibrated recipe: don't mess with it!",
+    "recipeId": 165,
+    "title": "Salsa Fresca",
+    "urlRoute": "salsa-fresca"
+  },
+  {
+    "description": "Terrific condiment for fatty meat dishes, such as my <a href='http://recipes.uptakeblue.com/RecipeDetail.aspx?recipeId=302' target='_blank'>Porchetta</a> recipe.",
+    "imageFile": null,
+    "isFavorite": false,
+    "note": null,
+    "recipeId": 272,
+    "title": "Salsa Verde For Pork Dishes",
+    "urlRoute": "salsa-verde-for-pork-dishes"
+  },
+  {
+    "description": "Modified from a delicious <a href='http://abc.go.com/shows/the-chew/recipes/slow-roasted-spiced-pork-ina-garten' target='_blank'>Ina Garten recipe</a>.",
+    "imageFile": null,
+    "isFavorite": false,
+    "note": null,
+    "recipeId": 329,
+    "title": "Slow-Roasted Spiced Pork",
+    "urlRoute": "slow-roasted-spiced-pork"
+  },
+  {
+    "description": "This one's a real winner.  It's a Bobby Flay <a href='http://www.foodnetwork.com/recipes/bobby-flay/spicy-citrus-bloody-mary-recipe/index.html' target='_blank'>recipe</a> found on Foodnetwork.com.",
+    "imageFile": null,
+    "isFavorite": false,
+    "note": "",
+    "recipeId": 230,
+    "title": "Spicy Citrus Bloody Mary",
+    "urlRoute": "spicy-citrus-bloody-mary"
+  },
+  {
+    "description": "A terrific, near-vegetarian <a href='https://cooking.nytimes.com/recipes/1017949-spicy-peanut-stew-with-ginger-and-tomato' target='_blank'>New York Time recipe</a>",
+    "imageFile": null,
+    "isFavorite": false,
+    "note": "serves 8, takes an hour to prepare",
+    "recipeId": 383,
+    "title": "Spicy Peanut Stew With Ginger and Tomato ",
+    "urlRoute": "spicy-peanut-stew-with-ginger-and-tomato"
+  },
+  {
+    "description": "Found on Rosie Hawthorne's <a href='http://www.kitchensaremonkeybusiness.com/2012/09/rosie-makes-tangy-buttermilk-cole-slaw.html' target='_blank'>Kitchens Are Monkey Business</a> blog, this recipe goes great with carnitas.",
+    "imageFile": null,
+    "isFavorite": false,
+    "note": null,
+    "recipeId": 295,
+    "title": "Tangy Jalapeno Buttermilk Slaw",
+    "urlRoute": "tangy-jalapeno-buttermilk-slaw"
+  },
+  {
+    "description": "Modified from a recipe by Jessica's ex-sister-in-law Yvonne Inclan",
+    "imageFile": null,
+    "isFavorite": false,
+    "note": "This is a great, easy recipe.  Resist the temptation to add lime juice!",
+    "recipeId": 164,
+    "title": "Tomatillo Avocado Salsa",
+    "urlRoute": "tomatillo-avocado-salsa"
+  }
+]
