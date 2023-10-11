@@ -1,0 +1,27 @@
+{
+  "contents": [
+    {
+      "contentId": 102,
+      "ingredients": "1 pound spaghetti (see recipe below, scaled to 4 people)\n2/3 cup olive oil \n2/3 cup grated Parmesan \n1/2 cup fresh lemon juice (about 3 lemons) \nSalt and freshly ground black pepper \n1 tbsp lemon zest \n1/3 cup chopped fresh basil leaves",
+      "instructions": "Cook the pasta in a large pot of boiling salted water until tender but still firm to the bite, stirring occasionally, about 8 minutes. \nMeanwhile, whisk the oil, Parmesan, and lemon juice in a large bowl to blend. \nDrain the pasta, reserving 1 cup of the cooking liquid. \nToss the pasta with the lemon sauce, and the reserved cooking liquid, adding 1/4 cup at a time as needed to moisten. \nSeason with salt and pepper. \nGarnish with lemon zest and chopped basil.",
+      "orderId": 1,
+      "recipeCount": 1,
+      "title": "Lemon spaghetti"
+    },
+    {
+      "contentId": 250,
+      "ingredients": "1 egg per person\r\n100g, or 3/4 level cups minus 1 level tbsp, 00 semolina flour per person\r\n1/4 tsp fine sea salt per person\r\n1 tbsp olive oil per person\r\nrice flour",
+      "instructions": "Sift the flour and salt onto a wooden board, then make a well in the center.\r\nLightly scramble the eggs and olive oil in a bowl using a fork, then pour the mixture into the well.\r\nUsing the same fork, continue to scramble the eggs on the board, gradually incorporating the flour.  When enough of it has been incorporated that it's getting difficult to use the fork, switch to a bench scraper and gently shovel the remaining flour over the egg mixture.  Press down gently with your palm, then scrape the mixture off the board and fold over.  Rinse and repeat until the mixture starts to resemble a dough.\r\nKnead the dough until it becomes too stiff to continue, then form it into a disc and cover with plastic wrap. I usually give it a good 8-9 minutes.\r\nAllow pasta to rest on the counter for a minimum of 20 minutes  an hour is better.  \r\nThe pasta may be refrigerated overnight at this point.\r\nIf refrigerated, allow pasta to warm to room temperature before removing plastic film.\r\nUsing a bench scraper, cut the disc into 4 pieces (2 pieces per egg).  Flatten each piece with the heel of your hand and pass it through your pasta roller 4 or 5 times with the rollers set at their widest setting, folding between passes, until pasta is smooth.\r\nPass the pieces through the pasta roller, progressively decreasing the distance between rollers until the sheets are at desired thickness.\r\nCut pasta as desired and sprinkle with rice flour, separating noodles. Don't let the noodles dry out!",
+      "orderId": 2,
+      "recipeCount": 18,
+      "title": "Semolina Pasta For One Person"
+    }
+  ],
+  "description": "A wonderfully light pasta recipe courtesy Giada De Laurentiis.  Terrific with scallops or white fish.",
+  "imageFile": null,
+  "isFavorite": false,
+  "note": "",
+  "recipeId": 66,
+  "title": "Lemon Spaghetti ",
+  "urlRoute": "lemon-spaghetti"
+}

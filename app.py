@@ -1,6 +1,6 @@
 # Author:       Michael Rubin
 # Created:      10/9/2023
-# Modified:     10/9/2023
+# Modified:     10/10/2023
 #
 # Copyright 2023 © Uptakeblue.com, All Rights Reserved
 # -----------------------------------------------------------
@@ -32,12 +32,88 @@ for k in app.config:
 def root():
     return "Root URL '/' Not Supported<br/>"
 
-@app.route("/recipe/map", methods = ['GET', 'OPTIONS'])
+
+
+#### RECIPE
+# returns the entire list, and a separate list of { title, recipeId }
+@app.route("/recipe/map/", methods = ['GET', 'OPTIONS'])
 @cross_origin()
 def recipe_GET_Map():
     return fn_r.recipe_GET_Map()  
 
+
+@app.route("/recipe/search/<keyword>/", methods = ['GET', 'OPTIONS'])
+@cross_origin()
+def recipe_GET_ListSearch(keyword):
+    return fn_r.recipe_GET_ListSearch(keyword)
+
+
 @app.route("/recipe/<recipeid>/", methods = ['GET', 'DELETE', 'OPTIONS'])
 @cross_origin()
-def recipe_GET(recipeid):
-    return fn_r.recipe_GET(recipeid)
+def recipe_GET_DELETE(recipeid):
+    response = None
+    if request.method == 'GET':
+        # returns a specific recipe
+        response = fn_r.recipe_GET(recipeid)
+    elif request.method == 'DELETE':
+        # deletes a specific recipe
+        response = fn_r.recipe_DELETE(recipeid)
+    return response
+
+
+@app.route("/recipe/", methods=['POST', 'PUT', 'OPTIONS'])
+@cross_origin()
+def recipe_PUT_POST():
+    response = None
+    if request.method == 'PUT':
+        # updates a recipe
+        response = fn_r.recipe_PUT()
+    elif request.method == 'POST':
+        # creates a recipe
+        response = fn_r.recipe_POST()
+    return response
+
+
+
+#### CONTENT
+# returns the entire list 
+@app.route("/content/", methods=['GET', 'OPTIONS'])
+@cross_origin()
+def content_GET_List():
+    return fn_r.content_GET_List()
+
+
+# keyword search
+@app.route("/content/search/<keyword>/", methods=['GET', 'OPTIONS'])
+@cross_origin()
+def content_GET_ListSearch(keyword):
+    return fn_r.content_GET_ListSearch(keyword)
+
+
+# returns a specific content
+@app.route("/content/<contentid>/", methods=['GET', 'DELETE', 'OPTIONS'])
+@cross_origin()
+def content_GET_DELETE(contentid):
+    response = None
+    if request.method == 'GET':
+        # returns a specific content
+        response = fn_r.content_GET(contentid)
+    elif request.method == 'DELETE':
+        # deletes a specific content
+        response = fn_r.content_DELETE(contentid)
+
+    return response
+
+@app.route("/content/", methods=['POST', 'PUT', 'OPTIONS'])
+@cross_origin()
+def content_PUT_POST():
+    response = None
+    if request.method == 'PUT':
+        # returns a specific resipe
+        pass
+    elif request.method == 'POST':
+        # deletes a specific recipe
+        pass
+    return response
+
+

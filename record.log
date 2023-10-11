@@ -362,3 +362,443 @@ TypeError: The view function for 'recipe_GET' did not return a valid response. T
 2023-10-09 11:40:38,149 INFO : [33mPress CTRL+C to quit[0m
 2023-10-09 11:40:47,265 INFO : 127.0.0.1 - - [09/Oct/2023 11:40:47] "[32mGET /recipe/66 HTTP/1.1[0m" 308 -
 2023-10-09 11:40:47,305 INFO : 127.0.0.1 - - [09/Oct/2023 11:40:47] "GET /recipe/66/ HTTP/1.1" 200 -
+2023-10-10 16:29:17,581 INFO : [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2023-10-10 16:29:17,581 INFO : [33mPress CTRL+C to quit[0m
+2023-10-10 16:29:30,206 INFO : 127.0.0.1 - - [10/Oct/2023 16:29:30] "[35m[1mGET /content/ HTTP/1.1[0m" 500 -
+2023-10-10 16:30:07,089 INFO : [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2023-10-10 16:30:07,089 INFO : [33mPress CTRL+C to quit[0m
+2023-10-10 16:30:10,773 INFO : 127.0.0.1 - - [10/Oct/2023 16:30:10] "[35m[1mGET /content/ HTTP/1.1[0m" 500 -
+2023-10-10 16:30:51,507 INFO : [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2023-10-10 16:30:51,508 INFO : [33mPress CTRL+C to quit[0m
+2023-10-10 16:30:53,531 INFO : 127.0.0.1 - - [10/Oct/2023 16:30:53] "GET /content/ HTTP/1.1" 200 -
+2023-10-10 16:31:15,844 INFO : 127.0.0.1 - - [10/Oct/2023 16:31:15] "GET /content/search/jalapeno/ HTTP/1.1" 200 -
+2023-10-10 16:31:24,118 INFO : 127.0.0.1 - - [10/Oct/2023 16:31:24] "[35m[1mGET /content/102/ HTTP/1.1[0m" 500 -
+2023-10-10 16:31:24,135 ERROR : Error on request:
+Traceback (most recent call last):
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\werkzeug\serving.py", line 364, in run_wsgi
+    execute(self.server.app)
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\werkzeug\serving.py", line 325, in execute
+    application_iter = app(environ, start_response)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 2213, in __call__
+    return self.wsgi_app(environ, start_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 2193, in wsgi_app
+    response = self.handle_exception(e)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask_cors\decorator.py", line 130, in wrapped_function
+    resp = make_response(f(*args, **kwargs))
+                         ^^^^^^^^^^^^^^^^^^^
+TypeError: content_GET_DELETE() got an unexpected keyword argument 'contentid'
+2023-10-10 16:31:44,945 INFO : 127.0.0.1 - - [10/Oct/2023 16:31:44] "[35m[1mGET /content/102/ HTTP/1.1[0m" 500 -
+2023-10-10 16:31:44,949 ERROR : Error on request:
+Traceback (most recent call last):
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\werkzeug\serving.py", line 364, in run_wsgi
+    execute(self.server.app)
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\werkzeug\serving.py", line 325, in execute
+    application_iter = app(environ, start_response)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 2213, in __call__
+    return self.wsgi_app(environ, start_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 2193, in wsgi_app
+    response = self.handle_exception(e)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask_cors\decorator.py", line 130, in wrapped_function
+    resp = make_response(f(*args, **kwargs))
+                         ^^^^^^^^^^^^^^^^^^^
+TypeError: content_GET_DELETE() got an unexpected keyword argument 'contentid'
+2023-10-10 16:32:06,252 INFO : 127.0.0.1 - - [10/Oct/2023 16:32:06] "[35m[1mGET /content/102/ HTTP/1.1[0m" 500 -
+2023-10-10 16:32:06,255 ERROR : Error on request:
+Traceback (most recent call last):
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\werkzeug\serving.py", line 364, in run_wsgi
+    execute(self.server.app)
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\werkzeug\serving.py", line 325, in execute
+    application_iter = app(environ, start_response)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 2213, in __call__
+    return self.wsgi_app(environ, start_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 2193, in wsgi_app
+    response = self.handle_exception(e)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask_cors\decorator.py", line 130, in wrapped_function
+    resp = make_response(f(*args, **kwargs))
+                         ^^^^^^^^^^^^^^^^^^^
+TypeError: content_GET_DELETE() got an unexpected keyword argument 'contentid'
+2023-10-10 16:32:07,304 INFO : 127.0.0.1 - - [10/Oct/2023 16:32:07] "[35m[1mGET /content/102/ HTTP/1.1[0m" 500 -
+2023-10-10 16:32:07,308 ERROR : Error on request:
+Traceback (most recent call last):
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\werkzeug\serving.py", line 364, in run_wsgi
+    execute(self.server.app)
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\werkzeug\serving.py", line 325, in execute
+    application_iter = app(environ, start_response)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 2213, in __call__
+    return self.wsgi_app(environ, start_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 2193, in wsgi_app
+    response = self.handle_exception(e)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask_cors\decorator.py", line 130, in wrapped_function
+    resp = make_response(f(*args, **kwargs))
+                         ^^^^^^^^^^^^^^^^^^^
+TypeError: content_GET_DELETE() got an unexpected keyword argument 'contentid'
+2023-10-10 16:32:30,570 INFO : 127.0.0.1 - - [10/Oct/2023 16:32:30] "[35m[1mGET /content/102/ HTTP/1.1[0m" 500 -
+2023-10-10 16:32:30,574 ERROR : Error on request:
+Traceback (most recent call last):
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\werkzeug\serving.py", line 364, in run_wsgi
+    execute(self.server.app)
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\werkzeug\serving.py", line 325, in execute
+    application_iter = app(environ, start_response)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 2213, in __call__
+    return self.wsgi_app(environ, start_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 2193, in wsgi_app
+    response = self.handle_exception(e)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask_cors\decorator.py", line 130, in wrapped_function
+    resp = make_response(f(*args, **kwargs))
+                         ^^^^^^^^^^^^^^^^^^^
+TypeError: content_GET_DELETE() got an unexpected keyword argument 'contentid'
+2023-10-10 16:33:43,312 INFO : 127.0.0.1 - - [10/Oct/2023 16:33:43] "GET /recipe/66/ HTTP/1.1" 200 -
+2023-10-10 16:34:06,615 INFO : 127.0.0.1 - - [10/Oct/2023 16:34:06] "GET /content/ HTTP/1.1" 200 -
+2023-10-10 16:34:20,833 INFO : 127.0.0.1 - - [10/Oct/2023 16:34:20] "[35m[1mGET /content/102/ HTTP/1.1[0m" 500 -
+2023-10-10 16:34:20,837 ERROR : Error on request:
+Traceback (most recent call last):
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\werkzeug\serving.py", line 364, in run_wsgi
+    execute(self.server.app)
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\werkzeug\serving.py", line 325, in execute
+    application_iter = app(environ, start_response)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 2213, in __call__
+    return self.wsgi_app(environ, start_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 2193, in wsgi_app
+    response = self.handle_exception(e)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask_cors\decorator.py", line 130, in wrapped_function
+    resp = make_response(f(*args, **kwargs))
+                         ^^^^^^^^^^^^^^^^^^^
+TypeError: content_GET_DELETE() got an unexpected keyword argument 'contentid'
+2023-10-10 16:35:44,808 INFO : 127.0.0.1 - - [10/Oct/2023 16:35:44] "[35m[1mDELETE /content/102/ HTTP/1.1[0m" 500 -
+2023-10-10 16:35:44,812 ERROR : Error on request:
+Traceback (most recent call last):
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\werkzeug\serving.py", line 364, in run_wsgi
+    execute(self.server.app)
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\werkzeug\serving.py", line 325, in execute
+    application_iter = app(environ, start_response)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 2213, in __call__
+    return self.wsgi_app(environ, start_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 2193, in wsgi_app
+    response = self.handle_exception(e)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask_cors\decorator.py", line 130, in wrapped_function
+    resp = make_response(f(*args, **kwargs))
+                         ^^^^^^^^^^^^^^^^^^^
+TypeError: content_GET_DELETE() got an unexpected keyword argument 'contentid'
+2023-10-10 16:35:45,915 INFO : 127.0.0.1 - - [10/Oct/2023 16:35:45] "[35m[1mDELETE /content/102/ HTTP/1.1[0m" 500 -
+2023-10-10 16:35:45,919 ERROR : Error on request:
+Traceback (most recent call last):
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\werkzeug\serving.py", line 364, in run_wsgi
+    execute(self.server.app)
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\werkzeug\serving.py", line 325, in execute
+    application_iter = app(environ, start_response)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 2213, in __call__
+    return self.wsgi_app(environ, start_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 2193, in wsgi_app
+    response = self.handle_exception(e)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask_cors\decorator.py", line 130, in wrapped_function
+    resp = make_response(f(*args, **kwargs))
+                         ^^^^^^^^^^^^^^^^^^^
+TypeError: content_GET_DELETE() got an unexpected keyword argument 'contentid'
+2023-10-10 16:36:55,906 INFO : 127.0.0.1 - - [10/Oct/2023 16:36:55] "[35m[1mDELETE /content/102/ HTTP/1.1[0m" 500 -
+2023-10-10 16:36:55,910 ERROR : Error on request:
+Traceback (most recent call last):
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\werkzeug\serving.py", line 364, in run_wsgi
+    execute(self.server.app)
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\werkzeug\serving.py", line 325, in execute
+    application_iter = app(environ, start_response)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 2213, in __call__
+    return self.wsgi_app(environ, start_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 2193, in wsgi_app
+    response = self.handle_exception(e)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask_cors\decorator.py", line 130, in wrapped_function
+    resp = make_response(f(*args, **kwargs))
+                         ^^^^^^^^^^^^^^^^^^^
+TypeError: content_GET_DELETE() got an unexpected keyword argument 'contentid'
+2023-10-10 16:37:18,079 INFO : 127.0.0.1 - - [10/Oct/2023 16:37:18] "[35m[1mGET /content/102/ HTTP/1.1[0m" 500 -
+2023-10-10 16:37:18,082 ERROR : Error on request:
+Traceback (most recent call last):
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\werkzeug\serving.py", line 364, in run_wsgi
+    execute(self.server.app)
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\werkzeug\serving.py", line 325, in execute
+    application_iter = app(environ, start_response)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 2213, in __call__
+    return self.wsgi_app(environ, start_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 2193, in wsgi_app
+    response = self.handle_exception(e)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask_cors\decorator.py", line 130, in wrapped_function
+    resp = make_response(f(*args, **kwargs))
+                         ^^^^^^^^^^^^^^^^^^^
+TypeError: content_GET_DELETE() got an unexpected keyword argument 'contentid'
+2023-10-10 16:37:25,078 INFO : 127.0.0.1 - - [10/Oct/2023 16:37:25] "DELETE /recipe/66/ HTTP/1.1" 200 -
+2023-10-10 16:37:29,636 INFO : 127.0.0.1 - - [10/Oct/2023 16:37:29] "DELETE /recipe/66/ HTTP/1.1" 200 -
+2023-10-10 16:37:39,332 INFO : 127.0.0.1 - - [10/Oct/2023 16:37:39] "[35m[1mGET /recipe/map/ HTTP/1.1[0m" 500 -
+2023-10-10 16:37:56,294 INFO : 127.0.0.1 - - [10/Oct/2023 16:37:56] "GET /recipe/search/jalapeno/ HTTP/1.1" 200 -
+2023-10-10 16:38:01,016 INFO : 127.0.0.1 - - [10/Oct/2023 16:38:01] "GET /recipe/66/ HTTP/1.1" 200 -
+2023-10-10 16:38:05,831 INFO : 127.0.0.1 - - [10/Oct/2023 16:38:05] "[35m[1mGET /recipe/map/ HTTP/1.1[0m" 500 -
+2023-10-10 16:39:34,423 INFO : [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2023-10-10 16:39:34,424 INFO : [33mPress CTRL+C to quit[0m
+2023-10-10 16:39:43,723 INFO : 127.0.0.1 - - [10/Oct/2023 16:39:43] "GET /recipe/map/ HTTP/1.1" 200 -
+2023-10-10 16:41:17,573 INFO : [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2023-10-10 16:41:17,573 INFO : [33mPress CTRL+C to quit[0m
+2023-10-10 16:41:32,591 INFO : 127.0.0.1 - - [10/Oct/2023 16:41:32] "GET /content/102/ HTTP/1.1" 200 -
+2023-10-10 16:41:44,008 INFO : 127.0.0.1 - - [10/Oct/2023 16:41:44] "GET /content/102/ HTTP/1.1" 200 -
+2023-10-10 16:42:06,960 INFO : 127.0.0.1 - - [10/Oct/2023 16:42:06] "DELETE /content/102/ HTTP/1.1" 200 -
+2023-10-10 16:45:27,660 INFO : [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2023-10-10 16:45:27,660 INFO : [33mPress CTRL+C to quit[0m
+2023-10-10 16:45:36,068 INFO : 127.0.0.1 - - [10/Oct/2023 16:45:36] "GET /recipe/66/ HTTP/1.1" 200 -
+2023-10-10 17:06:03,259 INFO : [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2023-10-10 17:06:03,259 INFO : [33mPress CTRL+C to quit[0m
+2023-10-10 17:06:10,150 INFO : 127.0.0.1 - - [10/Oct/2023 17:06:10] "[31m[1mPOST /recipe/66/ HTTP/1.1[0m" 405 -
+2023-10-10 17:06:31,638 INFO : 127.0.0.1 - - [10/Oct/2023 17:06:31] "[35m[1mPOST /recipe/ HTTP/1.1[0m" 500 -
+2023-10-10 17:06:31,650 ERROR : Error on request:
+Traceback (most recent call last):
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\werkzeug\serving.py", line 364, in run_wsgi
+    execute(self.server.app)
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\werkzeug\serving.py", line 325, in execute
+    application_iter = app(environ, start_response)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 2213, in __call__
+    return self.wsgi_app(environ, start_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 2193, in wsgi_app
+    response = self.handle_exception(e)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask_cors\decorator.py", line 130, in wrapped_function
+    resp = make_response(f(*args, **kwargs))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\helpers.py", line 178, in make_response
+    return current_app.make_response(args)  # type: ignore
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Michael\Documents\Github\recipes-api\.venv\Lib\site-packages\flask\app.py", line 1801, in make_response
+    raise TypeError(
+TypeError: The view function for 'recipe_PUT_POST' did not return a valid response. The function either returned None or ended without a return statement.
