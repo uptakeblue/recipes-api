@@ -1,0 +1,12 @@
+PUT http://127.0.0.1:5000/recipe/ HTTP/1.1
+content-type: application/json
+
+{
+  "description": "Test description, updated",
+  "imageFile": null,
+  "isFavorite": true,
+  "note": "",
+  "recipeId": 2483,
+  "title": "Test recipe!!",
+  "urlRoute": "test-recipe"
+}

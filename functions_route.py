@@ -9,6 +9,7 @@ from flask import request
 import functions_recipe as fn
 import functions_utility as fn_u
 import functions_content as fn_c
+import recipe_dto as dto
 import utility as u
 
 MODULE = "functions_route"
@@ -88,7 +89,9 @@ def recipe_PUT():
     util = u.Global_Utility(app_settings)
     response = None
     try:
-        result = fn.recipe_PUT(util)
+        recipeDto = dto.recipe_dto(request.json)
+        result = fn.recipe_PUT(util, recipeDto)
+
         response = (result, u.RESPONSECODE_OK)
     
     except Exception as err:
@@ -102,7 +105,9 @@ def recipe_POST():
     util = u.Global_Utility(app_settings)
     response = None
     try:
-        result = fn.recipe_POST(util)
+        recipeDto = dto.recipe_dto(request.json)
+        result = fn.recipe_POST(util, recipeDto)
+
         response = (result, u.RESPONSECODE_OK)
     
     except Exception as err:

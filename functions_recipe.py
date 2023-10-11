@@ -112,6 +112,9 @@ def recipe_POST(util: u.Global_Utility, recipeDto:dto.recipe_dto) -> dict:
             cursor.callproc("dbo.rcp_recipe_Post", args)
             cursor.execute('SELECT @_dbo.rcp_recipe_Post_6')
             recipeId = cursor.fetchone()[0]
+
+            util.pymysqlConnection.commit()
+
             response = {
                 "message": f"Recipe was created",
                 "recipeId": recipeId
@@ -139,8 +142,10 @@ def recipe_PUT(util: u.Global_Utility, recipeDto:dto.recipe_dto) -> dict:
     try:
         with util.pymysqlConnection.cursor() as cursor:
             cursor.callproc("dbo.rcp_recipe_Put", args)
+            util.pymysqlConnection.commit()
+
             response = {
-                "message": f"Recipe was uupdated",
+                "message": f"Recipe was updated",
                 "recipeId": recipeDto.RecipeId
             }
 
