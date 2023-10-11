@@ -1,6 +1,6 @@
 # Author:       Michael Rubin
 # Created:      10/10/2023
-# Modified:     10/10/2023
+# Modified:     10/11/2023
 #
 # Copyright 2023 © Uptakeblue.com, All Rights Reserved
 # -----------------------------------------------------------
@@ -19,7 +19,10 @@ def content_GET_List(util: u.Global_Utility) -> list:
                 response = []
                 for row in rows:
                     contentDto = dto.content_dto(row)
-                    response.append(contentDto.getDictionary())
+                    response.append({
+                        "contentId": contentDto.ContentId,
+                        "title": contentDto.Title
+                    })
 
     except Exception as e:
         raise u.UptakeblueException(

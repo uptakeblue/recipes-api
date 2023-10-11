@@ -1,6 +1,6 @@
 # Author:       Michael Rubin
 # Created:      10/9/2023
-# Modified:     10/10/2023
+# Modified:     10/11/2023
 #
 # Copyright 2023 © Uptakeblue.com, All Rights Reserved
 # -----------------------------------------------------------
@@ -76,7 +76,7 @@ def recipe_PUT_POST():
 
 
 #### CONTENT
-# returns the entire list 
+# returns the entire list, titles and contentId only
 @app.route("/content/", methods=['GET', 'OPTIONS'])
 @cross_origin()
 def content_GET_List():
