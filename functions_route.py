@@ -1,6 +1,6 @@
 # Author:       Michael Rubin
 # Created:      10/9/2023
-# Modified:     10/10/2023
+# Modified:     10/11/2023
 #
 # Copyright 2023 © Uptakeblue.com, All Rights Reserved
 # -----------------------------------------------------------
@@ -44,8 +44,18 @@ def recipe_GET_Map():
 def recipe_GET_ListSearch(keyword:str):
     util = u.Global_Utility(app_settings)
     response = None
+    result = {
+        "recipes":[],
+        "recipetitles":[]
+    }
     try:
-        result = fn_r.recipe_GET_ListSearch(util, keyword)
+        recipeDictArray = fn_r.recipe_GET_ListSearch(util, keyword)
+        for recipe in recipeDictArray:
+            result['recipes'].append(recipe)
+            result['recipetitles'].append({
+                "recipeId":recipe['recipeId'],
+                "title":recipe['title'],
+            })
         response = (result, u.RESPONSECODE_OK)
     
     except Exception as err:
