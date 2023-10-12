@@ -11,13 +11,12 @@ import recipe_dto as dto
 MODULE = "functions_recipe"
 
 def recipe_GET_List(util: u.Global_Utility) -> list:
-    response = None
+    response = []
     try:
         with util.pymysqlConnection.cursor() as cursor:
             cursor.callproc("dbo.rcp_recipe_Get_List")
             rows = cursor.fetchall()
             if rows:
-                response = []
                 for row in rows:
                     recipeDto = dto.recipe_dto(row)
                     response.append(recipeDto.getDictionary())
@@ -31,7 +30,7 @@ def recipe_GET_List(util: u.Global_Utility) -> list:
 
 
 def recipe_GET_ListSearch(util: u.Global_Utility, keyword) -> list:
-    response = None
+    response = []
     args = [
         keyword
     ]
@@ -40,7 +39,6 @@ def recipe_GET_ListSearch(util: u.Global_Utility, keyword) -> list:
             cursor.callproc("dbo.rcp_recipe_Get_ListSearch", args)
             rows = cursor.fetchall()
             if rows:
-                response = []
                 for row in rows:
                     recipeDto = dto.recipe_dto(row)
                     response.append(recipeDto.getDictionary())
