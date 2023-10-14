@@ -1,6 +1,6 @@
 # Author:       Michael Rubin
 # Created:      10/9/2023
-# Modified:     10/11/2023
+# Modified:     10/13/2023
 #
 # Copyright 2023 © Uptakeblue.com, All Rights Reserved
 # -----------------------------------------------------------
@@ -76,6 +76,22 @@ def recipe_GET(recipeId:int):
     
     except Exception as err:
         e = u.UptakeblueException(err, f"{MODULE}.recipe_GET()")
+        response = fn_u.exceptionResponse(e)
+    finally:
+        return response
+
+
+def recipe_GET_ByRoute(routeUrl:str):
+    util = u.Global_Utility(app_settings)
+    response = None
+    try:
+        result = fn_r.recipe_GET_ByRoute(util, routeUrl)
+        result['contents'] = fn_c.content_GET_ListByRecipe(util, result['recipeId'])
+
+        response = (result, u.RESPONSECODE_OK)
+    
+    except Exception as err:
+        e = u.UptakeblueException(err, f"{MODULE}.recipe_GET_ByRoute()")
         response = fn_u.exceptionResponse(e)
     finally:
         return response

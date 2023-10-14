@@ -1,6 +1,6 @@
 # Author:       Michael Rubin
 # Created:      10/9/2023
-# Modified:     10/9/2023
+# Modified:     10/13/2023
 #
 # Copyright 2023 © Uptakeblue.com, All Rights Reserved
 # -----------------------------------------------------------
@@ -67,6 +67,27 @@ def recipe_GET(util: u.Global_Utility, recipeId) -> dict:
     except Exception as e:
         raise u.UptakeblueException(
             e, source=f"{MODULE}.recipe_GET()", paramarge=args
+        )
+
+    return response
+
+
+def recipe_GET_ByRoute(util: u.Global_Utility, routUrl:str) -> dict:
+    response = None
+    args = [
+        routUrl
+    ]
+    try:
+        with util.pymysqlConnection.cursor() as cursor:
+            cursor.callproc("dbo.rcp_recipe_GetByUrl", args)
+            row = cursor.fetchone()
+            if row:
+                recipeDto = dto.recipe_dto(row)
+                response = recipeDto.getDictionary()
+
+    except Exception as e:
+        raise u.UptakeblueException(
+            e, source=f"{MODULE}.recipe_GET_ByRoute()", paramarge=args
         )
 
     return response

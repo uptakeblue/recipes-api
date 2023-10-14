@@ -61,6 +61,12 @@ def recipe_GET_DELETE(recipeid):
     return response
 
 
+@app.route("/recipe/route/<routeurl>/", methods = ['GET', 'OPTIONS'])
+@cross_origin()
+def recipe_GET_ByRoute(routeurl):
+    return fn_r.recipe_GET_ByRoute(routeurl)
+
+
 @app.route("/recipe/", methods=['POST', 'PUT', 'OPTIONS'])
 @cross_origin()
 def recipe_PUT_POST():
