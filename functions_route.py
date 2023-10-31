@@ -1,6 +1,6 @@
 # Author:       Michael Rubin
 # Created:      10/9/2023
-# Modified:     10/13/2023
+# Modified:     10/30/2023
 #
 # Copyright 2023 © Uptakeblue.com, All Rights Reserved
 # -----------------------------------------------------------
@@ -9,6 +9,7 @@ from flask import request
 import functions_recipe as fn_r
 import functions_utility as fn_u
 import functions_content as fn_c
+import functions_recipecontent as fn_rc
 import recipe_dto as dto
 import utility as u
 
@@ -232,6 +233,70 @@ def content_POST():
     
     except Exception as err:
         e = u.UptakeblueException(err, f"{MODULE}.recipe_POST()")
+        response = fn_u.exceptionResponse(e)
+    finally:
+        return response
+
+
+
+#### RECIPECONTENT
+def recipeContent_GET(recipeId:int, contentId:int):
+    util = u.Global_Utility(app_settings)
+    response = None
+    try:
+        result = fn_rc.recipeContent_GET(util, recipeId, contentId)
+
+        response = (result, u.RESPONSECODE_OK)
+    
+    except Exception as err:
+        e = u.UptakeblueException(err, f"{MODULE}.recipeContent_GET()")
+        response = fn_u.exceptionResponse(e)
+    finally:
+        return response
+
+
+def recipeContent_DELETE(recipeId:int, contentId:int):
+    util = u.Global_Utility(app_settings)
+    response = None
+    try:
+        result = fn_rc.recipeContent_DELETE(util, recipeId, contentId)
+
+        response = (result, u.RESPONSECODE_OK)
+    
+    except Exception as err:
+        e = u.UptakeblueException(err, f"{MODULE}.recipeContent_DELETE()")
+        response = fn_u.exceptionResponse(e)
+    finally:
+        return response
+
+
+def recipeContent_PUT():
+    util = u.Global_Utility(app_settings)
+    response = None
+    try:
+        recipeContentDto = dto.recipeContent_dto(request.json)
+        result = fn_rc.recipeContent_PUT(util, recipeContentDto)
+
+        response = (result, u.RESPONSECODE_OK)
+    
+    except Exception as err:
+        e = u.UptakeblueException(err, f"{MODULE}.recipeContent_PUT()")
+        response = fn_u.exceptionResponse(e)
+    finally:
+        return response
+
+
+def recipeContent_POST():
+    util = u.Global_Utility(app_settings)
+    response = None
+    try:
+        recipeContentDto = dto.recipeContent_dto(request.json)
+        result = fn_rc.recipeContent_POST(util, recipeContentDto)
+
+        response = (result, u.RESPONSECODE_OK)
+    
+    except Exception as err:
+        e = u.UptakeblueException(err, f"{MODULE}.recipeContent_POST()")
         response = fn_u.exceptionResponse(e)
     finally:
         return response

@@ -1,6 +1,6 @@
 # Author:       Michael Rubin
 # Created:      10/9/2023
-# Modified:     10/11/2023
+# Modified:     10/30/2023
 #
 # Copyright 2023 © Uptakeblue.com, All Rights Reserved
 # -----------------------------------------------------------
@@ -117,11 +117,36 @@ def content_PUT_POST():
     if request.method == 'PUT':
         # updates a specific content
         response = fn_r.content_PUT()
-        pass
     elif request.method == 'POST':
         # creates a new content
         response = fn_r.content_POST()
-        pass
     return response
 
 
+#### RECIPE_CONTENT
+# retrives or deletes a recipe content relationship
+@app.route("/recipecontent/<recipeid>/<contentid>/", methods=['GET', 'DELETE', 'OPTIONS'])
+@cross_origin()
+def recipecontent_GET_DELETE(recipeid, contentid):
+    response = None
+    if request.method == 'GET':
+        # retrieves a specific reltionship
+        response = fn_r.recipeContent_GET(recipeid, contentid)
+    elif request.method == 'DELETE':
+        # deletes a specific reltionship
+        response = fn_r.recipeContent_DELETE(recipeid, contentid)
+    return response
+
+
+# creates or updates a recipe content relationship
+@app.route("/recipecontent/", methods=['PUT', 'POST', 'OPTIONS'])
+@cross_origin()
+def recipecontent_PUT_POST():
+    response = None
+    if request.method == 'PUT':
+        # retrieves a specific reltionship
+        response = fn_r.recipeContent_PUT()
+    elif request.method == 'POST':
+        # deletes a specific reltionship
+        response = fn_r.recipeContent_POST()
+    return response

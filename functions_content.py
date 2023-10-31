@@ -1,6 +1,6 @@
 # Author:       Michael Rubin
 # Created:      10/10/2023
-# Modified:     10/11/2023
+# Modified:     10/30/2023
 #
 # Copyright 2023 © Uptakeblue.com, All Rights Reserved
 # -----------------------------------------------------------
@@ -177,7 +177,7 @@ def content_PUT(util: u.Global_Utility, contentDto:dto.content_dto) -> dict:
 
     except Exception as e:
         raise u.UptakeblueException(
-            e, source=f"{MODULE}.content_POST()", paramarge=args
+            e, source=f"{MODULE}.content_PUT()", paramarge=args
         )
 
     return response

@@ -1,6 +1,6 @@
 # Author:       Michael Rubin
 # Created:      10/9/2023
-# Modified:     10/10/2023
+# Modified:     10/30/2023
 #
 # Copyright 2023 © Uptakeblue.com, All Rights Reserved
 # -----------------------------------------------------------
@@ -78,3 +78,23 @@ class content_dto:
             "recipeId":self.RecipeId,
         }
                 
+
+class recipeContent_dto:
+    def __init__(self, initObject) -> None:
+        if isinstance(initObject, tuple):
+            dataRow:tuple = initObject
+            self.RecipeId = dataRow[0]
+            self.ContentId = dataRow[1]
+            self.OrderID = dataRow[2]
+        elif isinstance(initObject, dict):
+            rcDict = initObject
+            self.RecipeId = rcDict['recipeId'] if "recipeId" in rcDict else None
+            self.ContentId = rcDict['contentId'] if "contentId" in rcDict else None
+            self.OrderID = rcDict['orderId'] if "orderId" in rcDict else None
+
+    def getDictionary(self)->dict:
+        return{
+            "recipeId":self.RecipeId,
+            "contentId": self.ContentId,
+            "orderId": self.OrderID
+        }
