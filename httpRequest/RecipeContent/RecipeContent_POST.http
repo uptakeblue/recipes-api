@@ -3,5 +3,5 @@ content-type: application/json
 
 {
   "recipeId": 1,
-  "contentId": 3,
+  "contentId": 3
 }
