@@ -1,10 +1,10 @@
 # Author:       Michael Rubin
 # Created:      10/9/2023
-# Modified:     10/30/2023
+# Modified:     11/2/2023
 #
 # Copyright 2023 © Uptakeblue.com, All Rights Reserved
 # -----------------------------------------------------------
-from flask import request
+from flask import request, send_file, send_from_directory
 
 import functions_recipe as fn_r
 import functions_utility as fn_u
@@ -12,6 +12,7 @@ import functions_content as fn_c
 import functions_recipecontent as fn_rc
 import recipe_dto as dto
 import utility as u
+import os
 
 MODULE = "functions_route"
 
@@ -298,5 +299,19 @@ def recipeContent_POST():
     except Exception as err:
         e = u.UptakeblueException(err, f"{MODULE}.recipeContent_POST()")
         response = fn_u.exceptionResponse(e)
+    finally:
+        return response
+
+
+#### IMAGES
+def image_GET(folder:str, filename:str):
+    response = None
+    try:
+        response = send_from_directory(folder, filename)
+    
+    except Exception as err:
+        e = u.UptakeblueException(err, f"{MODULE}.image_GET()")
+        response = fn_u.exceptionResponse(e)
+
     finally:
         return response

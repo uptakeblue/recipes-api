@@ -1,6 +1,6 @@
 # Author:       Michael Rubin
 # Created:      10/9/2023
-# Modified:     10/30/2023
+# Modified:     11/2/2023
 #
 # Copyright 2023 © Uptakeblue.com, All Rights Reserved
 # -----------------------------------------------------------
@@ -10,7 +10,7 @@ import utility as u
 import logging
 
 from datetime import datetime, date
-from flask import Flask, request
+from flask import Flask, request, send_from_directory
 from flask_cors import CORS, cross_origin
 
 logging.basicConfig(
@@ -150,3 +150,17 @@ def recipecontent_PUT_POST():
         # deletes a specific reltionship
         response = fn_r.recipeContent_POST()
     return response
+
+
+#### IMAGES
+# retrieves a single image
+@app.route("/image/<filename>/", methods = ['GET', 'OPTIONS'])
+@cross_origin()
+def image_GET(filename):
+    return fn_r.image_GET('images', filename)
+
+# retrieves a single thmbnail image
+@app.route("/image/thumbnail/<filename>/", methods = ['GET', 'OPTIONS'])
+@cross_origin()
+def image_thumbnail_GET(filename):
+    return fn_r.image_GET('images/thumbnails', filename)
