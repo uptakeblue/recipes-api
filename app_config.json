@@ -3,5 +3,8 @@
     "MYSQL_USER": "root",
     "MYSQL_PASSWORD": "halibut",
     "MYSQL_ENDPOINT": "localhost",
-    "CORS_HEADERS": "Content-Type"
+    "CORS_HEADERS": "Content-Type",
+    "MAX_CONTENT_LENGTH": 16793600,
+    "IMAGE_FOLDER": "./images",
+    "IMAGE_THUMBNAIL_FOLDER": "./images/thumbnails"
 }

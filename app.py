@@ -10,7 +10,7 @@ import utility as u
 import logging
 
 from datetime import datetime, date
-from flask import Flask, request, send_from_directory
+from flask import Flask, request, make_response, jsonify
 from flask_cors import CORS, cross_origin
 
 logging.basicConfig(
@@ -152,6 +152,7 @@ def recipecontent_PUT_POST():
     return response
 
 
+
 #### IMAGES
 # retrieves a single image
 @app.route("/image/<filename>/", methods = ['GET', 'OPTIONS'])
@@ -159,8 +160,23 @@ def recipecontent_PUT_POST():
 def image_GET(filename):
     return fn_r.image_GET('images', filename)
 
+
 # retrieves a single thmbnail image
 @app.route("/image/thumbnail/<filename>/", methods = ['GET', 'OPTIONS'])
 @cross_origin()
 def image_thumbnail_GET(filename):
     return fn_r.image_GET('images/thumbnails', filename)
+
+
+# retrieves a single image
+@app.route("/image/", methods = ['POST', 'OPTIONS'])
+@cross_origin()
+def image_POST():
+    return fn_r.image_POST()
+
+
+
+#### ERROR HANDLER
+@app.errorhandler(413)
+def filesize_exceeded(e):
+    return make_response(jsonify(message='File size exceeded the 16MB maximum'), 413)
