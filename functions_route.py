@@ -1,23 +1,23 @@
 # Author:       Michael Rubin
 # Created:      10/9/2023
-# Modified:     11/2/2023
+# Modified:     11/3/2023
 #
 # Copyright 2023 © Uptakeblue.com, All Rights Reserved
 # -----------------------------------------------------------
-from flask import request, send_file, send_from_directory
-from werkzeug.utils import secure_filename
+from flask import request
 
 import functions_recipe as fn_r
 import functions_utility as fn_u
 import functions_content as fn_c
+import functions_image as fn_i
 import functions_recipecontent as fn_rc
 import recipe_dto as dto
 import utility as u
-import os
 
 MODULE = "functions_route"
 
 app_settings = {}
+
 
 #### RECIPE
 def recipe_GET_Map():
@@ -307,51 +307,13 @@ def recipeContent_POST():
 #### IMAGES
 # retrieves a single image file
 def image_GET(folder:str, filename:str):
-    response = None
-    try:
-        filename = secure_filename(filename)
-        response = send_from_directory(folder, filename)
-    
-    except Exception as err:
-        if err.code==404:
-            response = send_from_directory('images', 'default.png')
-        else:
-            e = u.UptakeblueException(err, f"{MODULE}.image_GET()")
-            response = fn_u.exceptionResponse(e)
-
-    finally:
-        return response
+    return fn_i.image_GET(folder, filename)
 
 # retrieves a single image file
 def image_POST():
     response = None
-    ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
-    responseCode = u.RESPONSECODE_OK
-    
-    try:
-        
-        if "file" in request.files:
-            file = request.files['file']
-            filename = secure_filename(file.filename) 
-            targetFilename = request.form['target'] if "target" in request.form else filename
-            
-            if not("." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS):
-                responseCode = u.RESPONSECODE_NOTALLOWED
-                raise Exception("File must be .jpeg, .jpg or png")
-            
-            file.save(os.path.join(app_settings['IMAGE_FOLDER'], targetFilename))
-                
-            response = {
-                "message": "File uploaded successfully"
-            }
-        else:
-            responseCode = u.RESPONSECODE_BADREQUEST
-            raise Exception("No file was uploaded")
+    fn_i.IMAGE_FOLDER = app_settings['IMAGE_FOLDER']
+    fn_i.IMAGE_THUMBNAIL_FOLDER = app_settings['IMAGE_THUMBNAIL_FOLDER']
+    util = u.Global_Utility(app_settings)
+    return fn_i.image_POST(util)
 
-    except Exception as err:
-        e = u.UptakeblueException(err, f"{MODULE}.image_POST()")
-        e.ResponseCode = responseCode
-        response = fn_u.exceptionResponse(e)
-
-    finally:
-        return response

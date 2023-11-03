@@ -1,1 +1,1 @@
-GET http://127.0.0.1:5000/image/basic-cornbread.jpg/ HTTP/1.1 
+GET http://127.0.0.1:5000/image/302_porchetta.jpg/ HTTP/1.1 
