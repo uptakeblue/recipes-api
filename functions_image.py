@@ -10,10 +10,7 @@ from werkzeug.utils import secure_filename
 from PIL import Image
 
 import utility as u
-import recipe_dto as dto
 import functions_utility as fn_u
-import functions_recipe as fn_r
-import recipe_dto as dto
 
 MODULE = "functions_image"
 IMAGE_FOLDER = None
@@ -70,20 +67,6 @@ def image_POST(util:u.Global_Utility):
             thumbnail = image.resize((newWidth, newHeight))
 
             thumbnail.save(thumbnailFilepath)
-
-            # get recipe object 
-            with util.pymysqlConnection.cursor() as cursor:
-                cursor.execute(f"SELECT dbo.recipe_exists_byroute( '{urlRoute}')")
-                recipeExists = (cursor.fetchone()[0]=='1')
-
-                if recipeExists:
-                    recipeDict = fn_r.recipe_GET_ByRoute(util, urlRoute)
-                    if recipeDict:
-                        recipeDto = dto.recipe_dto(recipeDict)
-                        recipeDto.UrlRoute = urlRoute
-
-                        # update recipe
-                        fn_r.recipe_PUT(util, recipeDto)
                 
             response = {
                 "message": "File uploaded successfully"
