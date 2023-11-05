@@ -1,6 +1,6 @@
 # Author:       Michael Rubin
 # Created:      11/3/2023
-# Modified:     11/3/2023
+# Modified:     11/4/2023
 #
 # Copyright 2023 © Uptakeblue.com, All Rights Reserved
 # -----------------------------------------------------------
@@ -10,7 +10,10 @@ from werkzeug.utils import secure_filename
 from PIL import Image
 
 import utility as u
+import recipe_dto as dto
 import functions_utility as fn_u
+import functions_recipe as fn_r
+import recipe_dto as dto
 
 MODULE = "functions_image"
 IMAGE_FOLDER = None
@@ -40,7 +43,8 @@ def image_POST(util:u.Global_Utility):
     responseCode = u.RESPONSECODE_OK
     
     try:
-        
+        recipeDto = dto.recipe_dto(request.form)
+
         if "file" in request.files:
             file = request.files['file']
             filename = secure_filename(file.filename) 
@@ -50,10 +54,8 @@ def image_POST(util:u.Global_Utility):
                 raise Exception("File must be .jpeg, .jpg or png")
             
             extension = filename.split(".")[1]
-            urlRoute = request.form['routeurl'] if "routeurl" in request.form else None
-
-            targetFilename = f"{urlRoute}.{extension}" if urlRoute else filename
-            
+            targetFilename = f"{recipeDto.Route}.{extension}" if recipeDto.Route and extension else filename
+        
             targetFilepath = os.path.join(IMAGE_FOLDER, targetFilename)
             thumbnailFilepath = os.path.join(IMAGE_THUMBNAIL_FOLDER, targetFilename)
 
@@ -67,13 +69,22 @@ def image_POST(util:u.Global_Utility):
             thumbnail = image.resize((newWidth, newHeight))
 
             thumbnail.save(thumbnailFilepath)
-                
+            recipeDto.ImageFile = targetFilename
+
             response = {
                 "message": "File uploaded successfully"
             }
+
+        # update the recipe record
+        
+        result = fn_r.recipe_PUT(util, recipeDto)
+        if isinstance(response, dict):
+            response['message'] += ", and " + result['message']
+            response['recipeId'] = result['recipeId']
+
         else:
-            responseCode = u.RESPONSECODE_BADREQUEST
-            raise Exception("No file was uploaded")
+            response = result    
+        
 
     except Exception as err:
         e = u.UptakeblueException(err, f"{MODULE}.image_POST()")

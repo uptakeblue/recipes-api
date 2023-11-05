@@ -1,6 +1,6 @@
 # Author:       Michael Rubin
 # Created:      10/9/2023
-# Modified:     10/13/2023
+# Modified:     11/4/2023
 #
 # Copyright 2023 © Uptakeblue.com, All Rights Reserved
 # -----------------------------------------------------------
@@ -122,7 +122,7 @@ def recipe_POST(util: u.Global_Utility, recipeDto:dto.recipe_dto) -> dict:
         recipeDto.Description,
         recipeDto.Note,
         recipeDto.ImageFile,
-        recipeDto.UrlRoute,
+        recipeDto.Route,
         recipeDto.IsFavorite,
         recipeId,
     ]
@@ -155,7 +155,7 @@ def recipe_PUT(util: u.Global_Utility, recipeDto:dto.recipe_dto) -> dict:
         recipeDto.Description,
         recipeDto.Note,
         recipeDto.ImageFile,
-        recipeDto.UrlRoute,
+        recipeDto.Route,
         recipeDto.IsFavorite,
     ]
     try:

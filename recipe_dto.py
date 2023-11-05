@@ -1,6 +1,6 @@
 # Author:       Michael Rubin
 # Created:      10/9/2023
-# Modified:     10/30/2023
+# Modified:     11/4/2023
 #
 # Copyright 2023 © Uptakeblue.com, All Rights Reserved
 # -----------------------------------------------------------
@@ -18,17 +18,19 @@ class recipe_dto:
             self.Description = dataRow[2]
             self.Note = dataRow[3]
             self.ImageFile = dataRow[4]
-            self.UrlRoute = dataRow[5]
+            self.Route = dataRow[5]
             self.IsFavorite = (dataRow[6]==1)
+            self.ModifiedDate:datetime = dataRow[7]
         elif isinstance(initObject, dict):
             recipeDict:dict = initObject
-            self.RecipeId = recipeDict['recipeId'] if "recipeId" in recipeDict else None
+            self.RecipeId = int(recipeDict['recipeId']) if "recipeId" in recipeDict else None
             self.Title = recipeDict["title"]
             self.Description = recipeDict['description'] if "description" in recipeDict else None
             self.Note = recipeDict['note'] if "note" in recipeDict else None
             self.ImageFile = recipeDict['imageFile'] if "imageFile" in recipeDict else None
-            self.UrlRoute = recipeDict['urlRoute'] if "urlRoute" in recipeDict else None
+            self.Route = recipeDict['route'] if "route" in recipeDict else None
             self.IsFavorite = recipeDict['isFavorite'] if "isFavorite" in recipeDict else False
+            self.ModifiedDate:datetime = datetime.strptime(recipeDict['modifiedDate'], u.DATETIMEFORMAT) if "modifiedDate" in recipeDict else None
         else:
             raise u.UptakeblueException(Exception("initObject type not recognized"), f"{MODULE} recipe_dto.init()")
 
@@ -39,8 +41,9 @@ class recipe_dto:
             "description": self.Description,
             "note": self.Note,
             "imageFile": self.ImageFile,
-            "urlRoute": self.UrlRoute,
+            "route": self.Route,
             "isFavorite": self.IsFavorite,
+            "modifiedDate": self.ModifiedDate.strftime(u.DATETIMEFORMAT),
         }
     
 

@@ -6,7 +6,7 @@ content-type: application/json
   "imageFile": null,
   "isFavorite": false,
   "note": "",
-  "recipeId": 66,
   "title": "Test recipe 12",
-  "urlRoute": "test-recipe-12"
+  "route": "test-recipe-12",
+  "modifiedDate": "2023-11-04 06:46:07"
 }

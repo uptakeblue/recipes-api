@@ -2,11 +2,12 @@ PUT http://127.0.0.1:5000/recipe/ HTTP/1.1
 content-type: application/json
 
 {
-  "description": "Test description, updated",
-  "imageFile": null,
-  "isFavorite": true,
-  "note": "",
-  "recipeId": 2485,
-  "title": "Test recipe!!",
-  "urlRoute": "test-recipe"
+    "description": "Culled almost verbatim from Ken Forkish's \"The Elements Of Pizza\"",
+    "imageFile": null,
+    "isFavorite": true,
+    "modifiedDate": "2023-11-04 18:27:16",
+    "note": "Modified for two dough balls",
+    "recipeId": 426,
+    "route": "pizza-dough-ken-forkish",
+    "title": "Pizza Dough, Ken Forkish"
 }
