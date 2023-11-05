@@ -1,6 +1,6 @@
 # Author:       Michael Rubin
 # Created:      10/9/2023
-# Modified:     11/2/2023
+# Modified:     11/5/2023
 #
 # Copyright 2023 © Uptakeblue.com, All Rights Reserved
 # -----------------------------------------------------------
@@ -79,7 +79,6 @@ def recipe_PUT_POST():
         # creates a recipe
         response = fn_r.recipe_POST()
     return response
-
 
 
 #### CONTENT
@@ -167,13 +166,6 @@ def image_GET(filename):
 @cross_origin()
 def image_thumbnail_GET(filename):
     return fn_r.image_GET('images/thumbnails', filename)
-
-
-# retrieves a single image
-@app.route("/image/", methods = ['POST', 'OPTIONS'])
-@cross_origin()
-def image_POST():
-    return fn_r.image_POST()
 
 
 

@@ -1,14 +1,18 @@
 # Author:       Michael Rubin
 # Created:      10/9/2023
-# Modified:     11/4/2023
+# Modified:     11/5/2023
 #
 # Copyright 2023 © Uptakeblue.com, All Rights Reserved
 # -----------------------------------------------------------
+from flask import request
+
 import utility as u
 import recipe_dto as dto
 
 
+# module constants
 MODULE = "functions_recipe"
+
 
 def recipe_GET_List(util: u.Global_Utility) -> list:
     response = []
@@ -147,18 +151,18 @@ def recipe_POST(util: u.Global_Utility, recipeDto:dto.recipe_dto) -> dict:
     return response
 
 
-def recipe_PUT(util: u.Global_Utility, recipeDto:dto.recipe_dto) -> dict:
-    response = None
-    args=[
-        recipeDto.RecipeId,
-        recipeDto.Title,
-        recipeDto.Description,
-        recipeDto.Note,
-        recipeDto.ImageFile,
-        recipeDto.Route,
-        recipeDto.IsFavorite,
-    ]
-    try:
+def recipe_PUT(util:u.Global_Utility, recipeDto:dto.recipe_dto) -> dict:
+    response = None    
+    try:        
+        args=[
+            recipeDto.RecipeId,
+            recipeDto.Title,
+            recipeDto.Description,
+            recipeDto.Note,
+            recipeDto.ImageFile,
+            recipeDto.Route,
+            recipeDto.IsFavorite,
+        ]
         with util.pymysqlConnection.cursor() as cursor:
             cursor.callproc("dbo.rcp_recipe_Put", args)
             util.pymysqlConnection.commit()

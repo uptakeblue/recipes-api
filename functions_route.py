@@ -1,6 +1,6 @@
 # Author:       Michael Rubin
 # Created:      10/9/2023
-# Modified:     11/3/2023
+# Modified:     11/5/2023
 #
 # Copyright 2023 © Uptakeblue.com, All Rights Reserved
 # -----------------------------------------------------------
@@ -114,12 +114,25 @@ def recipe_DELETE(recipeId:int):
         return response
 
 
+# expects a request form
 def recipe_PUT():
     util = u.Global_Utility(app_settings)
     response = None
+    imagesaveResult = None
     try:
-        recipeDto = dto.recipe_dto(request.json)
+        recipeDto = dto.recipe_dto(request.form)
+        if "file" in request.files:
+            fn_i.IMAGE_FOLDER = app_settings['IMAGE_FOLDER']
+            fn_i.IMAGE_THUMBNAIL_FOLDER = app_settings['IMAGE_THUMBNAIL_FOLDER'] 
+            imagesaveResult = fn_i.image_POST(recipeDto.Route)
+
+            if imagesaveResult['responseCode']==u.RESPONSECODE_OK:
+                recipeDto.ImageFile = imagesaveResult['filename']
+
         result = fn_r.recipe_PUT(util, recipeDto)
+
+        if imagesaveResult:
+            result['message'] += ', ' + imagesaveResult['message']
 
         response = (result, u.RESPONSECODE_OK)
     
@@ -132,7 +145,6 @@ def recipe_PUT():
 
 def recipe_POST():
     util = u.Global_Utility(app_settings)
-    response = None
     try:
         recipeDto = dto.recipe_dto(request.json)
         result = fn_r.recipe_POST(util, recipeDto)
