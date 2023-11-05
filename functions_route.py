@@ -25,16 +25,14 @@ def recipe_GET_Map():
     response = None
     result = {
         "recipes":[],
-        "recipetitles":[]
+        "contentTitles":[]
     }
     try:
         recipeDictArray = fn_r.recipe_GET_List(util)
         for recipe in recipeDictArray:
             result['recipes'].append(recipe)
-            result['recipetitles'].append({
-                "recipeId":recipe['recipeId'],
-                "title":recipe['title'],
-            })
+            result['contentTitles'] = fn_c.content_GET_List(util)
+
         response = (result, u.RESPONSECODE_OK)
     
     except Exception as err:
@@ -49,16 +47,14 @@ def recipe_GET_ListSearch(keyword:str):
     response = None
     result = {
         "recipes":[],
-        "recipetitles":[]
+        "contentTitles":[]
     }
     try:
         recipeDictArray = fn_r.recipe_GET_ListSearch(util, keyword)
         for recipe in recipeDictArray:
             result['recipes'].append(recipe)
-            result['recipetitles'].append({
-                "recipeId":recipe['recipeId'],
-                "title":recipe['title'],
-            })
+            result['contentTitles'] = fn_c.content_GET_List(util)
+
         response = (result, u.RESPONSECODE_OK)
     
     except Exception as err:
