@@ -1,6 +1,6 @@
 # Author:       Michael Rubin
 # Created:      10/9/2023
-# Modified:     11/4/2023
+# Modified:     11/5/2023
 #
 # Copyright 2023 © Uptakeblue.com, All Rights Reserved
 # -----------------------------------------------------------
@@ -11,6 +11,8 @@ MODULE = "dto"
 
 class recipe_dto:
     def __init__(self, initObject) -> None:
+        self.Ingredients = None
+        self.Instructions = None
         if isinstance(initObject, tuple):
             dataRow:tuple = initObject
             self.RecipeId = dataRow[0]
@@ -30,12 +32,14 @@ class recipe_dto:
             self.ImageFile = recipeDict['imageFile'] if "imageFile" in recipeDict else None
             self.Route = recipeDict['route'] if "route" in recipeDict else None
             self.IsFavorite = recipeDict['isFavorite'] if "isFavorite" in recipeDict else False
+            self.Ingredients = recipeDict['ingredients'] if "ingredients" in recipeDict else None
+            self.Instructions = recipeDict['instructions'] if "instructions" in recipeDict else None
             self.ModifiedDate:datetime = datetime.strptime(recipeDict['modifiedDate'], u.DATETIMEFORMAT) if "modifiedDate" in recipeDict else None
         else:
             raise u.UptakeblueException(Exception("initObject type not recognized"), f"{MODULE} recipe_dto.init()")
 
     def getDictionary(self) -> dict:
-        return{
+        recipeDict = {
             "recipeId": self.RecipeId,
             "title": self.Title,
             "description": self.Description,
@@ -45,6 +49,12 @@ class recipe_dto:
             "isFavorite": self.IsFavorite,
             "modifiedDate": self.ModifiedDate.strftime(u.DATETIMEFORMAT),
         }
+        if self.Ingredients:
+            recipeDict['ingredients'] = self.Ingredients
+        if self.Instructions:
+            recipeDict['instructions'] = self.Instructions
+
+        return recipeDict
     
 
 class content_dto:

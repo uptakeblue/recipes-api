@@ -106,9 +106,24 @@ class UptakeblueException(Exception):
                     self.ResponseCode = e.args[0] % 10000
                 else:
                     self.ErrorNumber = e.args[0]
+                if len(e.args) > 1:
+                    self.Description = e.args[1]
             else:
-                self.ErrNumber = e.args[0]
-            self.Description = e.args[1]
+                if isinstance(e.args[0], int):
+                    self.ErrNumber = e.args[0]
+            
+            reflection = dir(e)
+            if not self.Description:
+                if  "description" in reflection:
+                    self.Description = e.description
+                else:
+                    self.Description = str(e)
+            if not self.ResponseCode and "code" in reflection:
+                self.ResponseCode = e.code
+
+            
+            
+                
 
     @property
     def Message(self) -> dict:

@@ -5,9 +5,10 @@
 # Copyright 2023 © Uptakeblue.com, All Rights Reserved
 # -----------------------------------------------------------
 from flask import request
+import re
 
 import utility as u
-import recipe_dto as dto
+import dto as dto
 
 
 # module constants
@@ -110,6 +111,8 @@ def recipe_DELETE(util: u.Global_Utility, recipeId) -> dict:
                 "recipeId": recipeId
             }
 
+            util.pymysqlConnection.commit()
+
     except Exception as e:
         raise u.UptakeblueException(
             e, source=f"{MODULE}.recipe_DELETE()", paramarge=args
@@ -121,19 +124,25 @@ def recipe_DELETE(util: u.Global_Utility, recipeId) -> dict:
 def recipe_POST(util: u.Global_Utility, recipeDto:dto.recipe_dto) -> dict:
     response = None
     recipeId = None
+
+    # create route from title
+    route = routeFromTitle(recipeDto.Title)
+
     args=[
         recipeDto.Title,
         recipeDto.Description,
         recipeDto.Note,
         recipeDto.ImageFile,
-        recipeDto.Route,
+        route,
         recipeDto.IsFavorite,
+        recipeDto.Ingredients,
+        recipeDto.Instructions,
         recipeId,
     ]
     try:
         with util.pymysqlConnection.cursor() as cursor:
             cursor.callproc("dbo.rcp_recipe_Post", args)
-            cursor.execute('SELECT @_dbo.rcp_recipe_Post_6')
+            cursor.execute('SELECT @_dbo.rcp_recipe_Post_8')
             recipeId = cursor.fetchone()[0]
 
             util.pymysqlConnection.commit()
@@ -153,6 +162,8 @@ def recipe_POST(util: u.Global_Utility, recipeDto:dto.recipe_dto) -> dict:
 
 def recipe_PUT(util:u.Global_Utility, recipeDto:dto.recipe_dto) -> dict:
     response = None    
+    # create route from title
+    route = routeFromTitle(recipeDto.Title)
     try:        
         args=[
             recipeDto.RecipeId,
@@ -160,7 +171,7 @@ def recipe_PUT(util:u.Global_Utility, recipeDto:dto.recipe_dto) -> dict:
             recipeDto.Description,
             recipeDto.Note,
             recipeDto.ImageFile,
-            recipeDto.Route,
+            route,
             recipeDto.IsFavorite,
         ]
         with util.pymysqlConnection.cursor() as cursor:
@@ -178,3 +189,6 @@ def recipe_PUT(util:u.Global_Utility, recipeDto:dto.recipe_dto) -> dict:
         )
 
     return response
+
+def routeFromTitle(title:str)-> str:
+    return re.sub('[^0-9a-zA-Z]+', '-', title).replace("--","-").replace("--","-").strip("-")

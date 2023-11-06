@@ -10,10 +10,9 @@ from werkzeug.utils import secure_filename
 from PIL import Image
 
 import utility as u
-import recipe_dto as dto
+import dto as dto
 import functions_utility as fn_u
 import functions_recipe as fn_r
-import recipe_dto as dto
 
 
 # module constants

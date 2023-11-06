@@ -11,7 +11,7 @@ import functions_utility as fn_u
 import functions_content as fn_c
 import functions_image as fn_i
 import functions_recipecontent as fn_rc
-import recipe_dto as dto
+import dto as dto
 import utility as u
 
 MODULE = "functions_route"
@@ -141,9 +141,22 @@ def recipe_PUT():
 
 def recipe_POST():
     util = u.Global_Utility(app_settings)
+    response = None
+    imagesaveResult = None
     try:
-        recipeDto = dto.recipe_dto(request.json)
+        recipeDto = dto.recipe_dto(request.form)
+        if "file" in request.files:
+            fn_i.IMAGE_FOLDER = app_settings['IMAGE_FOLDER']
+            fn_i.IMAGE_THUMBNAIL_FOLDER = app_settings['IMAGE_THUMBNAIL_FOLDER'] 
+            imagesaveResult = fn_i.image_POST(recipeDto.Route)
+
+            if imagesaveResult['responseCode']==u.RESPONSECODE_OK:
+                recipeDto.ImageFile = imagesaveResult['filename']
+
         result = fn_r.recipe_POST(util, recipeDto)
+
+        if imagesaveResult:
+            result['message'] += ', ' + imagesaveResult['message']
 
         response = (result, u.RESPONSECODE_OK)
     
