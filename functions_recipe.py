@@ -1,6 +1,6 @@
 # Author:       Michael Rubin
 # Created:      10/9/2023
-# Modified:     11/5/2023
+# Modified:     11/6/2023
 #
 # Copyright 2023 © Uptakeblue.com, All Rights Reserved
 # -----------------------------------------------------------
@@ -125,15 +125,12 @@ def recipe_POST(util: u.Global_Utility, recipeDto:dto.recipe_dto) -> dict:
     response = None
     recipeId = None
 
-    # create route from title
-    route = routeFromTitle(recipeDto.Title)
-
     args=[
         recipeDto.Title,
         recipeDto.Description,
         recipeDto.Note,
         recipeDto.ImageFile,
-        route,
+        recipeDto.Route,
         recipeDto.IsFavorite,
         recipeDto.Ingredients,
         recipeDto.Instructions,
@@ -163,7 +160,6 @@ def recipe_POST(util: u.Global_Utility, recipeDto:dto.recipe_dto) -> dict:
 def recipe_PUT(util:u.Global_Utility, recipeDto:dto.recipe_dto) -> dict:
     response = None    
     # create route from title
-    route = routeFromTitle(recipeDto.Title)
     try:        
         args=[
             recipeDto.RecipeId,
@@ -171,7 +167,7 @@ def recipe_PUT(util:u.Global_Utility, recipeDto:dto.recipe_dto) -> dict:
             recipeDto.Description,
             recipeDto.Note,
             recipeDto.ImageFile,
-            route,
+            recipeDto.Route,
             recipeDto.IsFavorite,
         ]
         with util.pymysqlConnection.cursor() as cursor:

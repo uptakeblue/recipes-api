@@ -1,6 +1,6 @@
 # Author:       Michael Rubin
 # Created:      10/9/2023
-# Modified:     11/5/2023
+# Modified:     11/6/2023
 #
 # Copyright 2023 © Uptakeblue.com, All Rights Reserved
 # -----------------------------------------------------------
@@ -20,7 +20,7 @@ class recipe_dto:
             self.Description = dataRow[2]
             self.Note = dataRow[3]
             self.ImageFile = dataRow[4]
-            self.Route = dataRow[5]
+            self.Route = str(dataRow[5]).lower()
             self.IsFavorite = (dataRow[6]==1)
             self.ModifiedDate:datetime = dataRow[7]
         elif isinstance(initObject, dict):
@@ -31,7 +31,7 @@ class recipe_dto:
             self.Note = recipeDict['note'] if "note" in recipeDict else None
             self.ImageFile = recipeDict['imageFile'] if "imageFile" in recipeDict else None
             self.Route = recipeDict['route'] if "route" in recipeDict else None
-            self.IsFavorite = recipeDict['isFavorite'] if "isFavorite" in recipeDict else False
+            self.IsFavorite = recipeDict['isfavorite']=='true' if "isfavorite" in recipeDict else False
             self.Ingredients = recipeDict['ingredients'] if "ingredients" in recipeDict else None
             self.Instructions = recipeDict['instructions'] if "instructions" in recipeDict else None
             self.ModifiedDate:datetime = datetime.strptime(recipeDict['modifiedDate'], u.DATETIMEFORMAT) if "modifiedDate" in recipeDict else None
