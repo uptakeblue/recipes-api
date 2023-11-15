@@ -1,10 +1,11 @@
 {
-    "SECRET_KEY": "192b9bdd22ab9ed4d12e236c78afcb9a393ec15f71bbf5dc987d54727823bcbf",
     "MYSQL_USER": "root",
     "MYSQL_PASSWORD": "halibut",
     "MYSQL_ENDPOINT": "localhost",
     "CORS_HEADERS": "Content-Type",
     "MAX_CONTENT_LENGTH": 16793600,
     "IMAGE_FOLDER": "./images",
-    "IMAGE_THUMBNAIL_FOLDER": "./images/thumbnails"
+    "IMAGE_THUMBNAIL_FOLDER": "./images/thumbnails",
+    "API_DOMAIN": "dev-nor35vn6vealuy3m.us.auth0.com",
+    "API_IDENTIFIER": "https://api.recipes.uptakeblue.com"
 }

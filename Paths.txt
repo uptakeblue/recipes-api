@@ -5,7 +5,6 @@ content_GET_List          GET          /content/
 content_PUT_POST          POST, PUT    /content/                             
 content_GET_DELETE        DELETE, GET  /content/<contentid>/                 
 content_GET_ListSearch    GET          /content/search/<keyword>/            
-image_POST                POST         /image/                               
 image_GET                 GET          /image/<filename>/                    
 image_thumbnail_GET       GET          /image/thumbnail/<filename>/          
 recipe_PUT_POST           POST, PUT    /recipe/                              
