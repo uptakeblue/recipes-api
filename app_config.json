@@ -7,5 +7,5 @@
     "IMAGE_FOLDER": "./images",
     "IMAGE_THUMBNAIL_FOLDER": "./images/thumbnails",
     "API_DOMAIN": "dev-nor35vn6vealuy3m.us.auth0.com",
-    "API_IDENTIFIER": "https://api.recipes.uptakeblue.com"
+    "API_IDENTIFIER": "https://recipes.api.uptakeblue.com"
 }
