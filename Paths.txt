@@ -1,17 +1,20 @@
-Endpoint                  Methods      Rule                                  
-------------------------  -----------  --------------------------------------
-root                      GET          /                                     
-content_GET_List          GET          /content/                             
-content_PUT_POST          POST, PUT    /content/                             
-content_GET_DELETE        DELETE, GET  /content/<contentid>/                 
-content_GET_ListSearch    GET          /content/search/<keyword>/            
-image_GET                 GET          /image/<filename>/                    
-image_thumbnail_GET       GET          /image/thumbnail/<filename>/          
-recipe_PUT_POST           POST, PUT    /recipe/                              
-recipe_GET_DELETE         DELETE, GET  /recipe/<recipeid>/                   
-recipe_GET_Map            GET          /recipe/map/                          
-recipe_GET_ByRoute        GET          /recipe/route/<routeurl>/             
-recipe_GET_ListSearch     GET          /recipe/search/<keyword>/             
-recipecontent_PUT_POST    POST, PUT    /recipecontent/                       
-recipecontent_GET_DELETE  DELETE, GET  /recipecontent/<recipeid>/<contentid>/
-static                    GET          /static/<path:filename>               
+Endpoint                Methods    Rule                                  
+----------------------  ---------  --------------------------------------
+root                    GET        /                                     
+content_GET_List        GET        /content/                             
+content_PUT_POST        POST, PUT  /content/                             
+content_GET             GET        /content/<contentid>/                 
+content_DELETE          DELETE     /content/<contentid>/                 
+content_GET_ListSearch  GET        /content/search/<keyword>/            
+image_GET               GET        /image/<filename>/                    
+image_thumbnail_GET     GET        /image/thumbnail/<filename>/          
+recipe_PUT_POST         POST, PUT  /recipe/                              
+recipe_GET              GET        /recipe/<recipeid>/                   
+recipe_DELETE           DELETE     /recipe/<recipeid>/                   
+recipe_GET_Map          GET        /recipe/map/                          
+recipe_GET_ByRoute      GET        /recipe/route/<routeurl>/             
+recipe_GET_ListSearch   GET        /recipe/search/<keyword>/             
+recipecontent_PUT_POST  POST, PUT  /recipecontent/                       
+recipecontent_GET       GET        /recipecontent/<recipeid>/<contentid>/
+recipecontent_DELETE    DELETE     /recipecontent/<recipeid>/<contentid>/
+static                  GET        /static/<path:filename>               
