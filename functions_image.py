@@ -1,8 +1,8 @@
 # Author:       Michael Rubin
 # Created:      11/3/2023
-# Modified:     11/5/2023
+# Modified:     1/5/2024
 #
-# Copyright 2023 © Uptakeblue.com, All Rights Reserved
+# Copyright 2023 - 2024 © Uptakeblue.com, All Rights Reserved
 # -----------------------------------------------------------
 import os
 from flask import request, send_from_directory
@@ -22,15 +22,15 @@ IMAGE_THUMBNAIL_FOLDER = None
 
 
 # retrieves a single image file
-def image_GET(folder:str, filename:str):
+def image_GET(folder: str, filename: str):
     response = None
     try:
         filename = secure_filename(filename)
         response = send_from_directory(folder, filename)
-    
+
     except Exception as err:
-        if err.code==404:
-            response = send_from_directory('images', 'default.png')
+        if err.code == 404:
+            response = send_from_directory("images", "default.png")
         else:
             e = u.UptakeblueException(err, f"{MODULE}.image_GET()")
             response = fn_u.exceptionResponse(e)
@@ -38,22 +38,25 @@ def image_GET(folder:str, filename:str):
     finally:
         return response
 
-# retrieves a single image file
+
+# uploads a single image file
 def image_POST(recipeRoute):
     response = None
-    ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
-    
+    ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif"}
+
     try:
-        requestFile = request.files['file']
-        filename = secure_filename(requestFile.filename) 
-        
-        if not("." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS):
+        requestFile = request.files["file"]
+        filename = secure_filename(requestFile.filename)
+
+        if not (
+            "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
+        ):
             responseCode = u.RESPONSECODE_NOTALLOWED
             raise Exception("File must be .jpeg, .jpg or png")
-        
+
         extension = filename.split(".")[1]
-        targetFilename = f"{recipeRoute}.{extension}" if recipeRoute  else filename
-    
+        targetFilename = f"{recipeRoute}.{extension}" if recipeRoute else filename
+
         targetFilepath = os.path.join(IMAGE_FOLDER, targetFilename)
         thumbnailFilepath = os.path.join(IMAGE_THUMBNAIL_FOLDER, targetFilename)
 
@@ -62,18 +65,17 @@ def image_POST(recipeRoute):
         # resize and save in thumbnails folder
         image = Image.open(targetFilepath)
         newWidth = 120
-        ratio = newWidth/float(image.width)
-        newHeight = int(float(image.height)*float(ratio))
+        ratio = newWidth / float(image.width)
+        newHeight = int(float(image.height) * float(ratio))
         thumbnail = image.resize((newWidth, newHeight))
 
         thumbnail.save(thumbnailFilepath)
-        
+
         response = {
             "message": "File uploaded successfully",
             "filename": targetFilename,
             "responseCode": u.RESPONSECODE_OK,
         }
-        
 
     except Exception as err:
         # swallow the error
@@ -81,7 +83,7 @@ def image_POST(recipeRoute):
         response = {
             "message": e.Message,
             "filename": targetFilename,
-            "responseCode": u.RESPONSECODE_SERVERERROR
+            "responseCode": u.RESPONSECODE_SERVERERROR,
         }
 
     finally:

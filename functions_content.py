@@ -2,12 +2,13 @@
 # Created:      10/10/2023
 # Modified:     11/5/2023
 #
-# Copyright 2023 © Uptakeblue.com, All Rights Reserved
+# Copyright 2023 - 2024 © Uptakeblue.com, All Rights Reserved
 # -----------------------------------------------------------
 import utility as u
 import dto as dto
 
 MODULE = "functions_content"
+
 
 def content_GET_List(util: u.Global_Utility) -> list:
     response = None
@@ -19,24 +20,19 @@ def content_GET_List(util: u.Global_Utility) -> list:
                 response = []
                 for row in rows:
                     contentDto = dto.content_dto(row)
-                    response.append({
-                        "contentId": contentDto.ContentId,
-                        "title": contentDto.Title
-                    })
+                    response.append(
+                        {"contentId": contentDto.ContentId, "title": contentDto.Title}
+                    )
 
     except Exception as e:
-        raise u.UptakeblueException(
-            e, source=f"{MODULE}.content_GET_List()"
-        )
+        raise u.UptakeblueException(e, source=f"{MODULE}.content_GET_List()")
 
     return response
 
 
-def content_GET_ListSearch(util: u.Global_Utility, keyword:str) -> list:
+def content_GET_ListSearch(util: u.Global_Utility, keyword: str) -> list:
     response = None
-    args = [
-        keyword
-    ]
+    args = [keyword]
     try:
         with util.pymysqlConnection.cursor() as cursor:
             cursor.callproc("dbo.rcp_content_Get_ListSearch", args)
@@ -57,9 +53,7 @@ def content_GET_ListSearch(util: u.Global_Utility, keyword:str) -> list:
 
 def content_GET_ListByRecipe(util: u.Global_Utility, recipeId) -> dict:
     response = None
-    args = [
-        recipeId
-    ]
+    args = [recipeId]
     try:
         with util.pymysqlConnection.cursor() as cursor:
             cursor.callproc("dbo.rcp_content_Get_ListByRecipe", args)
@@ -80,9 +74,7 @@ def content_GET_ListByRecipe(util: u.Global_Utility, recipeId) -> dict:
 
 def content_GET(util: u.Global_Utility, contentId) -> dict:
     response = None
-    args = [
-        contentId
-    ]
+    args = [contentId]
     try:
         with util.pymysqlConnection.cursor() as cursor:
             cursor.callproc("dbo.rcp_content_Get", args)
@@ -92,28 +84,21 @@ def content_GET(util: u.Global_Utility, contentId) -> dict:
                 response = contentDto.getDictionary()
 
     except Exception as e:
-        raise u.UptakeblueException(
-            e, source=f"{MODULE}.content_GET()", paramarge=args
-        )
+        raise u.UptakeblueException(e, source=f"{MODULE}.content_GET()", paramarge=args)
 
     return response
 
 
 def content_DELETE(util: u.Global_Utility, contentId) -> dict:
     response = None
-    args = [
-        contentId
-    ]
+    args = [contentId]
     try:
         with util.pymysqlConnection.cursor() as cursor:
             cursor.callproc("dbo.rcp_content_Delete", args)
 
             util.pymysqlConnection.commit()
-            
-            response = {
-                "message": f"Content was deleted",
-                "contentId": contentId
-            }
+
+            response = {"message": f"Content was deleted", "contentId": contentId}
 
     except Exception as e:
         raise u.UptakeblueException(
@@ -123,30 +108,25 @@ def content_DELETE(util: u.Global_Utility, contentId) -> dict:
     return response
 
 
-
-
-def content_POST(util: u.Global_Utility, contentDto:dto.content_dto) -> dict:
+def content_POST(util: u.Global_Utility, contentDto: dto.content_dto) -> dict:
     response = None
     contentId = None
-    args=[
+    args = [
         contentDto.Title,
         contentDto.Ingredients,
         contentDto.Instructions,
         contentDto.RecipeId,
-        contentId
+        contentId,
     ]
     try:
         with util.pymysqlConnection.cursor() as cursor:
             cursor.callproc("dbo.rcp_content_Post", args)
-            cursor.execute('SELECT @_dbo.rcp_content_Post_4')
+            cursor.execute("SELECT @_dbo.rcp_content_Post_4")
             contentId = cursor.fetchone()[0]
 
             util.pymysqlConnection.commit()
 
-            response = {
-                "message": f"Content was created",
-                "contentId": contentId
-            }
+            response = {"message": f"Content was created", "contentId": contentId}
 
     except Exception as e:
         raise u.UptakeblueException(
@@ -156,9 +136,9 @@ def content_POST(util: u.Global_Utility, contentDto:dto.content_dto) -> dict:
     return response
 
 
-def content_PUT(util: u.Global_Utility, contentDto:dto.content_dto) -> dict:
+def content_PUT(util: u.Global_Utility, contentDto: dto.content_dto) -> dict:
     response = None
-    args=[
+    args = [
         contentDto.ContentId,
         contentDto.Title,
         contentDto.Ingredients,
@@ -172,12 +152,10 @@ def content_PUT(util: u.Global_Utility, contentDto:dto.content_dto) -> dict:
 
             response = {
                 "message": f"Content was updated",
-                "contentId": contentDto.ContentId
+                "contentId": contentDto.ContentId,
             }
 
     except Exception as e:
-        raise u.UptakeblueException(
-            e, source=f"{MODULE}.content_PUT()", paramarge=args
-        )
+        raise u.UptakeblueException(e, source=f"{MODULE}.content_PUT()", paramarge=args)
 
     return response

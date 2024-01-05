@@ -2,7 +2,7 @@
 # Created:      10/9/2023
 # Modified:     11/15/2023
 #
-# Copyright 2023 © Uptakeblue.com, All Rights Reserved
+# Copyright 2023 - 2024 © Uptakeblue.com, All Rights Reserved
 # -----------------------------------------------------------
 import json
 import logging

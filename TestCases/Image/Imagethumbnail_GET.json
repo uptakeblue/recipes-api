@@ -1,0 +1,42 @@
+{
+    "body-json": {},
+    "params": {
+        "path": {
+            "filename": "302_porchetta.jpg"
+        },
+        "querystring": {},
+        "header": {
+            "Accept": "*/*",
+            "Accept-Encoding": "gzip, deflate, br",
+            "Cache-Control": "no-cache",
+            "Host": "t6njlz08j1.execute-api.us-west-2.amazonaws.com",
+            "Postman-Token": "16285578-6337-4f66-a742-e4d9e44eb1c5",
+            "User-Agent": "PostmanRuntime/7.36.0",
+            "X-Amzn-Trace-Id": "Root=1-65983143-6a2bd9db2c9cb4bb76461164",
+            "X-Forwarded-For": "67.189.70.60",
+            "X-Forwarded-Port": "443",
+            "X-Forwarded-Proto": "https"
+        }
+    },
+    "stage-variables": {},
+    "context": {
+        "account-id": "",
+        "api-id": "t6njlz08j1",
+        "api-key": "",
+        "authorizer-principal-id": "",
+        "caller": "",
+        "cognito-authentication-provider": "",
+        "cognito-authentication-type": "",
+        "cognito-identity-id": "",
+        "cognito-identity-pool-id": "",
+        "http-method": "GET",
+        "stage": "dev",
+        "source-ip": "67.189.70.60",
+        "user": "",
+        "user-agent": "PostmanRuntime/7.36.0",
+        "user-arn": "",
+        "request-id": "679c1a84-5350-4a72-9f60-30cded2e0eb7",
+        "resource-id": "3bbz1i",
+        "resource-path": "/image/thumbnail/{filename}"
+    }
+}

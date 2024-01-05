@@ -1,0 +1,42 @@
+{
+    "body-json": {},
+    "params": {
+        "path": {
+            "recipeid": "9999"
+        },
+        "querystring": {},
+        "header": {
+            "Accept": "*/*",
+            "Accept-Encoding": "gzip, deflate, br",
+            "Cache-Control": "no-cache",
+            "Host": "t6njlz08j1.execute-api.us-west-2.amazonaws.com",
+            "Postman-Token": "078bdfab-6545-4d0b-94af-78d82e68c33f",
+            "User-Agent": "PostmanRuntime/7.36.0",
+            "X-Amzn-Trace-Id": "Root=1-6598333e-54bcce507e8b62e237746cdb",
+            "X-Forwarded-For": "67.189.70.60",
+            "X-Forwarded-Port": "443",
+            "X-Forwarded-Proto": "https"
+        }
+    },
+    "stage-variables": {},
+    "context": {
+        "account-id": "",
+        "api-id": "t6njlz08j1",
+        "api-key": "",
+        "authorizer-principal-id": "",
+        "caller": "",
+        "cognito-authentication-provider": "",
+        "cognito-authentication-type": "",
+        "cognito-identity-id": "",
+        "cognito-identity-pool-id": "",
+        "http-method": "GET",
+        "stage": "dev",
+        "source-ip": "67.189.70.60",
+        "user": "",
+        "user-agent": "PostmanRuntime/7.36.0",
+        "user-arn": "",
+        "request-id": "a0d29514-4122-4c91-a7cc-d322818fe729",
+        "resource-id": "yxc1ra",
+        "resource-path": "/recipe/{recipeid}"
+    }
+}

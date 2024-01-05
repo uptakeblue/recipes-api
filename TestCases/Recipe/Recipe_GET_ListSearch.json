@@ -1,0 +1,42 @@
+{
+    "body-json": {},
+    "params": {
+        "path": {
+            "keyword": "jalapeno"
+        },
+        "querystring": {},
+        "header": {
+            "Accept": "*/*",
+            "Accept-Encoding": "gzip, deflate, br",
+            "Cache-Control": "no-cache",
+            "Host": "t6njlz08j1.execute-api.us-west-2.amazonaws.com",
+            "Postman-Token": "82ea3771-d8cd-4d37-9640-f54730449422",
+            "User-Agent": "PostmanRuntime/7.36.0",
+            "X-Amzn-Trace-Id": "Root=1-65983466-1acb68a978cad4de302964c4",
+            "X-Forwarded-For": "67.189.70.60",
+            "X-Forwarded-Port": "443",
+            "X-Forwarded-Proto": "https"
+        }
+    },
+    "stage-variables": {},
+    "context": {
+        "account-id": "",
+        "api-id": "t6njlz08j1",
+        "api-key": "",
+        "authorizer-principal-id": "",
+        "caller": "",
+        "cognito-authentication-provider": "",
+        "cognito-authentication-type": "",
+        "cognito-identity-id": "",
+        "cognito-identity-pool-id": "",
+        "http-method": "GET",
+        "stage": "dev",
+        "source-ip": "67.189.70.60",
+        "user": "",
+        "user-agent": "PostmanRuntime/7.36.0",
+        "user-arn": "",
+        "request-id": "1e07e870-a3e7-47dc-b69c-ab3fbd903035",
+        "resource-id": "hx5ci2",
+        "resource-path": "/recipe/search/{keyword}"
+    }
+}

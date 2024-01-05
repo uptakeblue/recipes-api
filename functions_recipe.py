@@ -2,7 +2,7 @@
 # Created:      10/9/2023
 # Modified:     11/6/2023
 #
-# Copyright 2023 © Uptakeblue.com, All Rights Reserved
+# Copyright 2023 - 2024 © Uptakeblue.com, All Rights Reserved
 # -----------------------------------------------------------
 from flask import request
 import re
@@ -27,18 +27,14 @@ def recipe_GET_List(util: u.Global_Utility) -> list:
                     response.append(recipeDto.getDictionary())
 
     except Exception as e:
-        raise u.UptakeblueException(
-            e, source=f"{MODULE}.recipe_GET_List()"
-            )
+        raise u.UptakeblueException(e, source=f"{MODULE}.recipe_GET_List()")
 
     return response
 
 
 def recipe_GET_ListSearch(util: u.Global_Utility, keyword) -> list:
     response = []
-    args = [
-        keyword
-    ]
+    args = [keyword]
     try:
         with util.pymysqlConnection.cursor() as cursor:
             cursor.callproc("dbo.rcp_recipe_Get_ListSearch", args)
@@ -51,16 +47,14 @@ def recipe_GET_ListSearch(util: u.Global_Utility, keyword) -> list:
     except Exception as e:
         raise u.UptakeblueException(
             e, source=f"{MODULE}.recipe_GET_ListSearch()", paramarge=args
-            )
+        )
 
     return response
 
 
 def recipe_GET(util: u.Global_Utility, recipeId) -> dict:
     response = None
-    args = [
-        recipeId
-    ]
+    args = [recipeId]
     try:
         with util.pymysqlConnection.cursor() as cursor:
             cursor.callproc("dbo.rcp_recipe_Get", args)
@@ -70,18 +64,14 @@ def recipe_GET(util: u.Global_Utility, recipeId) -> dict:
                 response = recipeDto.getDictionary()
 
     except Exception as e:
-        raise u.UptakeblueException(
-            e, source=f"{MODULE}.recipe_GET()", paramarge=args
-        )
+        raise u.UptakeblueException(e, source=f"{MODULE}.recipe_GET()", paramarge=args)
 
     return response
 
 
-def recipe_GET_ByRoute(util: u.Global_Utility, routUrl:str) -> dict:
+def recipe_GET_ByRoute(util: u.Global_Utility, routUrl: str) -> dict:
     response = None
-    args = [
-        routUrl
-    ]
+    args = [routUrl]
     try:
         with util.pymysqlConnection.cursor() as cursor:
             cursor.callproc("dbo.rcp_recipe_GetByUrl", args)
@@ -100,16 +90,11 @@ def recipe_GET_ByRoute(util: u.Global_Utility, routUrl:str) -> dict:
 
 def recipe_DELETE(util: u.Global_Utility, recipeId) -> dict:
     response = None
-    args = [
-        recipeId
-    ]
+    args = [recipeId]
     try:
         with util.pymysqlConnection.cursor() as cursor:
             cursor.callproc("dbo.rcp_recipe_Delete", args)
-            response = {
-                "message": f"Recipe was deleted",
-                "recipeId": recipeId
-            }
+            response = {"message": f"Recipe was deleted", "recipeId": recipeId}
 
             util.pymysqlConnection.commit()
 
@@ -121,11 +106,11 @@ def recipe_DELETE(util: u.Global_Utility, recipeId) -> dict:
     return response
 
 
-def recipe_POST(util: u.Global_Utility, recipeDto:dto.recipe_dto) -> dict:
+def recipe_POST(util: u.Global_Utility, recipeDto: dto.recipe_dto) -> dict:
     response = None
     recipeId = None
 
-    args=[
+    args = [
         recipeDto.Title,
         recipeDto.Description,
         recipeDto.Note,
@@ -139,29 +124,24 @@ def recipe_POST(util: u.Global_Utility, recipeDto:dto.recipe_dto) -> dict:
     try:
         with util.pymysqlConnection.cursor() as cursor:
             cursor.callproc("dbo.rcp_recipe_Post", args)
-            cursor.execute('SELECT @_dbo.rcp_recipe_Post_8')
+            cursor.execute("SELECT @_dbo.rcp_recipe_Post_8")
             recipeId = cursor.fetchone()[0]
 
             util.pymysqlConnection.commit()
 
-            response = {
-                "message": f"Recipe was created",
-                "recipeId": recipeId
-            }
+            response = {"message": f"Recipe was created", "recipeId": recipeId}
 
     except Exception as e:
-        raise u.UptakeblueException(
-            e, source=f"{MODULE}.recipe_POST()", paramarge=args
-        )
+        raise u.UptakeblueException(e, source=f"{MODULE}.recipe_POST()", paramarge=args)
 
     return response
 
 
-def recipe_PUT(util:u.Global_Utility, recipeDto:dto.recipe_dto) -> dict:
-    response = None    
+def recipe_PUT(util: u.Global_Utility, recipeDto: dto.recipe_dto) -> dict:
+    response = None
     # create route from title
-    try:        
-        args=[
+    try:
+        args = [
             recipeDto.RecipeId,
             recipeDto.Title,
             recipeDto.Description,
@@ -176,15 +156,19 @@ def recipe_PUT(util:u.Global_Utility, recipeDto:dto.recipe_dto) -> dict:
 
             response = {
                 "message": f"Recipe was updated",
-                "recipeId": recipeDto.RecipeId
+                "recipeId": recipeDto.RecipeId,
             }
 
     except Exception as e:
-        raise u.UptakeblueException(
-            e, source=f"{MODULE}.recipe_PUT()", paramarge=args
-        )
+        raise u.UptakeblueException(e, source=f"{MODULE}.recipe_PUT()", paramarge=args)
 
     return response
 
-def routeFromTitle(title:str)-> str:
-    return re.sub('[^0-9a-zA-Z]+', '-', title).replace("--","-").replace("--","-").strip("-")
+
+def routeFromTitle(title: str) -> str:
+    return (
+        re.sub("[^0-9a-zA-Z]+", "-", title)
+        .replace("--", "-")
+        .replace("--", "-")
+        .strip("-")
+    )

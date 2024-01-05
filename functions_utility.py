@@ -2,7 +2,7 @@
 # Created:      10/9/2023
 # Modified:     10/9/2023
 #
-# Copyright 2023 © Uptakeblue.com, All Rights Reserved
+# Copyright 2023 - 2024 © Uptakeblue.com, All Rights Reserved
 # -----------------------------------------------------------
 import utility as u
 from pymysql import err
@@ -11,8 +11,9 @@ from datetime import datetime
 
 MODULE = "functions_utility"
 
+
 def datetimeFromString(dateStr):
-    response:datetime = None
+    response: datetime = None
     if dateStr and isinstance(dateStr, str):
         format = u.DATETIMEFORMAT if " " in dateStr else u.DATEFORMAT
         response = datetime.strptime(dateStr, format)
@@ -20,7 +21,7 @@ def datetimeFromString(dateStr):
 
 
 def dateFromDataItem(dateItem):
-    response:datetime = None
+    response: datetime = None
     if dateItem:
         if isinstance(dateItem, tuple):
             dateString = str(dateItem[0])
@@ -32,7 +33,7 @@ def dateFromDataItem(dateItem):
 
 
 def datetimeFromDataItem(dateItem):
-    response:datetime = None
+    response: datetime = None
     if dateItem:
         if isinstance(dateItem, tuple):
             dateString = str(dateItem[0])
@@ -44,20 +45,19 @@ def datetimeFromDataItem(dateItem):
 
 ## EXCEPTION HANDLER
 
-def exceptionResponse(e:Exception):
+
+def exceptionResponse(e: Exception):
     responseCode = 400
     responseMessage = None
     try:
         if isinstance(e, u.UptakeblueException):
-            err:u.UptakeblueException = e
+            err: u.UptakeblueException = e
             responseMessage = err.Message
             responseCode = err.ResponseCode
-        elif e.args and (isinstance(e.args, tuple) or isinstance(e.args, list) ):
+        elif e.args and (isinstance(e.args, tuple) or isinstance(e.args, list)):
             responseMessage = str(e.args)
         else:
             responseMessage = str(e)
-    except Exception as e:   
+    except Exception as e:
         raise e
     return (responseMessage, responseCode)
-
-

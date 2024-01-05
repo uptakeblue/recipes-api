@@ -1,0 +1,50 @@
+{
+    "body-json": {
+        "description": "Culled almost verbatim from Ken Forkish's \"The Elements Of Pizza\"",
+        "imageFile": null,
+        "isFavorite": true,
+        "modifiedDate": "2023-11-04 18:27:16",
+        "note": "Modified for two dough balls",
+        "recipeId": 426,
+        "route": "pizza-dough-ken-forkish",
+        "title": "Pizza Dough, Ken Forkish"
+    },
+    "params": {
+        "path": {},
+        "querystring": {},
+        "header": {
+            "Accept": "*/*",
+            "Accept-Encoding": "gzip, deflate, br",
+            "Cache-Control": "no-cache",
+            "Content-Type": "application/json",
+            "Host": "t6njlz08j1.execute-api.us-west-2.amazonaws.com",
+            "Postman-Token": "8534960f-b5cc-4d22-90eb-b9ce2314d768",
+            "User-Agent": "PostmanRuntime/7.36.0",
+            "X-Amzn-Trace-Id": "Root=1-65983d13-242f1ed802305232520cbc57",
+            "X-Forwarded-For": "67.189.70.60",
+            "X-Forwarded-Port": "443",
+            "X-Forwarded-Proto": "https"
+        }
+    },
+    "stage-variables": {},
+    "context": {
+        "account-id": "",
+        "api-id": "t6njlz08j1",
+        "api-key": "",
+        "authorizer-principal-id": "",
+        "caller": "",
+        "cognito-authentication-provider": "",
+        "cognito-authentication-type": "",
+        "cognito-identity-id": "",
+        "cognito-identity-pool-id": "",
+        "http-method": "PUT",
+        "stage": "dev",
+        "source-ip": "67.189.70.60",
+        "user": "",
+        "user-agent": "PostmanRuntime/7.36.0",
+        "user-arn": "",
+        "request-id": "f402e49b-d943-42d6-bf1a-c587081b4647",
+        "resource-id": "fazzn1",
+        "resource-path": "/recipe"
+    }
+}

@@ -1,0 +1,40 @@
+{
+    "body-json": {},
+    "params": {
+        "path": {},
+        "querystring": {},
+        "header": {
+            "Accept": "*/*",
+            "Accept-Encoding": "gzip, deflate, br",
+            "Cache-Control": "no-cache",
+            "Host": "t6njlz08j1.execute-api.us-west-2.amazonaws.com",
+            "Postman-Token": "f3fae9b0-6434-424e-afbd-559b73766f24",
+            "User-Agent": "PostmanRuntime/7.36.0",
+            "X-Amzn-Trace-Id": "Root=1-6598354b-0b5f0a3041eb88110c2a9db0",
+            "X-Forwarded-For": "67.189.70.60",
+            "X-Forwarded-Port": "443",
+            "X-Forwarded-Proto": "https"
+        }
+    },
+    "stage-variables": {},
+    "context": {
+        "account-id": "",
+        "api-id": "t6njlz08j1",
+        "api-key": "",
+        "authorizer-principal-id": "",
+        "caller": "",
+        "cognito-authentication-provider": "",
+        "cognito-authentication-type": "",
+        "cognito-identity-id": "",
+        "cognito-identity-pool-id": "",
+        "http-method": "POST",
+        "stage": "dev",
+        "source-ip": "67.189.70.60",
+        "user": "",
+        "user-agent": "PostmanRuntime/7.36.0",
+        "user-arn": "",
+        "request-id": "36b68762-ca92-46ba-a5f0-361cfed75c0d",
+        "resource-id": "fazzn1",
+        "resource-path": "/recipe"
+    }
+}

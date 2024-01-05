@@ -1,0 +1,49 @@
+{
+    "body-json": {
+        "ingredients": "Updated ingredients \n1 pound spaghetti\n2/3 cup olive oil \n2/3 cup grated Parmesan",
+        "instructions": "Updated instructions \nCook the pasta in a large pot of boiling salted water \nMeanwhile, whisk the oil, Parmesan, and lemon juice in a large bowl to blend.",
+        "orderId": 1,
+        "title": "Lemon Spaghetti updated",
+        "contentId": 2581
+    },
+    "params": {
+        "path": {
+            "keyword": "jalapeno"
+        },
+        "querystring": {},
+        "header": {
+            "Accept": "*/*",
+            "Accept-Encoding": "gzip, deflate, br",
+            "Cache-Control": "no-cache",
+            "Content-Type": "application/json",
+            "Host": "t6njlz08j1.execute-api.us-west-2.amazonaws.com",
+            "Postman-Token": "847f5215-8f32-417a-9b55-50fc389f6562",
+            "User-Agent": "PostmanRuntime/7.36.0",
+            "X-Amzn-Trace-Id": "Root=1-65982d33-667a010f7b4120f4317e0ecd",
+            "X-Forwarded-For": "67.189.70.60",
+            "X-Forwarded-Port": "443",
+            "X-Forwarded-Proto": "https"
+        }
+    },
+    "stage-variables": {},
+    "context": {
+        "account-id": "",
+        "api-id": "t6njlz08j1",
+        "api-key": "",
+        "authorizer-principal-id": "",
+        "caller": "",
+        "cognito-authentication-provider": "",
+        "cognito-authentication-type": "",
+        "cognito-identity-id": "",
+        "cognito-identity-pool-id": "",
+        "http-method": "GET",
+        "stage": "dev",
+        "source-ip": "67.189.70.60",
+        "user": "",
+        "user-agent": "PostmanRuntime/7.36.0",
+        "user-arn": "",
+        "request-id": "a0ea0b9e-1b59-4e91-b572-79e4d5b19f87",
+        "resource-id": "3rkrz6",
+        "resource-path": "/content/search/{keyword}"
+    }
+}

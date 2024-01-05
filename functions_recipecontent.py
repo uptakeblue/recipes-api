@@ -2,14 +2,15 @@
 # Created:      10/30/2023
 # Modified:     11/5/2023
 #
-# Copyright 2023 © Uptakeblue.com, All Rights Reserved
+# Copyright 2023 - 2024 © Uptakeblue.com, All Rights Reserved
 # -----------------------------------------------------------
 import utility as u
 import dto as dto
 
 MODULE = "functions_recipecontent"
 
-def recipeContent_GET(util: u.Global_Utility, recipeId:int, contentId:int) -> dict:
+
+def recipeContent_GET(util: u.Global_Utility, recipeId: int, contentId: int) -> dict:
     response = None
     args = [
         recipeId,
@@ -31,7 +32,7 @@ def recipeContent_GET(util: u.Global_Utility, recipeId:int, contentId:int) -> di
     return response
 
 
-def recipeContent_DELETE(util: u.Global_Utility, recipeId:int, contentId:int) -> dict:
+def recipeContent_DELETE(util: u.Global_Utility, recipeId: int, contentId: int) -> dict:
     response = None
     args = [
         recipeId,
@@ -42,7 +43,7 @@ def recipeContent_DELETE(util: u.Global_Utility, recipeId:int, contentId:int) ->
             cursor.callproc("dbo.rcp_recipe_content_Delete", args)
 
             util.pymysqlConnection.commit()
-            
+
             response = {
                 "message": f"Recipe-Content relationship was deleted",
                 "recipeId": recipeId,
@@ -57,24 +58,24 @@ def recipeContent_DELETE(util: u.Global_Utility, recipeId:int, contentId:int) ->
     return response
 
 
-
-
-def recipeContent_POST(util: u.Global_Utility, recipeContentDto:dto.recipeContent_dto) -> dict:
+def recipeContent_POST(
+    util: u.Global_Utility, recipeContentDto: dto.recipeContent_dto
+) -> dict:
     response = None
-    args=[
+    args = [
         recipeContentDto.RecipeId,
         recipeContentDto.ContentId,
     ]
     try:
         with util.pymysqlConnection.cursor() as cursor:
             cursor.callproc("dbo.rcp_recipe_content_Post", args)
-            
+
             util.pymysqlConnection.commit()
 
             response = {
                 "message": f"Recipe-Content relationship was created",
                 "recipeId": recipeContentDto.RecipeId,
-                "contentId": recipeContentDto.ContentId
+                "contentId": recipeContentDto.ContentId,
             }
 
     except Exception as e:
@@ -85,12 +86,14 @@ def recipeContent_POST(util: u.Global_Utility, recipeContentDto:dto.recipeConten
     return response
 
 
-def recipeContent_PUT(util: u.Global_Utility, recipeContentDto:dto.recipeContent_dto) -> dict:
+def recipeContent_PUT(
+    util: u.Global_Utility, recipeContentDto: dto.recipeContent_dto
+) -> dict:
     response = None
-    args=[
+    args = [
         recipeContentDto.RecipeId,
         recipeContentDto.ContentId,
-        recipeContentDto.OrderID
+        recipeContentDto.OrderID,
     ]
     try:
         with util.pymysqlConnection.cursor() as cursor:
@@ -101,7 +104,7 @@ def recipeContent_PUT(util: u.Global_Utility, recipeContentDto:dto.recipeContent
             response = {
                 "message": f"Recipe-Content relationship was updated",
                 "recipeId": recipeContentDto.RecipeId,
-                "contentId": recipeContentDto.ContentId
+                "contentId": recipeContentDto.ContentId,
             }
 
     except Exception as e:
