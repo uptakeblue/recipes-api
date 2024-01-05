@@ -1,7 +1,0 @@
-POST http://127.0.0.1:5000/recipecontent/ HTTP/1.1
-content-type: application/json
-
-{
-  "recipeId": 1,
-  "contentId": 3
-}
