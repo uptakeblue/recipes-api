@@ -11,9 +11,11 @@ import lambda_function
 import global_utility as gu
 
 gu.isLocalDevelopment = True
+gu.useLocalSecret = True
+
 with open("local-secret.json") as f:
-    secrt = json.load(f)
-gu.localSecret = secrt
+    gu.localSecret = json.load(f)
+
 files = []
 
 print("Select Test Case Folder ([Esc] to exit)\n{}".format("-" * 35))
