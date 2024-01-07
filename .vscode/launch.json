@@ -5,21 +5,12 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python: Flask",
+            "name": "Python: App Start In Console",
             "type": "python",
             "request": "launch",
-            "module": "flask",
-            "env": {
-                "FLASK_APP": "app.py",
-                "FLASK_DEBUG": "1"
-            },
-            "args": [
-                "run",
-                "--no-debugger",
-                "--no-reload"
-            ],
-            "jinja": true,
-            "justMyCode": true
-        },
+            "program": "_local_application_start.py",
+            "console": "externalTerminal",
+            "python": "${command:python.interpreterPath}"
+        }
     ]
 }
