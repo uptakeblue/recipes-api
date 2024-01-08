@@ -1,6 +1,6 @@
 # Author:       Michael Rubin
 # Created:      1/5/2024
-# Modified:     1/5/2024
+# Modified:     1/8/2024
 #
 # This file is the starting point for the application
 # lambda_handler( ) is the registered entry point
@@ -18,13 +18,11 @@ except ModuleNotFoundError as e:
         + 'Github repo: "https://github.com/uptakeblue/global".\n'
     )
     sys.exit(0)
-# import app
+import app
 
 
 def lambda_handler(event, context):
-    response = json.dumps(event, indent=2)
-    statusCode = 200
-    # [response, statusCode] = app.parseEvent(event)
+    [response, statusCode] = app.parseEvent(event)
 
     return {
         "statusCode": statusCode,

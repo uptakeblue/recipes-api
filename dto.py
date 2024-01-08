@@ -1,11 +1,11 @@
 # Author:       Michael Rubin
 # Created:      10/9/2023
-# Modified:     11/6/2023
+# Modified:     1/8/2024
 #
 # Copyright 2023 - 2024 © Uptakeblue.com, All Rights Reserved
 # -----------------------------------------------------------
 from datetime import datetime, date
-import utility as u
+import global_utility as gu
 
 MODULE = "dto"
 
@@ -14,6 +14,7 @@ class recipe_dto:
     def __init__(self, initObject) -> None:
         self.Ingredients = None
         self.Instructions = None
+        self.Content = []
         if isinstance(initObject, tuple):
             dataRow: tuple = initObject
             self.RecipeId = dataRow[0]
@@ -50,12 +51,12 @@ class recipe_dto:
                 recipeDict["instructions"] if "instructions" in recipeDict else None
             )
             self.ModifiedDate: datetime = (
-                datetime.strptime(recipeDict["modifiedDate"], u.DATETIMEFORMAT)
+                datetime.strptime(recipeDict["modifiedDate"], gu.DATETIMEFORMAT)
                 if "modifiedDate" in recipeDict
                 else None
             )
         else:
-            raise u.UptakeblueException(
+            raise gu.UptakeblueException(
                 Exception("initObject type not recognized"),
                 f"{MODULE} recipe_dto.init()",
             )
@@ -69,12 +70,16 @@ class recipe_dto:
             "imageFile": self.ImageFile,
             "route": self.Route,
             "isFavorite": self.IsFavorite,
-            "modifiedDate": self.ModifiedDate.strftime(u.DATETIMEFORMAT),
+            "modifiedDate": self.ModifiedDate.strftime(gu.DATETIMEFORMAT),
         }
         if self.Ingredients:
             recipeDict["ingredients"] = self.Ingredients
         if self.Instructions:
             recipeDict["instructions"] = self.Instructions
+        if self.Content:
+            recipeDict["content"] = []
+            for content in self.Content:
+                recipeDict["content"].append(content.getDictionary())
 
         return recipeDict
 
@@ -106,7 +111,7 @@ class content_dto:
                 recipeDict["recipeId"] if "recipeId" in recipeDict else False
             )
         else:
-            raise u.UptakeblueException(
+            raise gu.UptakeblueException(
                 Exception("initObject type not recognized"),
                 f"{MODULE} content_dto.init()",
             )

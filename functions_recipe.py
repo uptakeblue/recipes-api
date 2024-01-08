@@ -1,6 +1,6 @@
 # Author:       Michael Rubin
 # Created:      10/9/2023
-# Modified:     1/7/2024
+# Modified:     1/8/2024
 #
 # Copyright 2023 - 2024 © Uptakeblue.com, All Rights Reserved
 # -----------------------------------------------------------
@@ -13,29 +13,6 @@ import dto as dto
 
 # module constants
 MODULE = "functions_recipe"
-
-
-def recipe_GET_List(
-    util: gu.Global_Utility,
-):
-    response = None
-    try:
-        with util.pymysqlConnection.cursor() as cursor:
-            startTime = time.perf_counter()
-            cursor.callproc("dbo.rcp_recipe_Get_List")
-            rows = cursor.fetchall()
-            util.writeEventTiming("dbproc", "dbo.rcp_recipe_Get_List()", startTime)
-            if rows:
-                result = []
-                for row in rows:
-                    result.append(dto.recipe_dto(row).getDictionary())
-
-                response = (result, gu.RESPONSECODE_OK)
-
-    except Exception as e:
-        raise gu.UptakeblueException(e, source=f"{MODULE}.recipe_GET_List()")
-
-    return response
 
 
 def recipe_GET_ListSearch(
@@ -51,20 +28,21 @@ def recipe_GET_ListSearch(
             args = [
                 pathParams["keyword"],
             ]
-            startTime = time.perf_counter()
         with util.pymysqlConnection.cursor() as cursor:
             startTime = time.perf_counter()
             cursor.callproc("dbo.rcp_recipe_Get_ListSearch", args)
             rows = cursor.fetchall()
             util.writeEventTiming("dbproc", "dbo.rcp_recipe_Get_List()", startTime)
             if rows:
+                result = []
                 for row in rows:
-                    recipeDto = dto.recipe_dto(row)
-                    response.append(recipeDto.getDictionary())
+                    result.append(dto.recipe_dto(row).getDictionary())
+
+                response = (result, gu.RESPONSECODE_OK)
 
     except Exception as e:
         raise gu.UptakeblueException(
-            e, source=f"{MODULE}.recipe_GET_ListSearch()", paramarge=pathParams
+            e, source=f"{MODULE}.recipe_GET_ListSearch()", paramargs=pathParams
         )
 
     return response
@@ -88,13 +66,25 @@ def recipe_GET(
             row = cursor.fetchone()
             util.writeEventTiming("dbproc", "dbo.rcp_recipe_Get()", startTime)
             if row:
-                result = dto.recipe_dto(row).getDictionary()
+                recipeDto = dto.recipe_dto(row)
+                startTime = time.perf_counter()
+                args = [
+                    recipeDto.RecipeId,
+                ]
+                cursor.callproc("dbo.rcp_content_Get_ListByRecipe", args)
+                rows = cursor.fetchall()
+                util.writeEventTiming("dbproc", "dbo.rcp_recipe_GetByUrl()", startTime)
+                if rows:
+                    for row in rows:
+                        recipeDto.Content.append(dto.content_dto(row))
+
+                result = recipeDto.getDictionary()
 
                 response = (result, gu.RESPONSECODE_OK)
 
     except Exception as e:
         raise gu.UptakeblueException(
-            e, source=f"{MODULE}.recipe_GET()", paramarge=pathParams
+            e, source=f"{MODULE}.recipe_GET()", paramargs=pathParams
         )
 
     return response
@@ -116,13 +106,25 @@ def recipe_GET_ByRoute(
             row = cursor.fetchone()
             util.writeEventTiming("dbproc", "dbo.rcp_recipe_GetByUrl()", startTime)
             if row:
-                result = dto.recipe_dto(row).getDictionary()
+                recipeDto = dto.recipe_dto(row)
+                startTime = time.perf_counter()
+                args = [
+                    recipeDto.RecipeId,
+                ]
+                cursor.callproc("dbo.rcp_content_Get_ListByRecipe", args)
+                rows = cursor.fetchall()
+                util.writeEventTiming("dbproc", "dbo.rcp_recipe_GetByUrl()", startTime)
+                if rows:
+                    for row in rows:
+                        recipeDto.Content.append(dto.content_dto(row))
+
+                result = recipeDto.getDictionary()
 
                 response = (result, gu.RESPONSECODE_OK)
 
     except Exception as e:
         raise gu.UptakeblueException(
-            e, source=f"{MODULE}.recipe_GET_ByRoute()", paramarge=pathParams
+            e, source=f"{MODULE}.recipe_GET_ByRoute()", paramargs=pathParams
         )
 
     return response
@@ -154,7 +156,7 @@ def recipe_DELETE(
 
     except Exception as e:
         raise gu.UptakeblueException(
-            e, source=f"{MODULE}.recipe_DELETE()", paramarge=args
+            e, source=f"{MODULE}.recipe_DELETE()", paramargs=args
         )
 
     return response
@@ -199,7 +201,7 @@ def recipe_POST(
 
     except Exception as e:
         raise gu.UptakeblueException(
-            e, source=f"{MODULE}.recipe_POST()", paramarge=args
+            e, source=f"{MODULE}.recipe_POST()", paramargs=args
         )
 
     return response
@@ -237,32 +239,52 @@ def recipe_PUT(
             response = (result, gu.RESPONSECODE_OK)
 
     except Exception as e:
-        raise gu.UptakeblueException(e, source=f"{MODULE}.recipe_PUT()", paramarge=args)
+        raise gu.UptakeblueException(e, source=f"{MODULE}.recipe_PUT()", paramargs=args)
 
     return response
 
 
-def recipe_GET_Map(
+def recipe_GET_ListMap(
     util: gu.Global_Utility,
 ):
     response = None
-    result = {
-        "recipes": [],
-        "contentTitles": [],
-    }
+
     try:
-        recipeDictArray = fn_r.recipe_GET_List(util)
-        for recipe in recipeDictArray:
-            result["recipes"].append(recipe)
-            result["contentTitles"] = fn_c.content_GET_List(util)
+        result = {
+            "recipes": [],
+            "contentTitles": [],
+        }
+        with util.pymysqlConnection.cursor() as cursor:
+            startTime = time.perf_counter()
+            cursor.callproc("dbo.rcp_recipe_Get_List")
+            rows = cursor.fetchall()
+            util.writeEventTiming("dbproc", "dbo.rcp_recipe_Get_List()", startTime)
+            if rows:
+                for row in rows:
+                    result["recipes"].append(dto.recipe_dto(row).getDictionary())
 
-        response = (result, u.RESPONSECODE_OK)
+            response = (result, gu.RESPONSECODE_OK)
 
-    except Exception as err:
-        e = u.UptakeblueException(err, f"{MODULE}.recipe_GET_Map()")
-        response = fn_u.exceptionResponse(e)
-    finally:
-        return response
+            startTime = time.perf_counter()
+            cursor.callproc("dbo.rcp_content_Get_List")
+            rows = cursor.fetchall()
+            util.writeEventTiming("dbproc", "dbo.rcp_content_Get_List()", startTime)
+            if rows:
+                for row in rows:
+                    contentDto = dto.content_dto(row)
+                    result["contentTitles"].append(
+                        {
+                            "contentId": contentDto.ContentId,
+                            "title": contentDto.Title,
+                        }
+                    )
+
+        response = (result, gu.RESPONSECODE_OK)
+
+    except Exception as e:
+        raise gu.UptakeblueException(e, f"{MODULE}.recipe_GET_ListMap()")
+
+    return response
 
 
 def routeFromTitle(title: str) -> str:

@@ -1,14 +1,8 @@
 {
-    "body-json": {
-        "ingredients": "Updated ingredients \n1 pound spaghetti\n2/3 cup olive oil \n2/3 cup grated Parmesan",
-        "instructions": "Updated instructions \nCook the pasta in a large pot of boiling salted water \nMeanwhile, whisk the oil, Parmesan, and lemon juice in a large bowl to blend.",
-        "orderId": 1,
-        "title": "Lemon Spaghetti updated",
-        "contentId": 2581
-    },
+    "body-json": {},
     "params": {
         "path": {
-            "keyword": "jalapeno"
+            "keyword": "Brussels"
         },
         "querystring": {},
         "header": {

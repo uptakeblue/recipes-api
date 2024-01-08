@@ -1,76 +1,112 @@
 # Author:       Michael Rubin
 # Created:      10/30/2023
-# Modified:     11/5/2023
+# Modified:     1/8/2024
 #
 # Copyright 2023 - 2024 © Uptakeblue.com, All Rights Reserved
 # -----------------------------------------------------------
-import utility as u
+import global_utility as gu
 import dto as dto
+import time
 
 MODULE = "functions_recipecontent"
 
 
-def recipeContent_GET(util: u.Global_Utility, recipeId: int, contentId: int) -> dict:
+def recipeContent_GET(
+    util: gu.Global_Utility,
+    pathParams: dict,
+):
     response = None
-    args = [
-        recipeId,
-        contentId,
-    ]
     try:
+        if "recipeid" not in pathParams:
+            raise Exception("pathParams missing recipeid")
+        if "content" not in pathParams:
+            raise Exception("pathParams missing content")
+
+        args = [
+            pathParams["recipeId"],
+            pathParams["contentId"],
+        ]
+
         with util.pymysqlConnection.cursor() as cursor:
+            startTime = time.perf_counter()
             cursor.callproc("dbo.rcp_recipe_content_Get", args)
             row = cursor.fetchone()
+            util.writeEventTiming("dbproc", "dbo.rcp_recipe_content_Get()", startTime)
+
             if row:
-                contentDto = dto.recipeContent_dto(row)
-                response = contentDto.getDictionary()
+                result = dto.recipeContent_dto(row).getDictionary()
+
+                response = (result, gu.RESPONSECODE_OK)
 
     except Exception as e:
-        raise u.UptakeblueException(
-            e, source=f"{MODULE}.recipecontent_GET()", paramarge=args
+        raise gu.UptakeblueException(
+            e, source=f"{MODULE}.recipecontent_GET()", paramargs=args
         )
 
     return response
 
 
-def recipeContent_DELETE(util: u.Global_Utility, recipeId: int, contentId: int) -> dict:
+def recipeContent_DELETE(
+    util: gu.Global_Utility,
+    pathParams: dict,
+):
     response = None
-    args = [
-        recipeId,
-        contentId,
-    ]
     try:
+        if "recipeid" not in pathParams:
+            raise Exception("pathParams missing recipeid")
+        if "content" not in pathParams:
+            raise Exception("pathParams missing content")
+
+        recipeId = pathParams["recipeId"]
+        contentId = pathParams["contentId"]
+
+        args = [
+            recipeId,
+            contentId,
+        ]
+
         with util.pymysqlConnection.cursor() as cursor:
+            startTime = time.perf_counter()
             cursor.callproc("dbo.rcp_recipe_content_Delete", args)
 
             util.pymysqlConnection.commit()
+            util.writeEventTiming(
+                "dbproc", "dbo.rcp_recipe_content_Delete()", startTime
+            )
 
-            response = {
+            result = {
                 "message": f"Recipe-Content relationship was deleted",
                 "recipeId": recipeId,
                 "contentId": contentId,
             }
 
+        response = (result, gu.RESPONSECODE_OK)
+
     except Exception as e:
-        raise u.UptakeblueException(
-            e, source=f"{MODULE}.recipeContent_DELETE()", paramarge=args
+        raise gu.UptakeblueException(
+            e, source=f"{MODULE}.recipeContent_DELETE()", paramargs=args
         )
 
     return response
 
 
 def recipeContent_POST(
-    util: u.Global_Utility, recipeContentDto: dto.recipeContent_dto
-) -> dict:
+    util: gu.Global_Utility,
+    requestBody: dict,
+):
     response = None
-    args = [
-        recipeContentDto.RecipeId,
-        recipeContentDto.ContentId,
-    ]
     try:
+        recipeContentDto = dto.recipeContent_dto(requestBody)
+        args = [
+            recipeContentDto.RecipeId,
+            recipeContentDto.ContentId,
+        ]
         with util.pymysqlConnection.cursor() as cursor:
+            startTime = time.perf_counter()
             cursor.callproc("dbo.rcp_recipe_content_Post", args)
 
             util.pymysqlConnection.commit()
+            util.writeEventTiming("dbproc", "dbo.rcp_recipe_content_Post()", startTime)
 
             response = {
                 "message": f"Recipe-Content relationship was created",
@@ -79,27 +115,31 @@ def recipeContent_POST(
             }
 
     except Exception as e:
-        raise u.UptakeblueException(
-            e, source=f"{MODULE}.recipeContent_POST()", paramarge=args
+        raise gu.UptakeblueException(
+            e, source=f"{MODULE}.recipeContent_POST()", paramargs=args
         )
 
     return response
 
 
 def recipeContent_PUT(
-    util: u.Global_Utility, recipeContentDto: dto.recipeContent_dto
-) -> dict:
+    util: gu.Global_Utility,
+    requestBody: dict,
+):
     response = None
-    args = [
-        recipeContentDto.RecipeId,
-        recipeContentDto.ContentId,
-        recipeContentDto.OrderID,
-    ]
     try:
+        recipeContentDto = dto.recipeContent_dto(requestBody)
+        args = [
+            recipeContentDto.RecipeId,
+            recipeContentDto.ContentId,
+            recipeContentDto.OrderID,
+        ]
         with util.pymysqlConnection.cursor() as cursor:
+            startTime = time.perf_counter()
             cursor.callproc("dbo.rcp_recipe_content_Put", args)
 
             util.pymysqlConnection.commit()
+            util.writeEventTiming("dbproc", "dbo.rcp_recipe_content_Put()", startTime)
 
             response = {
                 "message": f"Recipe-Content relationship was updated",
@@ -108,8 +148,8 @@ def recipeContent_PUT(
             }
 
     except Exception as e:
-        raise u.UptakeblueException(
-            e, source=f"{MODULE}.recipeContent_PUT()", paramarge=args
+        raise gu.UptakeblueException(
+            e, source=f"{MODULE}.recipeContent_PUT()", paramargs=args
         )
 
     return response

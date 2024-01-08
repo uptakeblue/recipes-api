@@ -1,6 +1,6 @@
 # Author:		Michael Rubin
 # Created:		1/5/2024
-# Modified:	    1/6/2024
+# Modified:	    1/8/2024
 #
 # Copyright 2023 - 2024 © Uptakeblue.com, All Rights Reserved
 # -----------------------------------------------------------------
@@ -11,7 +11,7 @@ import lambda_function
 import global_utility as gu
 
 gu.isLocalDevelopment = True
-gu.useLocalSecret = True
+gu.useLocalSecret = False
 
 with open("local-secret.json") as f:
     gu.localSecret = json.load(f)
@@ -84,8 +84,8 @@ def onPress(key):
 
                 response = lambda_function.lambda_handler(event, None)
                 if isinstance(response, dict):
-                    # filename = "D:\\Michael\\Desktop\\API_output.json"
-                    filename = "C:\\Users\Michael\\Desktop\\API_output.json"
+                    filename = "D:\\Michael\\Desktop\\API_output.json"
+                    # filename = "C:\\Users\Michael\\Desktop\\API_output.json"
                     try:
                         responseJson = json.dumps(response, indent=2)
                         with open(filename, "w") as f:

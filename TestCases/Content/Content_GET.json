@@ -1,7 +1,9 @@
 {
     "body-json": {},
     "params": {
-        "path": {},
+        "path": {
+            "contentid": "2584"
+        },
         "querystring": {},
         "header": {
             "Accept": "*/*",
@@ -35,6 +37,6 @@
         "user-arn": "",
         "request-id": "ba13fe44-67b9-42e4-81c3-4ac858cccbe4",
         "resource-id": "a04k7b",
-        "resource-path": "/content"
+        "resource-path": "/content/{contentid}"
     }
 }

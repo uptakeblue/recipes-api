@@ -69,7 +69,7 @@ def content_GET_ListSearch(
 
     except Exception as e:
         raise gu.UptakeblueException(
-            e, source=f"{MODULE}.content_GET_ListSearch()", paramarge=pathParams
+            e, source=f"{MODULE}.content_GET_ListSearch()", paramargs=pathParams
         )
 
     return response
@@ -101,7 +101,7 @@ def content_GET_ListByRecipe(
 
     except Exception as e:
         raise gu.UptakeblueException(
-            e, source=f"{MODULE}.content_GET_ListByRecipe()", paramarge=pathParams
+            e, source=f"{MODULE}.content_GET_ListByRecipe()", paramargs=pathParams
         )
 
     return response
@@ -131,7 +131,7 @@ def content_GET(
 
     except Exception as e:
         raise gu.UptakeblueException(
-            e, source=f"{MODULE}.content_GET()", paramarge=pathParams
+            e, source=f"{MODULE}.content_GET()", paramargs=pathParams
         )
 
     return response
@@ -164,7 +164,7 @@ def content_DELETE(
 
     except Exception as e:
         raise gu.UptakeblueException(
-            e, source=f"{MODULE}.content_DELETE()", paramarge=args
+            e, source=f"{MODULE}.content_DELETE()", paramargs=args
         )
 
     return response
@@ -203,7 +203,7 @@ def content_POST(
 
     except Exception as e:
         raise gu.UptakeblueException(
-            e, source=f"{MODULE}.content_POST()", paramarge=requestBody
+            e, source=f"{MODULE}.content_POST()", paramargs=requestBody
         )
 
     return response
@@ -238,7 +238,7 @@ def content_PUT(
 
     except Exception as e:
         raise gu.UptakeblueException(
-            e, source=f"{MODULE}.content_PUT()", paramarge=requestBody
+            e, source=f"{MODULE}.content_PUT()", paramargs=requestBody
         )
 
     return response
