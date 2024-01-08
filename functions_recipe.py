@@ -1,13 +1,13 @@
 # Author:       Michael Rubin
 # Created:      10/9/2023
-# Modified:     11/6/2023
+# Modified:     1/7/2024
 #
 # Copyright 2023 - 2024 © Uptakeblue.com, All Rights Reserved
 # -----------------------------------------------------------
-from flask import request
 import re
+import time
 
-import utility as u
+import global_utility as gu
 import dto as dto
 
 
@@ -15,132 +15,204 @@ import dto as dto
 MODULE = "functions_recipe"
 
 
-def recipe_GET_List(util: u.Global_Utility) -> list:
-    response = []
+def recipe_GET_List(
+    util: gu.Global_Utility,
+):
+    response = None
     try:
         with util.pymysqlConnection.cursor() as cursor:
+            startTime = time.perf_counter()
             cursor.callproc("dbo.rcp_recipe_Get_List")
             rows = cursor.fetchall()
+            util.writeEventTiming("dbproc", "dbo.rcp_recipe_Get_List()", startTime)
             if rows:
+                result = []
                 for row in rows:
-                    recipeDto = dto.recipe_dto(row)
-                    response.append(recipeDto.getDictionary())
+                    result.append(dto.recipe_dto(row).getDictionary())
+
+                response = (result, gu.RESPONSECODE_OK)
 
     except Exception as e:
-        raise u.UptakeblueException(e, source=f"{MODULE}.recipe_GET_List()")
+        raise gu.UptakeblueException(e, source=f"{MODULE}.recipe_GET_List()")
 
     return response
 
 
-def recipe_GET_ListSearch(util: u.Global_Utility, keyword) -> list:
-    response = []
-    args = [keyword]
+def recipe_GET_ListSearch(
+    util: gu.Global_Utility,
+    pathParams: dict,
+):
+    response = None
     try:
+        if "keyword" not in pathParams:
+            raise Exception("pathParams missing keyword")
+
         with util.pymysqlConnection.cursor() as cursor:
+            args = [
+                pathParams["keyword"],
+            ]
+            startTime = time.perf_counter()
+        with util.pymysqlConnection.cursor() as cursor:
+            startTime = time.perf_counter()
             cursor.callproc("dbo.rcp_recipe_Get_ListSearch", args)
             rows = cursor.fetchall()
+            util.writeEventTiming("dbproc", "dbo.rcp_recipe_Get_List()", startTime)
             if rows:
                 for row in rows:
                     recipeDto = dto.recipe_dto(row)
                     response.append(recipeDto.getDictionary())
 
     except Exception as e:
-        raise u.UptakeblueException(
-            e, source=f"{MODULE}.recipe_GET_ListSearch()", paramarge=args
+        raise gu.UptakeblueException(
+            e, source=f"{MODULE}.recipe_GET_ListSearch()", paramarge=pathParams
         )
 
     return response
 
 
-def recipe_GET(util: u.Global_Utility, recipeId) -> dict:
+def recipe_GET(
+    util: gu.Global_Utility,
+    pathParams: dict,
+):
     response = None
-    args = [recipeId]
     try:
+        if "recipeid" not in pathParams:
+            raise Exception("pathParams missing recipeid")
+
         with util.pymysqlConnection.cursor() as cursor:
+            args = [
+                pathParams["recipeid"],
+            ]
+            startTime = time.perf_counter()
             cursor.callproc("dbo.rcp_recipe_Get", args)
             row = cursor.fetchone()
+            util.writeEventTiming("dbproc", "dbo.rcp_recipe_Get()", startTime)
             if row:
-                recipeDto = dto.recipe_dto(row)
-                response = recipeDto.getDictionary()
+                result = dto.recipe_dto(row).getDictionary()
+
+                response = (result, gu.RESPONSECODE_OK)
 
     except Exception as e:
-        raise u.UptakeblueException(e, source=f"{MODULE}.recipe_GET()", paramarge=args)
-
-    return response
-
-
-def recipe_GET_ByRoute(util: u.Global_Utility, routUrl: str) -> dict:
-    response = None
-    args = [routUrl]
-    try:
-        with util.pymysqlConnection.cursor() as cursor:
-            cursor.callproc("dbo.rcp_recipe_GetByUrl", args)
-            row = cursor.fetchone()
-            if row:
-                recipeDto = dto.recipe_dto(row)
-                response = recipeDto.getDictionary()
-
-    except Exception as e:
-        raise u.UptakeblueException(
-            e, source=f"{MODULE}.recipe_GET_ByRoute()", paramarge=args
+        raise gu.UptakeblueException(
+            e, source=f"{MODULE}.recipe_GET()", paramarge=pathParams
         )
 
     return response
 
 
-def recipe_DELETE(util: u.Global_Utility, recipeId) -> dict:
+def recipe_GET_ByRoute(
+    util: gu.Global_Utility,
+    pathParams: dict,
+):
     response = None
-    args = [recipeId]
     try:
+        if "routeurl" not in pathParams:
+            raise Exception("pathParams missing routeurl")
+
         with util.pymysqlConnection.cursor() as cursor:
+            args = [pathParams["routeurl"]]
+            startTime = time.perf_counter()
+            cursor.callproc("dbo.rcp_recipe_GetByUrl", args)
+            row = cursor.fetchone()
+            util.writeEventTiming("dbproc", "dbo.rcp_recipe_GetByUrl()", startTime)
+            if row:
+                result = dto.recipe_dto(row).getDictionary()
+
+                response = (result, gu.RESPONSECODE_OK)
+
+    except Exception as e:
+        raise gu.UptakeblueException(
+            e, source=f"{MODULE}.recipe_GET_ByRoute()", paramarge=pathParams
+        )
+
+    return response
+
+
+def recipe_DELETE(
+    util: gu.Global_Utility,
+    pathParams: dict,
+):
+    response = None
+    try:
+        if "recipeid" not in pathParams:
+            raise Exception("pathParams missing recipeid")
+
+        with util.pymysqlConnection.cursor() as cursor:
+            recipeId = pathParams["recipeid"]
+            args = [
+                recipeId,
+            ]
+            startTime = time.perf_counter()
             cursor.callproc("dbo.rcp_recipe_Delete", args)
-            response = {"message": f"Recipe was deleted", "recipeId": recipeId}
+            util.writeEventTiming("dbproc", "dbo.rcp_recipe_Delete()", startTime)
+            response = {
+                "message": f"Recipe was deleted",
+                "recipeId": recipeId,
+            }
 
             util.pymysqlConnection.commit()
 
     except Exception as e:
-        raise u.UptakeblueException(
+        raise gu.UptakeblueException(
             e, source=f"{MODULE}.recipe_DELETE()", paramarge=args
         )
 
     return response
 
 
-def recipe_POST(util: u.Global_Utility, recipeDto: dto.recipe_dto) -> dict:
+def recipe_POST(
+    util: gu.Global_Utility,
+    requestBody: dict,
+):
     response = None
-    recipeId = None
 
-    args = [
-        recipeDto.Title,
-        recipeDto.Description,
-        recipeDto.Note,
-        recipeDto.ImageFile,
-        recipeDto.Route,
-        recipeDto.IsFavorite,
-        recipeDto.Ingredients,
-        recipeDto.Instructions,
-        recipeId,
-    ]
     try:
+        recipeId = None
+        recipeDto = dto.recipe_dto(requestBody)
+
+        args = [
+            recipeDto.Title,
+            recipeDto.Description,
+            recipeDto.Note,
+            recipeDto.ImageFile,
+            recipeDto.Route,
+            recipeDto.IsFavorite,
+            recipeDto.Ingredients,
+            recipeDto.Instructions,
+            recipeId,
+        ]
         with util.pymysqlConnection.cursor() as cursor:
+            startTime = time.perf_counter()
             cursor.callproc("dbo.rcp_recipe_Post", args)
             cursor.execute("SELECT @_dbo.rcp_recipe_Post_8")
             recipeId = cursor.fetchone()[0]
+            util.writeEventTiming("dbproc", "dbo.rcp_recipe_Post()", startTime)
 
             util.pymysqlConnection.commit()
 
-            response = {"message": f"Recipe was created", "recipeId": recipeId}
+            result = {
+                "message": f"Recipe was created",
+                "recipeId": recipeId,
+            }
+
+            response = (result, gu.RESPONSECODE_OK)
 
     except Exception as e:
-        raise u.UptakeblueException(e, source=f"{MODULE}.recipe_POST()", paramarge=args)
+        raise gu.UptakeblueException(
+            e, source=f"{MODULE}.recipe_POST()", paramarge=args
+        )
 
     return response
 
 
-def recipe_PUT(util: u.Global_Utility, recipeDto: dto.recipe_dto) -> dict:
+def recipe_PUT(
+    util: gu.Global_Utility,
+    requestBody: dict,
+):
     response = None
-    # create route from title
+
     try:
+        recipeDto = dto.recipe_dto(requestBody)
         args = [
             recipeDto.RecipeId,
             recipeDto.Title,
@@ -151,18 +223,46 @@ def recipe_PUT(util: u.Global_Utility, recipeDto: dto.recipe_dto) -> dict:
             recipeDto.IsFavorite,
         ]
         with util.pymysqlConnection.cursor() as cursor:
+            startTime = time.perf_counter()
+
             cursor.callproc("dbo.rcp_recipe_Put", args)
             util.pymysqlConnection.commit()
+            util.writeEventTiming("dbproc", "dbo.rcp_recipe_Put()", startTime)
 
-            response = {
+            result = {
                 "message": f"Recipe was updated",
                 "recipeId": recipeDto.RecipeId,
             }
 
+            response = (result, gu.RESPONSECODE_OK)
+
     except Exception as e:
-        raise u.UptakeblueException(e, source=f"{MODULE}.recipe_PUT()", paramarge=args)
+        raise gu.UptakeblueException(e, source=f"{MODULE}.recipe_PUT()", paramarge=args)
 
     return response
+
+
+def recipe_GET_Map(
+    util: gu.Global_Utility,
+):
+    response = None
+    result = {
+        "recipes": [],
+        "contentTitles": [],
+    }
+    try:
+        recipeDictArray = fn_r.recipe_GET_List(util)
+        for recipe in recipeDictArray:
+            result["recipes"].append(recipe)
+            result["contentTitles"] = fn_c.content_GET_List(util)
+
+        response = (result, u.RESPONSECODE_OK)
+
+    except Exception as err:
+        e = u.UptakeblueException(err, f"{MODULE}.recipe_GET_Map()")
+        response = fn_u.exceptionResponse(e)
+    finally:
+        return response
 
 
 def routeFromTitle(title: str) -> str:
