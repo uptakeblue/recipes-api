@@ -1,15 +1,15 @@
 # Author:       Michael Rubin
 # Created:      11/3/2023
-# Modified:     1/5/2024
+# Modified:     1/9/2024
 #
 # Copyright 2023 - 2024 © Uptakeblue.com, All Rights Reserved
 # -----------------------------------------------------------
-import os
-from flask import request, send_from_directory
+import base64
+import io
 from werkzeug.utils import secure_filename
 from PIL import Image
 
-import utility as u
+import global_utility as gu
 import dto as dto
 import functions_utility as fn_u
 import functions_recipe as fn_r
@@ -22,69 +22,82 @@ IMAGE_THUMBNAIL_FOLDER = None
 
 
 # retrieves a single image file
-def image_GET(folder: str, filename: str):
+def image_GET(
+    util: gu.Global_Utility,
+    folder: str,
+    filename: str,
+):
     response = None
     try:
-        filename = secure_filename(filename)
-        response = send_from_directory(folder, filename)
+        fileObject = util.s3Client.get_object(
+            Bucket=util.settings["image_bucket"],
+            Key=f"{folder}/{filename}",
+        )
+        fileContent = fileObject["body"].read()
+        result = base64.b64encode(fileContent)
+        response = (result, gu.RESPONSECODE_OK)
 
     except Exception as err:
-        if err.code == 404:
-            response = send_from_directory("images", "default.png")
-        else:
-            e = u.UptakeblueException(err, f"{MODULE}.image_GET()")
-            response = fn_u.exceptionResponse(e)
+        e = gu.UptakeblueException(err, f"{MODULE}.image_GET()")
+        e.StatusCode = err.code if err.code else gu.RESPONSECODE_SERVERERROR
+        raise e
 
-    finally:
-        return response
+    return response
 
 
 # uploads a single image file
-def image_POST(recipeRoute):
+def image_POST(
+    util: gu.Global_Utility,
+    fileBytes,
+    filename,
+):
     response = None
     ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif"}
-
+    responseCode = None
     try:
-        requestFile = request.files["file"]
-        filename = secure_filename(requestFile.filename)
+        if not "." in filename:
+            responseCode = gu.RESPONSECODE_NOTALLOWED
+            raise Exception("Filename must have an extension")
 
-        if not (
-            "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
-        ):
-            responseCode = u.RESPONSECODE_NOTALLOWED
+        extension = filename.rsplit(".", 1)[1].lower()
+        if not extension in ALLOWED_EXTENSIONS:
+            responseCode = gu.RESPONSECODE_NOTALLOWED
             raise Exception("File must be .jpeg, .jpg or png")
 
-        extension = filename.split(".")[1]
-        targetFilename = f"{recipeRoute}.{extension}" if recipeRoute else filename
+        key = f"images/{filename}"
 
-        targetFilepath = os.path.join(IMAGE_FOLDER, targetFilename)
-        thumbnailFilepath = os.path.join(IMAGE_THUMBNAIL_FOLDER, targetFilename)
+        # upload image to s3
+        util.s3Client.put_object(
+            Bucket=util.settings["image_bucket"],
+            Body=fileBytes,
+            Key=key,
+        )
 
-        requestFile.save(targetFilepath)
-
-        # resize and save in thumbnails folder
-        image = Image.open(targetFilepath)
+        # resize image to thumbnail
+        image = Image.open(io.BytesIO(fileBytes))
         newWidth = 120
         ratio = newWidth / float(image.width)
         newHeight = int(float(image.height) * float(ratio))
         thumbnail = image.resize((newWidth, newHeight))
 
-        thumbnail.save(thumbnailFilepath)
+        # save image bytes
+        fileBytes = io.BytesIO()
+        thumbnail.save(fileBytes, image.format)
+        fileBytes.seek(0, 0)
 
-        response = {
-            "message": "File uploaded successfully",
-            "filename": targetFilename,
-            "responseCode": u.RESPONSECODE_OK,
-        }
+        key = f"thumbnail-images/{filename}"
 
-    except Exception as err:
-        # swallow the error
-        e = u.UptakeblueException(err, f"{MODULE}.image_POST()")
-        response = {
-            "message": e.Message,
-            "filename": targetFilename,
-            "responseCode": u.RESPONSECODE_SERVERERROR,
-        }
+        # upload image to s3
+        util.s3Client.put_object(
+            Bucket=util.settings["image_bucket"],
+            Body=fileBytes,
+            Key=key,
+            ContentType=f"image/{image.format}",
+        )
 
-    finally:
-        return response
+    except Exception as e:
+        err = gu.UptakeblueException(e, f"{MODULE}.image_POST()")
+        err.StatusCode = responseCode if responseCode else gu.RESPONSECODE_SERVERERROR
+        raise err
+
+    return response

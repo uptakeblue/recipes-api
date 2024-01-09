@@ -10,6 +10,7 @@ import time
 import json
 
 from requests_toolbelt.multipart import decoder
+import functions_image as fn_i
 import global_utility as gu
 import dto as dto
 
@@ -185,14 +186,8 @@ def recipe_POST_multipartFormdata(
                 result[key] = part.content.decode("utf-8")
 
         recipeDto = dto.recipe_dto(result)
-        fileName = f"images/{recipeDto.ImageFile}"
 
-        # upload image to s3
-        util.s3Client.put_object(
-            Bucket=util.settings["image_bucket"],
-            Body=fileBytes,
-            Key=fileName,
-        )
+        util.writeEventDebug("Recipe POST data", recipeDto.getDictionary())
 
         # add recipe record to database
         recipeId = None
@@ -223,7 +218,12 @@ def recipe_POST_multipartFormdata(
 
             response = (result, gu.RESPONSECODE_OK)
 
-        # response = (recipeDto.getDictionary(), gu.RESPONSECODE_OK)
+        # upload image and thumbnail to s3
+        fn_i.image_POST(
+            util,
+            fileBytes,
+            recipeDto.ImageFile,
+        )
 
     except Exception as e:
         raise gu.UptakeblueException(
