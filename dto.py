@@ -70,7 +70,9 @@ class recipe_dto:
             "imageFile": self.ImageFile,
             "route": self.Route,
             "isFavorite": self.IsFavorite,
-            "modifiedDate": self.ModifiedDate.strftime(gu.DATETIMEFORMAT),
+            "modifiedDate": self.ModifiedDate.strftime(gu.DATETIMEFORMAT)
+            if self.ModifiedDate
+            else None,
         }
         if self.Ingredients:
             recipeDict["ingredients"] = self.Ingredients
@@ -147,3 +149,32 @@ class recipeContent_dto:
             "contentId": self.ContentId,
             "orderId": self.OrderID,
         }
+
+
+class formData_dto:
+    def __init__(self, initObject) -> None:
+        self.Name = None
+        self.Data = None
+        self.DataType = "string"
+        self.FileName = None
+        metaDataTokens = initObject.split(b"\r\n\r\n")
+        [metaData, self.Data] = metaDataTokens
+        tokens = metaData.split(b"; ")
+
+        self.Name = str(tokens[1].split(b"=")[1])
+        if len(tokens) > 2:
+            self.FileName = (
+                str(tokens[2].split(b"=")[1]).replace("\n", "").replace("\r", "")
+            )
+            self.DataType = "bytes"
+
+    def getDictionary(self) -> dict:
+        formdataDict = {
+            "name": self.Name,
+            "data": self.Data.decode("utf-8"),
+            "dataType": self.DataType,
+        }
+        if self.FileName:
+            formdataDict["filename"] = self.FileName
+
+        return formdataDict

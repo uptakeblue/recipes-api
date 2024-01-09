@@ -4,12 +4,14 @@
 #
 # Copyright 2023 - 2024 © Uptakeblue.com, All Rights Reserved
 # -----------------------------------------------------------
+import base64
 import re
 import time
+import json
 
+from requests_toolbelt.multipart import decoder
 import global_utility as gu
 import dto as dto
-
 
 # module constants
 MODULE = "functions_recipe"
@@ -157,6 +159,75 @@ def recipe_DELETE(
     except Exception as e:
         raise gu.UptakeblueException(
             e, source=f"{MODULE}.recipe_DELETE()", paramargs=args
+        )
+
+    return response
+
+
+def recipe_POST_multipartFormdata(
+    util: gu.Global_Utility,
+    requestBody,
+    contentTypeHeader,
+):
+    response = None
+    try:
+        fileBytes = None
+        formData = base64.b64decode(requestBody)
+        result = {}
+        for part in decoder.MultipartDecoder(formData, contentTypeHeader).parts:
+            decoded_header = part.headers[b"Content-Disposition"].decode("utf-8")
+            tokens = decoded_header.split(";")
+            key = tokens[1].split("=")[1].replace('"', "")
+            if len(tokens) > 2:
+                fileBytes = part.content
+                result[key] = tokens[2].split("=")[1].replace('"', "")
+            else:
+                result[key] = part.content.decode("utf-8")
+
+        recipeDto = dto.recipe_dto(result)
+        fileName = f"images/{recipeDto.ImageFile}"
+
+        # upload image to s3
+        util.s3Client.put_object(
+            Bucket=util.settings["image_bucket"],
+            Body=fileBytes,
+            Key=fileName,
+        )
+
+        # add recipe record to database
+        recipeId = None
+        args = [
+            recipeDto.Title,
+            recipeDto.Description,
+            recipeDto.Note,
+            recipeDto.ImageFile,
+            recipeDto.Route,
+            recipeDto.IsFavorite,
+            recipeDto.Ingredients,
+            recipeDto.Instructions,
+            recipeId,
+        ]
+        with util.pymysqlConnection.cursor() as cursor:
+            startTime = time.perf_counter()
+            cursor.callproc("dbo.rcp_recipe_Post", args)
+            cursor.execute("SELECT @_dbo.rcp_recipe_Post_8")
+            recipeId = cursor.fetchone()[0]
+            util.writeEventTiming("dbproc", "dbo.rcp_recipe_Post()", startTime)
+
+            util.pymysqlConnection.commit()
+
+            result = {
+                "message": f"Recipe was created",
+                "recipeId": recipeId,
+            }
+
+            response = (result, gu.RESPONSECODE_OK)
+
+        # response = (recipeDto.getDictionary(), gu.RESPONSECODE_OK)
+
+    except Exception as e:
+        raise gu.UptakeblueException(
+            e, source=f"{MODULE}.recipe_POST_multipartFormdata()"
         )
 
     return response

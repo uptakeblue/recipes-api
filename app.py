@@ -20,15 +20,25 @@ genericError = None
 
 
 def parseEvent(event):
-    util = gu.Global_Utility("misc")
+    util = gu.Global_Utility("recipes")
 
     if not gu.isLocalDevelopment:
         util.writeEventDebug("EVENT", event)
 
-    resourcePath = event["context"]["resource-path"]
-    httpMethod = event["context"]["http-method"]
-    pathParams = event["params"]["path"]
-    requestBody = event["body-json"]
+    resourcePath = None
+    httpMethod = None
+    requestBody = None
+    pathParams = None
+    if "context" in event:
+        resourcePath = event["context"]["resource-path"]
+        httpMethod = event["context"]["http-method"]
+        requestBody = event["body-json"]
+        pathParams = event["params"]["path"]
+    else:
+        resourcePath = event["resource"]
+        httpMethod = event["httpMethod"]
+        requestBody = event["body"]
+        contentTypeHeader = event["headers"]["Content-Type"]
 
     methodNotSupportedException = gu.UptakeblueException(
         Exception(f"http-method {httpMethod} is not supported for {resourcePath}"),
@@ -85,8 +95,16 @@ def parseEvent(event):
             if httpMethod not in ["POST", "PUT"]:
                 raise methodNotSupportedException
             if httpMethod == "POST":
-                response = fn_r.recipe_POST(util, requestBody)
-                util.writeEventTiming("func", "fn_r.recipe_POST()", startTime)
+                response = fn_r.recipe_POST_multipartFormdata(
+                    util,
+                    requestBody,
+                    contentTypeHeader,
+                )
+                util.writeEventTiming(
+                    "func", "fn_r.recipe_POST_multipartFormdata()", startTime
+                )
+                # response = fn_r.recipe_POST(util, requestBody)
+                # util.writeEventTiming("func", "fn_r.recipe_POST()", startTime)
             elif httpMethod == "PUT":
                 response = fn_r.recipe_PUT(util, requestBody)
                 util.writeEventTiming("func", "fn_r.recipe_PUT()", startTime)
