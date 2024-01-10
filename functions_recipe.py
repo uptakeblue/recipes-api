@@ -165,7 +165,7 @@ def recipe_DELETE(
     return response
 
 
-def recipe_POST_multipartFormdata(
+def recipe_POST(
     util: gu.Global_Utility,
     requestBody,
     contentTypeHeader,
@@ -226,54 +226,7 @@ def recipe_POST_multipartFormdata(
         )
 
     except Exception as e:
-        raise gu.UptakeblueException(
-            e, source=f"{MODULE}.recipe_POST_multipartFormdata()"
-        )
-
-    return response
-
-
-def recipe_POST(
-    util: gu.Global_Utility,
-    requestBody: dict,
-):
-    response = None
-
-    try:
-        recipeId = None
-        recipeDto = dto.recipe_dto(requestBody)
-
-        args = [
-            recipeDto.Title,
-            recipeDto.Description,
-            recipeDto.Note,
-            recipeDto.ImageFile,
-            recipeDto.Route,
-            recipeDto.IsFavorite,
-            recipeDto.Ingredients,
-            recipeDto.Instructions,
-            recipeId,
-        ]
-        with util.pymysqlConnection.cursor() as cursor:
-            startTime = time.perf_counter()
-            cursor.callproc("dbo.rcp_recipe_Post", args)
-            cursor.execute("SELECT @_dbo.rcp_recipe_Post_8")
-            recipeId = cursor.fetchone()[0]
-            util.writeEventTiming("dbproc", "dbo.rcp_recipe_Post()", startTime)
-
-            util.pymysqlConnection.commit()
-
-            result = {
-                "message": f"Recipe was created",
-                "recipeId": recipeId,
-            }
-
-            response = (result, gu.RESPONSECODE_OK)
-
-    except Exception as e:
-        raise gu.UptakeblueException(
-            e, source=f"{MODULE}.recipe_POST()", paramargs=args
-        )
+        raise gu.UptakeblueException(e, source=f"{MODULE}.recipe_POST()")
 
     return response
 
@@ -281,21 +234,52 @@ def recipe_POST(
 def recipe_PUT(
     util: gu.Global_Utility,
     requestBody: dict,
+    contentTypeHeader,
 ):
     response = None
 
     try:
-        recipeDto = dto.recipe_dto(requestBody)
-        args = [
-            recipeDto.RecipeId,
-            recipeDto.Title,
-            recipeDto.Description,
-            recipeDto.Note,
-            recipeDto.ImageFile,
-            recipeDto.Route,
-            recipeDto.IsFavorite,
-        ]
+        fileBytes = None
+        formData = base64.b64decode(requestBody)
+        result = {}
+        for part in decoder.MultipartDecoder(formData, contentTypeHeader).parts:
+            decoded_header = part.headers[b"Content-Disposition"].decode("utf-8")
+            tokens = decoded_header.split(";")
+            key = tokens[1].split("=")[1].replace('"', "")
+            if len(tokens) > 2:
+                fileBytes = part.content
+                result[key] = tokens[2].split("=")[1].replace('"', "")
+            else:
+                result[key] = part.content.decode("utf-8")
+
+        recipeDto = dto.recipe_dto(result)
+
+        util.writeEventDebug("Recipe PUT data", recipeDto.getDictionary())
+
         with util.pymysqlConnection.cursor() as cursor:
+            # get previous
+            args = [
+                recipeDto.RecipeId,
+            ]
+            cursor.callproc("dbo.rcp_recipe_Get", args)
+            row = cursor.fetchone()
+            if row:
+                previousRecipeDto = dto.recipe_dto(row)
+
+            if recipeDto.RetainImageFile:
+                recipeDto.ImageFile = previousRecipeDto.ImageFile
+
+            # update the recipe record
+            args = [
+                recipeDto.RecipeId,
+                recipeDto.Title,
+                recipeDto.Description,
+                recipeDto.Note,
+                recipeDto.ImageFile,
+                recipeDto.Route,
+                recipeDto.IsFavorite,
+            ]
+
             startTime = time.perf_counter()
 
             cursor.callproc("dbo.rcp_recipe_Put", args)
@@ -306,6 +290,13 @@ def recipe_PUT(
                 "message": f"Recipe was updated",
                 "recipeId": recipeDto.RecipeId,
             }
+
+            if fileBytes and (previousRecipeDto.ImageFile != recipeDto.ImageFile):
+                fn_i.image_POST(
+                    util,
+                    fileBytes,
+                    recipeDto.ImageFile,
+                )
 
             response = (result, gu.RESPONSECODE_OK)
 

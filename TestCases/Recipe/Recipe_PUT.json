@@ -1,50 +1,1 @@
-{
-    "body-json": {
-        "description": "Culled almost verbatim from Ken Forkish's \"The Elements Of Pizza\"",
-        "imageFile": null,
-        "isFavorite": true,
-        "modifiedDate": "2023-11-04 18:27:16",
-        "note": "Modified for two dough balls",
-        "recipeId": 426,
-        "route": "pizza-dough-ken-forkish",
-        "title": "Pizza Dough, Ken Forkish"
-    },
-    "params": {
-        "path": {},
-        "querystring": {},
-        "header": {
-            "Accept": "*/*",
-            "Accept-Encoding": "gzip, deflate, br",
-            "Cache-Control": "no-cache",
-            "Content-Type": "application/json",
-            "Host": "t6njlz08j1.execute-api.us-west-2.amazonaws.com",
-            "Postman-Token": "8534960f-b5cc-4d22-90eb-b9ce2314d768",
-            "User-Agent": "PostmanRuntime/7.36.0",
-            "X-Amzn-Trace-Id": "Root=1-65983d13-242f1ed802305232520cbc57",
-            "X-Forwarded-For": "67.189.70.60",
-            "X-Forwarded-Port": "443",
-            "X-Forwarded-Proto": "https"
-        }
-    },
-    "stage-variables": {},
-    "context": {
-        "account-id": "",
-        "api-id": "t6njlz08j1",
-        "api-key": "",
-        "authorizer-principal-id": "",
-        "caller": "",
-        "cognito-authentication-provider": "",
-        "cognito-authentication-type": "",
-        "cognito-identity-id": "",
-        "cognito-identity-pool-id": "",
-        "http-method": "PUT",
-        "stage": "dev",
-        "source-ip": "67.189.70.60",
-        "user": "",
-        "user-agent": "PostmanRuntime/7.36.0",
-        "user-arn": "",
-        "request-id": "f402e49b-d943-42d6-bf1a-c587081b4647",
-        "resource-id": "fazzn1",
-        "resource-path": "/recipe"
-    }
-}
+{  "resource": "/recipe",  "path": "/recipe",  "httpMethod": "PUT",  "headers": {    "Accept": "*/*",    "Accept-Encoding": "gzip, deflate, br",    "Cache-Control": "no-cache",    "Content-Type": "multipart/form-data; boundary=--------------------------310163608685036749760260",    "Host": "t6njlz08j1.execute-api.us-west-2.amazonaws.com",    "Postman-Token": "f1e657c6-9438-47bb-9ce8-214a4e230f76",    "User-Agent": "PostmanRuntime/7.36.0",    "X-Amzn-Trace-Id": "Root=1-659d9292-302bcfe52bd5a245798b14a1",    "X-Forwarded-For": "67.189.70.60",    "X-Forwarded-Port": "443",    "X-Forwarded-Proto": "https"  },  "multiValueHeaders": {    "Accept": [      "*/*"    ],    "Accept-Encoding": [      "gzip, deflate, br"    ],    "Cache-Control": [      "no-cache"    ],    "Content-Type": [      "multipart/form-data; boundary=--------------------------310163608685036749760260"    ],    "Host": [      "t6njlz08j1.execute-api.us-west-2.amazonaws.com"    ],    "Postman-Token": [      "f1e657c6-9438-47bb-9ce8-214a4e230f76"    ],    "User-Agent": [      "PostmanRuntime/7.36.0"    ],    "X-Amzn-Trace-Id": [      "Root=1-659d9292-302bcfe52bd5a245798b14a1"    ],    "X-Forwarded-For": [      "67.189.70.60"    ],    "X-Forwarded-Port": [      "443"    ],    "X-Forwarded-Proto": [      "https"    ]  },  "queryStringParameters": null,  "multiValueQueryStringParameters": null,  "pathParameters": null,  "stageVariables": null,  "requestContext": {    "resourceId": "fazzn1",    "resourcePath": "/recipe",    "httpMethod": "PUT",    "extendedRequestId": "RSPW8F3lPHcEp2A=",    "requestTime": "09/Jan/2024:18:38:10 +0000",    "path": "/dev/recipe",    "accountId": "208795471115",    "protocol": "HTTP/1.1",    "stage": "dev",    "domainPrefix": "t6njlz08j1",    "requestTimeEpoch": 1704825490561,    "requestId": "01b45a43-b2ea-457c-939e-8c2912aa6d5e",    "identity": {      "cognitoIdentityPoolId": null,      "accountId": null,      "cognitoIdentityId": null,      "caller": null,      "sourceIp": "67.189.70.60",      "principalOrgId": null,      "accessKey": null,      "cognitoAuthenticationType": null,      "cognitoAuthenticationProvider": null,      "userArn": null,      "userAgent": "PostmanRuntime/7.36.0",      "user": null    },    "domainName": "t6njlz08j1.execute-api.us-west-2.amazonaws.com",    "apiId": "t6njlz08j1"  },  "body": "LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLTMxMDE2MzYwODY4NTAzNjc0OTc2MDI2MA0KQ29udGVudC1EaXNwb3NpdGlvbjogZm9ybS1kYXRhOyBuYW1lPSJkZXNjcmlwdGlvbiINCg0KVGVzdCBkZXNjcmlwdGlvbg0KLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLTMxMDE2MzYwODY4NTAzNjc0OTc2MDI2MA0KQ29udGVudC1EaXNwb3NpdGlvbjogZm9ybS1kYXRhOyBuYW1lPSJpbWFnZUZpbGUiOyBmaWxlbmFtZT0iIg0KDQoNCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0zMTAxNjM2MDg2ODUwMzY3NDk3NjAyNjANCkNvbnRlbnQtRGlzcG9zaXRpb246IGZvcm0tZGF0YTsgbmFtZT0iaXNGYXZvcml0ZSINCg0KMA0KLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLTMxMDE2MzYwODY4NTAzNjc0OTc2MDI2MA0KQ29udGVudC1EaXNwb3NpdGlvbjogZm9ybS1kYXRhOyBuYW1lPSJub3RlIg0KDQoNCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0zMTAxNjM2MDg2ODUwMzY3NDk3NjAyNjANCkNvbnRlbnQtRGlzcG9zaXRpb246IGZvcm0tZGF0YTsgbmFtZT0idGl0bGUiDQoNClRlc3QgUmVjaXBlLCBSZXZpc2VkDQotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tMzEwMTYzNjA4Njg1MDM2NzQ5NzYwMjYwDQpDb250ZW50LURpc3Bvc2l0aW9uOiBmb3JtLWRhdGE7IG5hbWU9InJvdXRlIg0KDQp0ZXN0LXJlY2lwZS1yZXZpc2VkDQotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tMzEwMTYzNjA4Njg1MDM2NzQ5NzYwMjYwDQpDb250ZW50LURpc3Bvc2l0aW9uOiBmb3JtLWRhdGE7IG5hbWU9InJlY2lwZUlkIg0KDQoyNDg2DQotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tMzEwMTYzNjA4Njg1MDM2NzQ5NzYwMjYwLS0NCg==",  "isBase64Encoded": true}

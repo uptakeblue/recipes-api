@@ -14,6 +14,7 @@ class recipe_dto:
     def __init__(self, initObject) -> None:
         self.Ingredients = None
         self.Instructions = None
+        self.RetainImageFile = None
         self.Content = []
         if isinstance(initObject, tuple):
             dataRow: tuple = initObject
@@ -21,7 +22,7 @@ class recipe_dto:
             self.Title = dataRow[1]
             self.Description = dataRow[2]
             self.Note = dataRow[3]
-            self.ImageFile = dataRow[4]
+            self.ImageFile: str = str(dataRow[4])
             self.Route = str(dataRow[5]).lower()
             self.IsFavorite = dataRow[6] == 1
             self.ModifiedDate: datetime = dataRow[7]
@@ -49,6 +50,11 @@ class recipe_dto:
             )
             self.Instructions = (
                 recipeDict["instructions"] if "instructions" in recipeDict else None
+            )
+            self.RetainImageFile = (
+                recipeDict["retainImageFile"] in ["true", "1"]
+                if "retainImageFile" in recipeDict
+                else None
             )
             self.ModifiedDate: datetime = (
                 datetime.strptime(recipeDict["modifiedDate"], gu.DATETIMEFORMAT)
@@ -78,6 +84,8 @@ class recipe_dto:
             recipeDict["ingredients"] = self.Ingredients
         if self.Instructions:
             recipeDict["instructions"] = self.Instructions
+        if self.RetainImageFile is not None:
+            recipeDict["retainImageFile"] = self.RetainImageFile
         if self.Content:
             recipeDict["content"] = []
             for content in self.Content:

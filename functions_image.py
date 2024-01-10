@@ -6,7 +6,6 @@
 # -----------------------------------------------------------
 import base64
 import io
-from werkzeug.utils import secure_filename
 from PIL import Image
 
 import global_utility as gu
@@ -25,13 +24,16 @@ IMAGE_THUMBNAIL_FOLDER = None
 def image_GET(
     util: gu.Global_Utility,
     folder: str,
-    filename: str,
+    pathParams: dict,
 ):
     response = None
     try:
+        if "filename" not in pathParams:
+            raise Exception("filename not in pathParams")
+
         fileObject = util.s3Client.get_object(
             Bucket=util.settings["image_bucket"],
-            Key=f"{folder}/{filename}",
+            Key=f"{folder}/{pathParams['filename']}",
         )
         fileContent = fileObject["body"].read()
         result = base64.b64encode(fileContent)

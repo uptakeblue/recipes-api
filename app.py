@@ -1,6 +1,6 @@
 # Author:       Michael Rubin
 # Created:      10/9/2023
-# Modified:     1/8/2024
+# Modified:     1/9/2024
 #
 # Copyright 2023 - 2024 © Uptakeblue.com, All Rights Reserved
 # -----------------------------------------------------------
@@ -10,7 +10,7 @@ import time
 import global_utility as gu
 import functions_content as fn_c
 
-# import functions_image as fn_i
+import functions_image as fn_i
 import functions_recipe as fn_r
 import functions_recipecontent as fn_rc
 
@@ -80,6 +80,16 @@ def parseEvent(event):
                 util.writeEventTiming("func", "fn_c.content_PUT()", startTime)
 
         #### IMAGE
+        elif resourcePath == "/image/{filename}":
+            if httpMethod not in ["GET"]:
+                raise methodNotSupportedException
+            response = fn_i.image_GET(util, "images", pathParams)
+
+        elif resourcePath == "/image/thumbnail/{filename}":
+            if httpMethod not in ["GET"]:
+                raise methodNotSupportedException
+            response = fn_i.image_GET(util, "thumbnail-images", pathParams)
+
         #### RECIPE
         elif resourcePath == "/recipe/{recipeid}":
             if httpMethod not in ["DELETE", "GET"]:
@@ -95,18 +105,20 @@ def parseEvent(event):
             if httpMethod not in ["POST", "PUT"]:
                 raise methodNotSupportedException
             if httpMethod == "POST":
-                response = fn_r.recipe_POST_multipartFormdata(
+                response = fn_r.recipe_POST(
                     util,
                     requestBody,
                     contentTypeHeader,
                 )
-                util.writeEventTiming(
-                    "func", "fn_r.recipe_POST_multipartFormdata()", startTime
-                )
+                util.writeEventTiming("func", "fn_r.recipe_POST()", startTime)
                 # response = fn_r.recipe_POST(util, requestBody)
                 # util.writeEventTiming("func", "fn_r.recipe_POST()", startTime)
             elif httpMethod == "PUT":
-                response = fn_r.recipe_PUT(util, requestBody)
+                response = fn_r.recipe_PUT(
+                    util,
+                    requestBody,
+                    contentTypeHeader,
+                )
                 util.writeEventTiming("func", "fn_r.recipe_PUT()", startTime)
 
         elif resourcePath == "/recipe/map":
