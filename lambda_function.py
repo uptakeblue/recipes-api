@@ -1,6 +1,6 @@
 # Author:       Michael Rubin
 # Created:      1/5/2024
-# Modified:     1/8/2024
+# Modified:     1/10/2024
 #
 # This file is the starting point for the application
 # lambda_handler( ) is the registered entry point
@@ -22,11 +22,27 @@ import app
 
 
 def lambda_handler(event, context):
+    isBase64Encoded = False
+    headers = {
+        "Content-Type": "application/json",
+    }
+
     [response, statusCode] = app.parseEvent(event)
 
-    return {
+    if "headers" in response:
+        headers = response["headers"]
+
+    if "isBase64Encoded" in response:
+        isBase64Encoded = response["isBase64Encoded"]
+
+    if "responseBody" in response:
+        response = response["responseBody"]
+
+    returnDict = {
         "statusCode": statusCode,
-        "headers": {"Content-Type": "application/json"},
+        "headers": headers,
         "body": response,
-        "isBase64Encoded": False,
+        "isBase64Encoded": isBase64Encoded,
     }
+
+    return returnDict

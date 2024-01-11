@@ -1,6 +1,6 @@
 # Author:       Michael Rubin
 # Created:      10/9/2023
-# Modified:     1/9/2024
+# Modified:     1/10/2024
 #
 # Copyright 2023 - 2024 © Uptakeblue.com, All Rights Reserved
 # -----------------------------------------------------------
@@ -22,13 +22,15 @@ genericError = None
 def parseEvent(event):
     util = gu.Global_Utility("recipes")
 
-    if not gu.isLocalDevelopment:
-        util.writeEventDebug("EVENT", event)
+    # if not gu.isLocalDevelopment:
+    #     util.writeEventDebug("EVENT", event)
 
     resourcePath = None
     httpMethod = None
     requestBody = None
     pathParams = None
+    contentTypeHeader = None
+
     if "context" in event:
         resourcePath = event["context"]["resource-path"]
         httpMethod = event["context"]["http-method"]
@@ -38,7 +40,9 @@ def parseEvent(event):
         resourcePath = event["resource"]
         httpMethod = event["httpMethod"]
         requestBody = event["body"]
-        contentTypeHeader = event["headers"]["Content-Type"]
+        if "headers" in event and "Content-Type" in event["headers"]:
+            contentTypeHeader = event["headers"]["Content-Type"]
+        pathParams = getPathParams(event["resource"], event["path"])
 
     methodNotSupportedException = gu.UptakeblueException(
         Exception(f"http-method {httpMethod} is not supported for {resourcePath}"),
@@ -111,8 +115,6 @@ def parseEvent(event):
                     contentTypeHeader,
                 )
                 util.writeEventTiming("func", "fn_r.recipe_POST()", startTime)
-                # response = fn_r.recipe_POST(util, requestBody)
-                # util.writeEventTiming("func", "fn_r.recipe_POST()", startTime)
             elif httpMethod == "PUT":
                 response = fn_r.recipe_PUT(
                     util,
@@ -178,3 +180,14 @@ def parseEvent(event):
     if genericError:
         print(genericError.Message)
         return gu.exceptionResponse(genericError)
+
+
+def getPathParams(resource: str, path: str):
+    fields = resource.split("/")
+    values = path.split("/")
+    pathParams = {}
+    for i in range(0, len(fields)):
+        if fields[i] != values[i]:
+            field = fields[i].replace("{", "").replace("}", "")
+            pathParams[field] = values[i]
+    return pathParams

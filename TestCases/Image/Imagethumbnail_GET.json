@@ -1,42 +1,87 @@
 {
-    "body-json": {},
-    "params": {
-        "path": {
-            "filename": "302_porchetta.jpg"
-        },
-        "querystring": {},
-        "header": {
-            "Accept": "*/*",
-            "Accept-Encoding": "gzip, deflate, br",
-            "Cache-Control": "no-cache",
-            "Host": "t6njlz08j1.execute-api.us-west-2.amazonaws.com",
-            "Postman-Token": "16285578-6337-4f66-a742-e4d9e44eb1c5",
-            "User-Agent": "PostmanRuntime/7.36.0",
-            "X-Amzn-Trace-Id": "Root=1-65983143-6a2bd9db2c9cb4bb76461164",
-            "X-Forwarded-For": "67.189.70.60",
-            "X-Forwarded-Port": "443",
-            "X-Forwarded-Proto": "https"
-        }
+    "resource": "/image/thumbnail/{filename}",
+    "path": "/image/thumbnail/62_baked-kabocha-pumpkin.jpeg",
+    "httpMethod": "GET",
+    "headers": {
+        "Accept": "*/*",
+        "Accept-Encoding": "gzip, deflate, br",
+        "Cache-Control": "no-cache",
+        "Host": "t6njlz08j1.execute-api.us-west-2.amazonaws.com",
+        "Postman-Token": "f93f6e2b-9bed-45f3-a3fd-04a550d11a07",
+        "User-Agent": "PostmanRuntime/7.36.0",
+        "X-Amzn-Trace-Id": "Root=1-659eebb9-76d0273a5334ef597627b1ec",
+        "X-Forwarded-For": "67.189.70.60",
+        "X-Forwarded-Port": "443",
+        "X-Forwarded-Proto": "https"
     },
-    "stage-variables": {},
-    "context": {
-        "account-id": "",
-        "api-id": "t6njlz08j1",
-        "api-key": "",
-        "authorizer-principal-id": "",
-        "caller": "",
-        "cognito-authentication-provider": "",
-        "cognito-authentication-type": "",
-        "cognito-identity-id": "",
-        "cognito-identity-pool-id": "",
-        "http-method": "GET",
+    "multiValueHeaders": {
+        "Accept": [
+            "*/*"
+        ],
+        "Accept-Encoding": [
+            "gzip, deflate, br"
+        ],
+        "Cache-Control": [
+            "no-cache"
+        ],
+        "Host": [
+            "t6njlz08j1.execute-api.us-west-2.amazonaws.com"
+        ],
+        "Postman-Token": [
+            "f93f6e2b-9bed-45f3-a3fd-04a550d11a07"
+        ],
+        "User-Agent": [
+            "PostmanRuntime/7.36.0"
+        ],
+        "X-Amzn-Trace-Id": [
+            "Root=1-659eebb9-76d0273a5334ef597627b1ec"
+        ],
+        "X-Forwarded-For": [
+            "67.189.70.60"
+        ],
+        "X-Forwarded-Port": [
+            "443"
+        ],
+        "X-Forwarded-Proto": [
+            "https"
+        ]
+    },
+    "queryStringParameters": null,
+    "multiValueQueryStringParameters": null,
+    "pathParameters": {
+        "filename": "62_baked-kabocha-pumpkin.jpeg"
+    },
+    "stageVariables": null,
+    "requestContext": {
+        "resourceId": "3bbz1i",
+        "resourcePath": "/image/thumbnail/{filename}",
+        "httpMethod": "GET",
+        "extendedRequestId": "RVnFDE7NvHcEgWg=",
+        "requestTime": "10/Jan/2024:19:10:49 +0000",
+        "path": "/dev/image/thumbnail/62_baked-kabocha-pumpkin.jpeg",
+        "accountId": "208795471115",
+        "protocol": "HTTP/1.1",
         "stage": "dev",
-        "source-ip": "67.189.70.60",
-        "user": "",
-        "user-agent": "PostmanRuntime/7.36.0",
-        "user-arn": "",
-        "request-id": "679c1a84-5350-4a72-9f60-30cded2e0eb7",
-        "resource-id": "3bbz1i",
-        "resource-path": "/image/thumbnail/{filename}"
-    }
+        "domainPrefix": "t6njlz08j1",
+        "requestTimeEpoch": 1704913849656,
+        "requestId": "9159b0f2-e6ab-40ed-8eec-312b268d0d67",
+        "identity": {
+            "cognitoIdentityPoolId": null,
+            "accountId": null,
+            "cognitoIdentityId": null,
+            "caller": null,
+            "sourceIp": "67.189.70.60",
+            "principalOrgId": null,
+            "accessKey": null,
+            "cognitoAuthenticationType": null,
+            "cognitoAuthenticationProvider": null,
+            "userArn": null,
+            "userAgent": "PostmanRuntime/7.36.0",
+            "user": null
+        },
+        "domainName": "t6njlz08j1.execute-api.us-west-2.amazonaws.com",
+        "apiId": "t6njlz08j1"
+    },
+    "body": null,
+    "isBase64Encoded": false
 }

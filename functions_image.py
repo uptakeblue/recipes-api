@@ -1,23 +1,20 @@
 # Author:       Michael Rubin
 # Created:      11/3/2023
-# Modified:     1/9/2024
+# Modified:     1/10/2024
 #
 # Copyright 2023 - 2024 © Uptakeblue.com, All Rights Reserved
 # -----------------------------------------------------------
 import base64
 import io
+
 from PIL import Image
 
 import global_utility as gu
 import dto as dto
-import functions_utility as fn_u
-import functions_recipe as fn_r
 
 
 # module constants
 MODULE = "functions_image"
-IMAGE_FOLDER = None
-IMAGE_THUMBNAIL_FOLDER = None
 
 
 # retrieves a single image file
@@ -31,12 +28,25 @@ def image_GET(
         if "filename" not in pathParams:
             raise Exception("filename not in pathParams")
 
+        filename = pathParams["filename"]
+
+        key = f"{folder}/{filename}"
+
         fileObject = util.s3Client.get_object(
             Bucket=util.settings["image_bucket"],
-            Key=f"{folder}/{pathParams['filename']}",
+            Key=key,
         )
-        fileContent = fileObject["body"].read()
-        result = base64.b64encode(fileContent)
+
+        fileContent = fileObject["Body"].read()
+        result = {
+            "responseBody": base64.b64encode(fileContent),
+            "isBase64Encoded": True,
+            "headers": {
+                "Content-Type": "application/json",
+                "Content-Disposition": f"attachment; filename={filename}",
+            },
+        }
+
         response = (result, gu.RESPONSECODE_OK)
 
     except Exception as err:
