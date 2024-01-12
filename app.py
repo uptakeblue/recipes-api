@@ -1,6 +1,6 @@
 # Author:       Michael Rubin
 # Created:      10/9/2023
-# Modified:     1/10/2024
+# Modified:     1/11/2024
 #
 # Copyright 2023 - 2024 © Uptakeblue.com, All Rights Reserved
 # -----------------------------------------------------------
@@ -87,12 +87,12 @@ def parseEvent(event):
         elif resourcePath == "/image/{filename}":
             if httpMethod not in ["GET"]:
                 raise methodNotSupportedException
-            response = fn_i.image_GET(util, "images", pathParams)
+            response = fn_i.image_GET(util, "image", pathParams)
 
-        elif resourcePath == "/image/thumbnail/{filename}":
+        elif resourcePath == "/imagethumb/{filename}":
             if httpMethod not in ["GET"]:
                 raise methodNotSupportedException
-            response = fn_i.image_GET(util, "thumbnail-images", pathParams)
+            response = fn_i.image_GET(util, "imagethumb", pathParams)
 
         #### RECIPE
         elif resourcePath == "/recipe/{recipeid}":

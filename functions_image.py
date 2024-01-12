@@ -1,6 +1,6 @@
 # Author:       Michael Rubin
 # Created:      11/3/2023
-# Modified:     1/10/2024
+# Modified:     1/11/2024
 #
 # Copyright 2023 - 2024 © Uptakeblue.com, All Rights Reserved
 # -----------------------------------------------------------
@@ -38,12 +38,15 @@ def image_GET(
         )
 
         fileContent = fileObject["Body"].read()
+        extension = filename.rsplit(".", 1)[1].lower()
+
         result = {
             "responseBody": base64.b64encode(fileContent),
             "isBase64Encoded": True,
             "headers": {
-                "Content-Type": "application/json",
+                "Content-Type": f"image/{extension}",
                 "Content-Disposition": f"attachment; filename={filename}",
+                "Accept": f"image/{extension}",
             },
         }
 
@@ -76,7 +79,7 @@ def image_POST(
             responseCode = gu.RESPONSECODE_NOTALLOWED
             raise Exception("File must be .jpeg, .jpg or png")
 
-        key = f"images/{filename}"
+        key = f"image/{filename}"
 
         # upload image to s3
         util.s3Client.put_object(
@@ -97,7 +100,7 @@ def image_POST(
         thumbnail.save(fileBytes, image.format)
         fileBytes.seek(0, 0)
 
-        key = f"thumbnail-images/{filename}"
+        key = f"imagethumb/{filename}"
 
         # upload image to s3
         util.s3Client.put_object(
