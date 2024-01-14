@@ -37,6 +37,6 @@
         "user-arn": "",
         "request-id": "1e07e870-a3e7-47dc-b69c-ab3fbd903035",
         "resource-id": "hx5ci2",
-        "resource-path": "/recipe/search/{keyword}"
+        "resource-path": "/recipe/map/search/{keyword}"
     }
 }

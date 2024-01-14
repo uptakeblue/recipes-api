@@ -1,13 +1,10 @@
 # Author:       Michael Rubin
 # Created:      11/3/2023
-# Modified:     1/11/2024
+# Modified:     1/13/2024
 #
 # Copyright 2023 - 2024 © Uptakeblue.com, All Rights Reserved
 # -----------------------------------------------------------
 import base64
-import io
-
-from PIL import Image
 
 import global_utility as gu
 import dto as dto
@@ -86,28 +83,6 @@ def image_POST(
             Bucket=util.settings["image_bucket"],
             Body=fileBytes,
             Key=key,
-        )
-
-        # resize image to thumbnail
-        image = Image.open(io.BytesIO(fileBytes))
-        newWidth = 120
-        ratio = newWidth / float(image.width)
-        newHeight = int(float(image.height) * float(ratio))
-        thumbnail = image.resize((newWidth, newHeight))
-
-        # save image bytes
-        fileBytes = io.BytesIO()
-        thumbnail.save(fileBytes, image.format)
-        fileBytes.seek(0, 0)
-
-        key = f"imagethumb/{filename}"
-
-        # upload image to s3
-        util.s3Client.put_object(
-            Bucket=util.settings["image_bucket"],
-            Body=fileBytes,
-            Key=key,
-            ContentType=f"image/{image.format}",
         )
 
     except Exception as e:

@@ -1,6 +1,6 @@
 # Author:       Michael Rubin
 # Created:      10/9/2023
-# Modified:     1/11/2024
+# Modified:     1/13/2024
 #
 # Copyright 2023 - 2024 © Uptakeblue.com, All Rights Reserved
 # -----------------------------------------------------------
@@ -135,13 +135,13 @@ def parseEvent(event):
             response = fn_r.recipe_GET_ByRoute(util, pathParams)
             util.writeEventTiming("func", "fn_r.recipe_GET_ByRoute()", startTime)
 
-        elif resourcePath == "/recipe/search/{keyword}":
+        elif resourcePath == "/recipe/map/search/{keyword}":
             if httpMethod not in ["GET"]:
                 raise methodNotSupportedException
-            response = fn_r.recipe_GET_ListSearch(util, pathParams)
-            util.writeEventTiming("func", "fn_r.recipe_GET_ListSearch()", startTime)
+            response = fn_r.recipe_GET_ListMapSearch(util, pathParams)
+            util.writeEventTiming("func", "fn_r.recipe_GET_ListMapSearch()", startTime)
 
-        #### RECIPE
+        #### RECIPECONTENT
         elif resourcePath == "/recipecontent":
             if httpMethod not in ["POST", "PUT"]:
                 raise methodNotSupportedException
