@@ -1,10 +1,9 @@
 # Author:       Michael Rubin
 # Created:      10/9/2023
-# Modified:     1/13/2024
+# Modified:     1/14/2024
 #
 # Copyright 2023 - 2024 © Uptakeblue.com, All Rights Reserved
 # -----------------------------------------------------------
-import json
 import time
 
 import global_utility as gu
@@ -40,8 +39,11 @@ def parseEvent(event):
         resourcePath = event["resource"]
         httpMethod = event["httpMethod"]
         requestBody = event["body"]
-        if "headers" in event and "Content-Type" in event["headers"]:
-            contentTypeHeader = event["headers"]["Content-Type"]
+        if "headers" in event:
+            if "Content-Type" in event["headers"]:
+                contentTypeHeader = event["headers"]["Content-Type"]
+            elif "content-type" in event["headers"]:
+                contentTypeHeader = event["headers"]["content-type"]
         pathParams = getPathParams(event["resource"], event["path"])
 
     methodNotSupportedException = gu.UptakeblueException(

@@ -3,42 +3,74 @@
     "path": "/recipe",
     "httpMethod": "POST",
     "headers": {
-        "Accept": "*/*",
-        "Accept-Encoding": "gzip, deflate, br",
-        "Cache-Control": "no-cache",
-        "Content-Type": "multipart/form-data; boundary=--------------------------224879251105149138852625",
+        "accept": "application/json, text/plain, */*",
+        "accept-encoding": "gzip, deflate, br",
+        "accept-language": "en-US,en;q=0.5",
+        "access-control-allow-origin": "*",
+        "Authorization": "Bearer eyJraWQiOiIzUDRHMXdycndEZGJEbVBYNENGbzBsbitzMXFSQmVWajIrczNmZlVJYzNRPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIzNDM2Njk5Yi0zMjNhLTQ1OWUtOTY4OC1mMGQ2MjdiNmRiODciLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtd2VzdC0yLmFtYXpvbmF3cy5jb21cL3VzLXdlc3QtMl9KMWdxSzVyS0siLCJjbGllbnRfaWQiOiI1ODBobWdiNjVraDVtZnQ1Zm5qdWM3dHBnaCIsIm9yaWdpbl9qdGkiOiJjY2U1Y2JlNy0xMGZhLTQzZTMtOTgyMC1jODE4MGFlNzE1NjYiLCJldmVudF9pZCI6IjAwOGQ2NzE1LWY2MDMtNDk4My05ZTUyLTMxNzYxNGU2MmMwYiIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiYXdzLmNvZ25pdG8uc2lnbmluLnVzZXIuYWRtaW4iLCJhdXRoX3RpbWUiOjE3MDUyNTEzODQsImV4cCI6MTcwNTI1OTUyOCwiaWF0IjoxNzA1MjU1OTI4LCJqdGkiOiI0ZDcxNzhlNC01N2VlLTQwNDgtOWZkZi1kOTY5ZWFjNjdjOWIiLCJ1c2VybmFtZSI6Ik1pY2hhZWwifQ.oUTLdme1EpOh2Ped2sPsd9vzZXSELd6-k0NLV7IHwkXKJkoE3QZArhN9nfLprMURBKpNtXd6fzot6XjxnhViu1bAgyZJ6N2iaE7-IsXDrKMkmY7Qal23t-hFQepttInLlKHZUxUq8WTx0XNZZO59y2_LHnqyhJPQUsDO96T4iULMNyPlO7P0hgkyDGiwQfctBo9_qkdj-a5xK2fk65-sTyQ-3srADFWyIVNYKCVTwsMmG2UojcJXbwfa1LDhivXpKD_5Ub5mlCOrKUaVVG9195CcOE3eH3mYfBNMj_lt8IwEBZphcWYBp80m_3u4TcWuZp5TYUwhatf_gZToigbzLw",
+        "content-type": "multipart/form-data; boundary=---------------------------200874015434122685681732799362",
+        "dnt": "1",
         "Host": "t6njlz08j1.execute-api.us-west-2.amazonaws.com",
-        "Postman-Token": "c9a758c5-c26f-46b0-a14f-e5164a9b8dd7",
-        "User-Agent": "PostmanRuntime/7.36.1",
-        "X-Amzn-Trace-Id": "Root=1-65a19d88-57a095f62e9aa0e261683ddb",
+        "origin": "http://localhost:3000",
+        "referer": "http://localhost:3000/",
+        "sec-fetch-dest": "empty",
+        "sec-fetch-mode": "cors",
+        "sec-fetch-site": "cross-site",
+        "sec-gpc": "1",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:121.0) Gecko/20100101 Firefox/121.0",
+        "X-Amzn-Trace-Id": "Root=1-65a4247c-433c05f444096bf432c993fb",
         "X-Forwarded-For": "67.189.70.60",
         "X-Forwarded-Port": "443",
         "X-Forwarded-Proto": "https"
     },
     "multiValueHeaders": {
-        "Accept": [
-            "*/*"
+        "accept": [
+            "application/json, text/plain, */*"
         ],
-        "Accept-Encoding": [
+        "accept-encoding": [
             "gzip, deflate, br"
         ],
-        "Cache-Control": [
-            "no-cache"
+        "accept-language": [
+            "en-US,en;q=0.5"
         ],
-        "Content-Type": [
-            "multipart/form-data; boundary=--------------------------224879251105149138852625"
+        "access-control-allow-origin": [
+            "*"
+        ],
+        "Authorization": [
+            "Bearer eyJraWQiOiIzUDRHMXdycndEZGJEbVBYNENGbzBsbitzMXFSQmVWajIrczNmZlVJYzNRPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIzNDM2Njk5Yi0zMjNhLTQ1OWUtOTY4OC1mMGQ2MjdiNmRiODciLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtd2VzdC0yLmFtYXpvbmF3cy5jb21cL3VzLXdlc3QtMl9KMWdxSzVyS0siLCJjbGllbnRfaWQiOiI1ODBobWdiNjVraDVtZnQ1Zm5qdWM3dHBnaCIsIm9yaWdpbl9qdGkiOiJjY2U1Y2JlNy0xMGZhLTQzZTMtOTgyMC1jODE4MGFlNzE1NjYiLCJldmVudF9pZCI6IjAwOGQ2NzE1LWY2MDMtNDk4My05ZTUyLTMxNzYxNGU2MmMwYiIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiYXdzLmNvZ25pdG8uc2lnbmluLnVzZXIuYWRtaW4iLCJhdXRoX3RpbWUiOjE3MDUyNTEzODQsImV4cCI6MTcwNTI1OTUyOCwiaWF0IjoxNzA1MjU1OTI4LCJqdGkiOiI0ZDcxNzhlNC01N2VlLTQwNDgtOWZkZi1kOTY5ZWFjNjdjOWIiLCJ1c2VybmFtZSI6Ik1pY2hhZWwifQ.oUTLdme1EpOh2Ped2sPsd9vzZXSELd6-k0NLV7IHwkXKJkoE3QZArhN9nfLprMURBKpNtXd6fzot6XjxnhViu1bAgyZJ6N2iaE7-IsXDrKMkmY7Qal23t-hFQepttInLlKHZUxUq8WTx0XNZZO59y2_LHnqyhJPQUsDO96T4iULMNyPlO7P0hgkyDGiwQfctBo9_qkdj-a5xK2fk65-sTyQ-3srADFWyIVNYKCVTwsMmG2UojcJXbwfa1LDhivXpKD_5Ub5mlCOrKUaVVG9195CcOE3eH3mYfBNMj_lt8IwEBZphcWYBp80m_3u4TcWuZp5TYUwhatf_gZToigbzLw"
+        ],
+        "content-type": [
+            "multipart/form-data; boundary=---------------------------200874015434122685681732799362"
+        ],
+        "dnt": [
+            "1"
         ],
         "Host": [
             "t6njlz08j1.execute-api.us-west-2.amazonaws.com"
         ],
-        "Postman-Token": [
-            "c9a758c5-c26f-46b0-a14f-e5164a9b8dd7"
+        "origin": [
+            "http://localhost:3000"
+        ],
+        "referer": [
+            "http://localhost:3000/"
+        ],
+        "sec-fetch-dest": [
+            "empty"
+        ],
+        "sec-fetch-mode": [
+            "cors"
+        ],
+        "sec-fetch-site": [
+            "cross-site"
+        ],
+        "sec-gpc": [
+            "1"
         ],
         "User-Agent": [
-            "PostmanRuntime/7.36.1"
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:121.0) Gecko/20100101 Firefox/121.0"
         ],
         "X-Amzn-Trace-Id": [
-            "Root=1-65a19d88-57a095f62e9aa0e261683ddb"
+            "Root=1-65a4247c-433c05f444096bf432c993fb"
         ],
         "X-Forwarded-For": [
             "67.189.70.60"
@@ -58,15 +90,15 @@
         "resourceId": "fazzn1",
         "resourcePath": "/recipe",
         "httpMethod": "POST",
-        "extendedRequestId": "RcWNWFp3PHcEOmg=",
-        "requestTime": "12/Jan/2024:20:14:00 +0000",
+        "extendedRequestId": "RiqjfHUUvHcENLg=",
+        "requestTime": "14/Jan/2024:18:14:20 +0000",
         "path": "/dev/recipe",
         "accountId": "208795471115",
         "protocol": "HTTP/1.1",
         "stage": "dev",
         "domainPrefix": "t6njlz08j1",
-        "requestTimeEpoch": 1705090440332,
-        "requestId": "65ffa429-3af0-4ef0-bf1d-520866a77671",
+        "requestTimeEpoch": 1705256060417,
+        "requestId": "3b8c23bc-61dc-4228-bf43-fb229b63a71f",
         "identity": {
             "cognitoIdentityPoolId": null,
             "accountId": null,
@@ -78,12 +110,12 @@
             "cognitoAuthenticationType": null,
             "cognitoAuthenticationProvider": null,
             "userArn": null,
-            "userAgent": "PostmanRuntime/7.36.1",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:121.0) Gecko/20100101 Firefox/121.0",
             "user": null
         },
         "domainName": "t6njlz08j1.execute-api.us-west-2.amazonaws.com",
         "apiId": "t6njlz08j1"
     },
-    "body": "LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLTIyNDg3OTI1MTEwNTE0OTEzODg1MjYyNQ0KQ29udGVudC1EaXNwb3NpdGlvbjogZm9ybS1kYXRhOyBuYW1lPSJkZXNjcmlwdGlvbiINCg0KVGVzdCBkZXNjcmlwdGlvbg0KLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLTIyNDg3OTI1MTEwNTE0OTEzODg1MjYyNQ0KQ29udGVudC1EaXNwb3NpdGlvbjogZm9ybS1kYXRhOyBuYW1lPSJpc0Zhdm9yaXRlIg0KDQowDQotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tMjI0ODc5MjUxMTA1MTQ5MTM4ODUyNjI1DQpDb250ZW50LURpc3Bvc2l0aW9uOiBmb3JtLWRhdGE7IG5hbWU9Im5vdGUiDQoNCg0KLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLTIyNDg3OTI1MTEwNTE0OTEzODg1MjYyNQ0KQ29udGVudC1EaXNwb3NpdGlvbjogZm9ybS1kYXRhOyBuYW1lPSJ0aXRsZSINCg0KVGVzdCBSZWNpcGUgMTMNCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0yMjQ4NzkyNTExMDUxNDkxMzg4NTI2MjUNCkNvbnRlbnQtRGlzcG9zaXRpb246IGZvcm0tZGF0YTsgbmFtZT0icm91dGUiDQoNCnRlc3QtcmVjaXBlLTEzDQotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tMjI0ODc5MjUxMTA1MTQ5MTM4ODUyNjI1DQpDb250ZW50LURpc3Bvc2l0aW9uOiBmb3JtLWRhdGE7IG5hbWU9ImluZ3JlZGllbnRzIg0KDQpDb3VsZCBiZSBhbnl0aGluZw0KLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLTIyNDg3OTI1MTEwNTE0OTEzODg1MjYyNQ0KQ29udGVudC1EaXNwb3NpdGlvbjogZm9ybS1kYXRhOyBuYW1lPSJpbnN0cnVjdGlvbnMiDQoNCkNvb2sgdGhlIGhlbGwgb3V0IG9mIGl0IQ0KLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLTIyNDg3OTI1MTEwNTE0OTEzODg1MjYyNS0tDQo=",
+    "body": "LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0yMDA4NzQwMTU0MzQxMjI2ODU2ODE3MzI3OTkzNjINCkNvbnRlbnQtRGlzcG9zaXRpb246IGZvcm0tZGF0YTsgbmFtZT0idGl0bGUiDQoNCkdhcmxpYyBTb3VwIFdpdGggU3BpbmFjaA0KLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0yMDA4NzQwMTU0MzQxMjI2ODU2ODE3MzI3OTkzNjINCkNvbnRlbnQtRGlzcG9zaXRpb246IGZvcm0tZGF0YTsgbmFtZT0iZGVzY3JpcHRpb24iDQoNCkZyb20gYSA8YSBocmVmPSdodHRwczovL2Nvb2tpbmcubnl0aW1lcy5jb20vcmVjaXBlcy8xMDE0NDMyLWdhcmxpYy1zb3VwLXdpdGgtc3BpbmFjaCcgdGFyZ2V0ID0gJ19ibGFuayc+TmV3IFlvcmsgVGltZXMgcmVjaXBlPC9hPiBieSBNYXJ0aGEgUm9zZSBTaHVsbWFuDQotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLTIwMDg3NDAxNTQzNDEyMjY4NTY4MTczMjc5OTM2Mg0KQ29udGVudC1EaXNwb3NpdGlvbjogZm9ybS1kYXRhOyBuYW1lPSJub3RlIg0KDQpGcm9tIGEgPGEgaHJlZj0naHR0cHM6Ly9jb29raW5nLm55dGltZXMuY29tL3JlY2lwZXMvMTAxNDQzMi1nYXJsaWMtc291cC13aXRoLXNwaW5hY2gnIHRhcmdldCA9ICdfYmxhbmsnPk5ldyBZb3JrIFRpbWVzIHJlY2lwZTwvYT4gYnkgTWFydGhhIFJvc2UgU2h1bG1hbg0KLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0yMDA4NzQwMTU0MzQxMjI2ODU2ODE3MzI3OTkzNjINCkNvbnRlbnQtRGlzcG9zaXRpb246IGZvcm0tZGF0YTsgbmFtZT0iZmF2b3JpdGUiDQoNCmZhbHNlDQotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLTIwMDg3NDAxNTQzNDEyMjY4NTY4MTczMjc5OTM2Mg0KQ29udGVudC1EaXNwb3NpdGlvbjogZm9ybS1kYXRhOyBuYW1lPSJpbmdyZWRpZW50cyINCg0KMSBzaGFsbG90LCBtaW5jZWQNCjIgdG8gMyBsYXJnZSBnYXJsaWMgY2xvdmVzLCBtaW5jZWQNCnBpbmNoIG9mIHBlcHBlciBmbGFrZXMgDQo2IGN1cHMgY2hpY2tlbiBzdG9jayBvciB0dXJrZXkgc3RvY2sNCmJvdXF1ZXQgZ2FybmkgbWFkZSB3aXRoIGEgYmF5IGxlYWYsIGFuZCBzcHJpZ3Mgb2YgdGh5bWUgYW5kIHBhcnNsZXkNCnNhbHQgYW5kIGZyZXNobHkgZ3JvdW5kIHBlcHBlcg0KMy80IGN1cCBvcnpvDQoxIDYtb3VuY2UgYmFnIGJhYnkgc3BpbmFjaCwgd2FzaGVkLCBkcmllZCBhbmQgdmVyeSBjb2Fyc2VseSBjaG9wcGVkDQoyIGVnZ3MgDQoxLzQgY3VwIGZyZXNobHkgZ3JhdGVkIFBhcm1lc2FuDQoNCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tMjAwODc0MDE1NDM0MTIyNjg1NjgxNzMyNzk5MzYyDQpDb250ZW50LURpc3Bvc2l0aW9uOiBmb3JtLWRhdGE7IG5hbWU9Imluc3RydWN0aW9ucyINCg0KU2F1dMOpZWQgdGhlIHNoYWxsb3RzLCBnYXJsaWMgYW5kIHBlcHBlciBmbGFrZXMgd2l0aCBhIGxpdHRsZSBzYWx0IGluIGEgbGFyZ2Ugc2F1Y2VwYW4gdW50aWwgc29mdA0KQWRkIHRoZSBzdG9jayB3aXRoIHRoZSBib3VxdWV0IGdhcm5pIGFuZCBzZWFzb24gd2l0aCBzYWx0IGFuZCBmcmVzaGx5IGdyb3VuZCBwZXBwZXINCkJyaW5nIHRvIGEgYm9pbCwgcmVkdWNlIHRvIHNpbW1lciBhbmQgY29vayBjb3ZlcmVkIGZvciAxNSBtaW51dGVzDQpBZGQgdGhlIHBhc3RhIGFuZCBzaW1tZXIgNiBtaW51dGVzLCB1bnRpbCBjb29rZWQgYWwgZGVudGUsIHRoZW4gcmVtb3ZlIHRoZSBib3VxdWV0IGdhcm5pDQpCZWF0IHRoZSBlZ2dzIGluIGEgYm93bCBhbmQgdGVtcGVyIHdpdGggMS8zIGN1cCBvZiBzdG9jaywgdGhlbiBzdGlyIGluIHRoZSBjaGVlc2UNClN0aXIgdGhlIHNwaW5hY2ggaW50byB0aGUgc2ltbWVyaW5nIHN0b2NrIGFuZCBzaW1tZXIgZm9yIDEgbWludXRlDQpEcml6emxlIGluIHRoZSBlZ2cgbWl4dHVyZSwgc2NyYXBpbmcgYWxsIG9mIGl0IGluIHdpdGggYSBydWJiZXIgc3BhdHVsYQ0KVHVybiBvZmYgdGhlIGhlYXQgYW5kIHN0aXIgdmVyeSBzbG93bHkgd2l0aCB0aGUgc3BhdHVsYSwgcGFkZGxpbmcgaXQgYmFjayBhbmQgZm9ydGggdW50aWwgdGhlIGVnZ3MgaGF2ZSBzZXQNCkFkanVzdCBzZWFzb25pbmcgYW5kIHNlcnZlIGF0IG9uY2UNCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tMjAwODc0MDE1NDM0MTIyNjg1NjgxNzMyNzk5MzYyDQpDb250ZW50LURpc3Bvc2l0aW9uOiBmb3JtLWRhdGE7IG5hbWU9InJvdXRlIg0KDQpnYXJsaWMtc291cC13aXRoLXNwaW5hY2gNCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tMjAwODc0MDE1NDM0MTIyNjg1NjgxNzMyNzk5MzYyLS0NCg==",
     "isBase64Encoded": true
 }

@@ -1,6 +1,6 @@
 # Author:       Michael Rubin
 # Created:      10/9/2023
-# Modified:     1/13/2024
+# Modified:     1/14/2024
 #
 # Copyright 2023 - 2024 © Uptakeblue.com, All Rights Reserved
 # -----------------------------------------------------------
@@ -180,16 +180,23 @@ def recipe_POST(
 
             util.pymysqlConnection.commit()
 
-            result = f"Recipe {recipeId} was created"
+            result = {
+                "headers": {
+                    "Content-Type": "application/json",
+                    "Access-Control-Allow-Origin": "*",
+                },
+                "responseBody": f"Recipe {recipeId} was created",
+            }
 
             response = (result, gu.RESPONSECODE_OK)
 
         # upload image and thumbnail to s3
-        fn_i.image_POST(
-            util,
-            fileBytes,
-            recipeDto.ImageFile,
-        )
+        if fileBytes:
+            fn_i.image_POST(
+                util,
+                fileBytes,
+                recipeDto.ImageFile,
+            )
 
     except Exception as e:
         raise gu.UptakeblueException(e, source=f"{MODULE}.recipe_POST()")
@@ -252,7 +259,13 @@ def recipe_PUT(
             util.pymysqlConnection.commit()
             util.writeEventTiming("dbproc", "dbo.rcp_recipe_Put()", startTime)
 
-            result = f"Recipe {recipeDto.RecipeId} was updated"
+            result = {
+                "headers": {
+                    "Content-Type": "application/json",
+                    "Access-Control-Allow-Origin": "*",
+                },
+                "responseBody": f"Recipe {recipeDto.RecipeId} was updated",
+            }
 
             if fileBytes and (previousRecipeDto.ImageFile != recipeDto.ImageFile):
                 fn_i.image_POST(
@@ -355,6 +368,48 @@ def recipe_GET_ListMapSearch(
     except Exception as e:
         raise gu.UptakeblueException(
             e, source=f"{MODULE}.recipe_GET_ListMapSearch()", paramargs=pathParams
+        )
+
+    return response
+
+
+def recipeMeta_GET(
+    util: gu.Global_Utility,
+    pathParams: dict,
+):
+    response = None
+    try:
+        if "recipeid" not in pathParams:
+            raise Exception("pathParams missing recipeid")
+
+        with util.pymysqlConnection.cursor() as cursor:
+            args = [
+                pathParams["recipeid"],
+            ]
+            startTime = time.perf_counter()
+            cursor.callproc("dbo.rcp_recipe_Get", args)
+            row = cursor.fetchone()
+            util.writeEventTiming("dbproc", "dbo.rcp_recipe_Get()", startTime)
+            if row:
+                recipeDto = dto.recipe_dto(row)
+                startTime = time.perf_counter()
+                args = [
+                    recipeDto.RecipeId,
+                ]
+                cursor.callproc("dbo.rcp_content_Get_ListByRecipe", args)
+                rows = cursor.fetchall()
+                util.writeEventTiming("dbproc", "dbo.rcp_recipe_GetByUrl()", startTime)
+                if rows:
+                    for row in rows:
+                        recipeDto.Content.append(dto.content_dto(row))
+
+                result = recipeDto.getDictionary()
+
+                response = (result, gu.RESPONSECODE_OK)
+
+    except Exception as e:
+        raise gu.UptakeblueException(
+            e, source=f"{MODULE}.recipe_GET()", paramargs=pathParams
         )
 
     return response
