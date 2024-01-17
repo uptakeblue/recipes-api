@@ -1,10 +1,11 @@
 # Author:       Michael Rubin
 # Created:      10/9/2023
-# Modified:     1/14/2024
+# Modified:     1/17/2024
 #
 # Copyright 2023 - 2024 © Uptakeblue.com, All Rights Reserved
 # -----------------------------------------------------------
 import time
+import urllib.parse
 
 import global_utility as gu
 import functions_content as fn_c
@@ -21,8 +22,12 @@ genericError = None
 def parseEvent(event):
     util = gu.Global_Utility("recipes")
 
-    # if not gu.isLocalDevelopment:
-    #     util.writeEventDebug("EVENT", event)
+    if (
+        not gu.isLocalDevelopment
+        and "log_event" in util.settings
+        and util.settings["log_event"] in ["true", "1"]
+    ):
+        util.writeEventDebug("EVENT", event)
 
     resourcePath = None
     httpMethod = None
@@ -45,6 +50,10 @@ def parseEvent(event):
             elif "content-type" in event["headers"]:
                 contentTypeHeader = event["headers"]["content-type"]
         pathParams = getPathParams(event["resource"], event["path"])
+
+    if pathParams:
+        for param in pathParams:
+            pathParams[param] = urllib.parse.unquote(pathParams[param])
 
     methodNotSupportedException = gu.UptakeblueException(
         Exception(f"http-method {httpMethod} is not supported for {resourcePath}"),

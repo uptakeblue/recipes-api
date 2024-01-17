@@ -1,6 +1,6 @@
 # Author:       Michael Rubin
 # Created:      10/9/2023
-# Modified:     1/8/2024
+# Modified:     1/17/2024
 #
 # Copyright 2023 - 2024 © Uptakeblue.com, All Rights Reserved
 # -----------------------------------------------------------
@@ -22,7 +22,7 @@ class recipe_dto:
             self.Title = dataRow[1]
             self.Description = dataRow[2]
             self.Note = dataRow[3]
-            self.ImageFile: str = str(dataRow[4])
+            self.ImageFile: str = str(dataRow[4]) if dataRow[4] else None
             self.Route = str(dataRow[5]).lower()
             self.IsFavorite = dataRow[6] == 1
             self.ModifiedDate: datetime = dataRow[7]
@@ -130,8 +130,8 @@ class content_dto:
         return {
             "contentId": self.ContentId,
             "title": self.Title,
-            "ingredients": self.Ingredients,
-            "instructions": self.Instructions,
+            "ingredients": self.Ingredients.replace("\r", ""),
+            "instructions": self.Instructions.replace("\r", ""),
             "orderId": self.OrderId,
             "recipeCount": self.RecipeCount,
             "recipeId": self.RecipeId,
