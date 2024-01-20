@@ -1,6 +1,6 @@
 # Author:       Michael Rubin
 # Created:      10/30/2023
-# Modified:     1/8/2024
+# Modified:     1/18/2024
 #
 # Copyright 2023 - 2024 © Uptakeblue.com, All Rights Reserved
 # -----------------------------------------------------------
@@ -19,12 +19,12 @@ def recipeContent_GET(
     try:
         if "recipeid" not in pathParams:
             raise Exception("pathParams missing recipeid")
-        if "content" not in pathParams:
+        if "contentid" not in pathParams:
             raise Exception("pathParams missing content")
 
         args = [
-            pathParams["recipeId"],
-            pathParams["contentId"],
+            pathParams["recipeid"],
+            pathParams["contentid"],
         ]
 
         with util.pymysqlConnection.cursor() as cursor:
@@ -54,11 +54,11 @@ def recipeContent_DELETE(
     try:
         if "recipeid" not in pathParams:
             raise Exception("pathParams missing recipeid")
-        if "content" not in pathParams:
+        if "contentid" not in pathParams:
             raise Exception("pathParams missing content")
 
-        recipeId = pathParams["recipeId"]
-        contentId = pathParams["contentId"]
+        recipeId = pathParams["recipeid"]
+        contentId = pathParams["contentid"]
 
         args = [
             recipeId,
@@ -108,11 +108,13 @@ def recipeContent_POST(
             util.pymysqlConnection.commit()
             util.writeEventTiming("dbproc", "dbo.rcp_recipe_content_Post()", startTime)
 
-            response = {
+            result = {
                 "message": f"Recipe-Content relationship was created",
                 "recipeId": recipeContentDto.RecipeId,
                 "contentId": recipeContentDto.ContentId,
             }
+
+            response = (result, gu.RESPONSECODE_OK)
 
     except Exception as e:
         raise gu.UptakeblueException(
@@ -141,11 +143,13 @@ def recipeContent_PUT(
             util.pymysqlConnection.commit()
             util.writeEventTiming("dbproc", "dbo.rcp_recipe_content_Put()", startTime)
 
-            response = {
+            result = {
                 "message": f"Recipe-Content relationship was updated",
                 "recipeId": recipeContentDto.RecipeId,
                 "contentId": recipeContentDto.ContentId,
             }
+
+            response = (result, gu.RESPONSECODE_OK)
 
     except Exception as e:
         raise gu.UptakeblueException(

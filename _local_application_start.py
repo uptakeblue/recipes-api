@@ -72,15 +72,15 @@ def onPress(key):
             else:
                 with open(f"{folder}{files[index]}") as f:
                     event = json.load(f)
-                    if (
-                        "params" in event
-                        and "header" in event["params"]
-                        and "Authorization" in event["params"]["header"]
-                    ):
-                        with open("accesstoken.txt") as f_token:
-                            event["params"]["header"][
-                                "Authorization"
-                            ] = f"Bearer {f_token.read()}"
+                    # if (
+                    #     "params" in event
+                    #     and "header" in event["params"]
+                    #     and "Authorization" in event["params"]["header"]
+                    # ):
+                    #     with open("accesstoken.txt") as f_token:
+                    #         event["params"]["header"][
+                    #             "Authorization"
+                    #         ] = f"Bearer {f_token.read()}"
 
                 response = lambda_function.lambda_handler(event, None)
                 if isinstance(response, dict):

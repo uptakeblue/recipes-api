@@ -2,18 +2,27 @@
     "body-json": {},
     "params": {
         "path": {
-            "contentid": "3",
-            "recipeid": "1"
+            "contentid": "1523",
+            "recipeid": "1429"
         },
         "querystring": {},
         "header": {
-            "Accept": "*/*",
-            "Accept-Encoding": "gzip, deflate, br",
-            "Cache-Control": "no-cache",
+            "accept": "application/json, text/plain, */*",
+            "accept-encoding": "gzip, deflate, br",
+            "accept-language": "en-US,en;q=0.9",
+            "access-control-allow-origin": "*",
+            "Authorization": "Bearer eyJraWQiOiIzUDRHMXdycndEZGJEbVBYNENGbzBsbitzMXFSQmVWajIrczNmZlVJYzNRPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIzNDM2Njk5Yi0zMjNhLTQ1OWUtOTY4OC1mMGQ2MjdiNmRiODciLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtd2VzdC0yLmFtYXpvbmF3cy5jb21cL3VzLXdlc3QtMl9KMWdxSzVyS0siLCJjbGllbnRfaWQiOiI1ODBobWdiNjVraDVtZnQ1Zm5qdWM3dHBnaCIsIm9yaWdpbl9qdGkiOiI0OWZkZGRhZi02ZTgxLTRiNWQtOWM5ZS0wMjFmMDYzMDIyYzciLCJldmVudF9pZCI6ImI3ZmFhZGFmLTZkMGQtNDQyYy1hZGNiLWZmZmM3OGIyZGVmYiIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiYXdzLmNvZ25pdG8uc2lnbmluLnVzZXIuYWRtaW4iLCJhdXRoX3RpbWUiOjE3MDU1MTExMzIsImV4cCI6MTcwNTU5MjA2NCwiaWF0IjoxNzA1NTg4NDY0LCJqdGkiOiJmN2JiNjhkNC1mMWZmLTRkNDktYjg3Zi05MDQyMTIxMzAyOTgiLCJ1c2VybmFtZSI6Ik1pY2hhZWwifQ.aSYn5tv_GD_K6GqKMc_UN82Sk0kdU10d5RPFBJPZBb4G_suKPDe6RYc8EyXVeFQP9sRmqGeDRdsa1K90aBivIqV1WEeO2MyycXzqE73799F-VOB3Xep9XHiY_n2a94KVcdhEWQN5PWaExNMuSEdaebelGpU0tVJ1Vnts824CDhNZriFm6cdy-A2azVj6DkGEXenaHa0hTKlomJJ9ftu4DP5KSzAqumo4PWhqmex0WcgoUNMHhnYOubh-R2c9TN44RBWXdiRb7nSokefpQ3_Zv6akeVNoSzXqN_HMuxm7G1kslKzS3xdWuh-cEnAcgY9hccqH7Jd29qrBFx7XKYuMiQ",
             "Host": "t6njlz08j1.execute-api.us-west-2.amazonaws.com",
-            "Postman-Token": "d625c6f4-d176-4867-bc5c-26a2886ac26b",
-            "User-Agent": "PostmanRuntime/7.36.0",
-            "X-Amzn-Trace-Id": "Root=1-65983eb6-5faec53a68c0863106ff76d2",
+            "origin": "http://localhost:3000",
+            "referer": "http://localhost:3000/",
+            "sec-ch-ua": "\"Not_A Brand\";v=\"8\", \"Chromium\";v=\"120\", \"Google Chrome\";v=\"120\"",
+            "sec-ch-ua-mobile": "?0",
+            "sec-ch-ua-platform": "\"Windows\"",
+            "sec-fetch-dest": "empty",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-site": "cross-site",
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+            "X-Amzn-Trace-Id": "Root=1-65a9398d-0b6f76986411381f06976bd9",
             "X-Forwarded-For": "67.189.70.60",
             "X-Forwarded-Port": "443",
             "X-Forwarded-Proto": "https"
@@ -34,9 +43,9 @@
         "stage": "dev",
         "source-ip": "67.189.70.60",
         "user": "",
-        "user-agent": "PostmanRuntime/7.36.0",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
         "user-arn": "",
-        "request-id": "7aee4e7e-ed6c-45dc-94d3-600f3620c7c4",
+        "request-id": "84fa4a79-f506-47d9-b255-46f2869edc31",
         "resource-id": "zmocwt",
         "resource-path": "/recipecontent/{recipeid}/{contentid}"
     }

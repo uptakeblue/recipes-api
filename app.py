@@ -1,6 +1,6 @@
 # Author:       Michael Rubin
 # Created:      10/9/2023
-# Modified:     1/17/2024
+# Modified:     1/18/2024
 #
 # Copyright 2023 - 2024 © Uptakeblue.com, All Rights Reserved
 # -----------------------------------------------------------
@@ -163,7 +163,7 @@ def parseEvent(event):
                 response = fn_rc.recipeContent_PUT(util, requestBody)
                 util.writeEventTiming("func", "fn_rc.recipeContent_PUT()", startTime)
 
-        elif resourcePath == "/recipecontent":
+        elif resourcePath == "/recipecontent/{recipeid}/{contentid}":
             if httpMethod not in ["DELETE", "GET"]:
                 raise methodNotSupportedException
             if httpMethod == "DELETE":
