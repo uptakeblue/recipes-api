@@ -1,6 +1,6 @@
 # Author:       Michael Rubin
 # Created:      10/9/2023
-# Modified:     1/14/2024
+# Modified:     1/20/2024
 #
 # Copyright 2023 - 2024 © Uptakeblue.com, All Rights Reserved
 # -----------------------------------------------------------
@@ -165,6 +165,7 @@ def recipe_POST(
             recipeDto.Description,
             recipeDto.Note,
             recipeDto.ImageFile,
+            recipeDto.PhotoCredit,
             recipeDto.Route,
             recipeDto.IsFavorite,
             recipeDto.Ingredients,
@@ -174,7 +175,7 @@ def recipe_POST(
         with util.pymysqlConnection.cursor() as cursor:
             startTime = time.perf_counter()
             cursor.callproc("dbo.rcp_recipe_Post", args)
-            cursor.execute("SELECT @_dbo.rcp_recipe_Post_8")
+            cursor.execute("SELECT @_dbo.rcp_recipe_Post_9")
             recipeId = cursor.fetchone()[0]
             util.writeEventTiming("dbproc", "dbo.rcp_recipe_Post()", startTime)
 
@@ -249,6 +250,7 @@ def recipe_PUT(
                 recipeDto.Description,
                 recipeDto.Note,
                 recipeDto.ImageFile,
+                recipeDto.PhotoCredit,
                 recipeDto.Route,
                 recipeDto.IsFavorite,
             ]
