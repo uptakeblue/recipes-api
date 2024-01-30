@@ -1,7 +1,8 @@
 {
     "body-json": {
         "username": "Michael",
-        "password": "@Halibut01"
+        "password": "@Halibut01",
+        "secretkey": "b8f77b17-e47c-45b6-a4cf-8127e947f972"
     },
     "params": {
         "path": {},
