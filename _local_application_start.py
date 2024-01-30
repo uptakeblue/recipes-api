@@ -1,6 +1,6 @@
 # Author:		Michael Rubin
 # Created:		1/5/2024
-# Modified:	    1/8/2024
+# Modified:	    1/30/2024
 #
 # Copyright 2023 - 2024 © Uptakeblue.com, All Rights Reserved
 # -----------------------------------------------------------------
@@ -23,6 +23,7 @@ print("1. Content Test Cases")
 print("2. Image Test Cases")
 print("3. Recipe Test Cases")
 print("4. RecipeContent Test Cases")
+print("5. Misc Test Cases")
 print()
 
 
@@ -40,8 +41,8 @@ def onPress(key):
     try:
         if not key.vk and not key.char:
             pass
-        elif key.vk and (key.vk in range(49, 53) or key.vk in range(97, 101)):
-            index = key.vk if key.vk in range(49, 53) else key.vk - 48
+        elif key.vk and (key.vk in range(49, 54) or key.vk in range(97, 102)):
+            index = key.vk if key.vk in range(49, 54) else key.vk - 48
             if index == 49:
                 folder = "TestCases/Content/"
             elif index == 50:
@@ -50,6 +51,8 @@ def onPress(key):
                 folder = "TestCases/Recipe/"
             elif index == 52:
                 folder = "TestCases/RecipeContent/"
+            elif index == 53:
+                folder = "TestCases/Misc/"
 
             print("Select a Test Case ([Esc] to exit)\n{}".format("-" * 35))
             index = 0
@@ -108,7 +111,7 @@ def onPress(key):
 # key handler, invoked from keyboard.Listener
 def onRelease(key: keyboard.Key):
     try:
-        if not (key.vk in range(49, 53) or key.vk in range(97, 101)):
+        if not (key.vk in range(49, 54) or key.vk in range(97, 102)):
             raise Exception
     except Exception as e:
         e = None

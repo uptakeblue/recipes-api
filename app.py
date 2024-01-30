@@ -1,6 +1,6 @@
 # Author:       Michael Rubin
 # Created:      10/9/2023
-# Modified:     1/18/2024
+# Modified:     1/30/2024
 #
 # Copyright 2023 - 2024 © Uptakeblue.com, All Rights Reserved
 # -----------------------------------------------------------
@@ -13,6 +13,7 @@ import functions_content as fn_c
 import functions_image as fn_i
 import functions_recipe as fn_r
 import functions_recipecontent as fn_rc
+import functions_misc as fn_m
 
 MODULE = "app module"
 
@@ -64,8 +65,14 @@ def parseEvent(event):
     startTime = time.perf_counter()
 
     try:
+        #### AUTHENTICATE
+        if resourcePath == "/authenticate":
+            if httpMethod not in ["POST"]:
+                raise methodNotSupportedException
+            response = fn_m.authenticate_POST(util, requestBody)
+
         #### CONTENT
-        if resourcePath == "/content/{contentid}":
+        elif resourcePath == "/content/{contentid}":
             if httpMethod not in ["DELETE", "GET"]:
                 raise methodNotSupportedException
             if httpMethod == "DELETE":
