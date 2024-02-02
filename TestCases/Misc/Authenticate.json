@@ -41,6 +41,6 @@
         "user-arn": "",
         "request-id": "1abb245e-2828-4d41-bd10-b04fca9190f1",
         "resource-id": "lczbvp",
-        "resource-path": "/authenticate"
+        "resource-path": "/authtokens"
     }
 }

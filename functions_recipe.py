@@ -1,6 +1,6 @@
 # Author:       Michael Rubin
 # Created:      10/9/2023
-# Modified:     1/20/2024
+# Modified:     2/1/2024
 #
 # Copyright 2023 - 2024 © Uptakeblue.com, All Rights Reserved
 # -----------------------------------------------------------
@@ -284,16 +284,44 @@ def recipe_PUT(
     return response
 
 
+def recipe_GET_ListNew(
+    util: gu.Global_Utility,
+):
+    response = None
+
+    try:
+        result = []
+        with util.pymysqlConnection.cursor() as cursor:
+            startTime = time.perf_counter()
+            cursor.callproc("dbo.rcp_recipe_Get_ListNew")
+            rows = cursor.fetchall()
+            util.writeEventTiming("dbproc", "dbo.rcp_recipe_Get_ListNew()", startTime)
+            if rows:
+                for row in rows:
+                    recipeDto = dto.recipe_dto(row)
+                    result.append(
+                        {
+                            "recipeId": recipeDto.RecipeId,
+                            "title": recipeDto.Title,
+                            "route": recipeDto.Route,
+                        }
+                    )
+
+        response = (result, gu.RESPONSECODE_OK)
+
+    except Exception as e:
+        raise gu.UptakeblueException(e, f"{MODULE}.recipe_GET_ListNew()")
+
+    return response
+
+
 def recipe_GET_ListMap(
     util: gu.Global_Utility,
 ):
     response = None
 
     try:
-        result = {
-            "recipes": [],
-            "contentTitles": [],
-        }
+        result = {"recipes": [], "contentTitles": [], "newRecipes": []}
         with util.pymysqlConnection.cursor() as cursor:
             startTime = time.perf_counter()
             cursor.callproc("dbo.rcp_recipe_Get_List")
@@ -314,6 +342,21 @@ def recipe_GET_ListMap(
                         {
                             "contentId": contentDto.ContentId,
                             "title": contentDto.Title,
+                        }
+                    )
+
+            startTime = time.perf_counter()
+            cursor.callproc("dbo.rcp_recipe_Get_ListNew")
+            rows = cursor.fetchall()
+            util.writeEventTiming("dbproc", "dbo.rcp_recipe_Get_ListNew()", startTime)
+            if rows:
+                for row in rows:
+                    recipeDto = dto.recipe_dto(row)
+                    result["newRecipes"].append(
+                        {
+                            "recipeId": recipeDto.RecipeId,
+                            "title": recipeDto.Title,
+                            "route": recipeDto.Route,
                         }
                     )
 

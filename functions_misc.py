@@ -1,6 +1,6 @@
 # Author:       Michael Rubin
 # Created:      1/30/2024
-# Modified:     1/30/2024
+# Modified:     2/1/2024
 #
 # Copyright 2023 - 2024 © Uptakeblue.com, All Rights Reserved
 # -----------------------------------------------------------
@@ -9,8 +9,8 @@ import global_utility as gu
 MODULE = "functions_misc"
 
 
-#### AUTHENTICATE
-def authenticate_POST(util: gu.Global_Utility, requestBody: dict):
+#### AUTHTOKENS
+def authtokens_POST(util: gu.Global_Utility, requestBody: dict):
     response = None
     try:
         if (
@@ -56,7 +56,7 @@ def authenticate_POST(util: gu.Global_Utility, requestBody: dict):
 
         raise gu.UptakeblueException(
             e,
-            source=f"{MODULE}.authenticate_POST()",
+            source=f"{MODULE}.authtokens_POST()",
             paramargs=requestBody,
             statusCode=code,
         )

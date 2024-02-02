@@ -1,6 +1,6 @@
 # Author:       Michael Rubin
 # Created:      10/9/2023
-# Modified:     1/30/2024
+# Modified:     2/1/2024
 #
 # Copyright 2023 - 2024 © Uptakeblue.com, All Rights Reserved
 # -----------------------------------------------------------
@@ -65,11 +65,11 @@ def parseEvent(event):
     startTime = time.perf_counter()
 
     try:
-        #### AUTHENTICATE
-        if resourcePath == "/authenticate":
+        #### AUTHTOKENS
+        if resourcePath == "/authtokens":
             if httpMethod not in ["POST"]:
                 raise methodNotSupportedException
-            response = fn_m.authenticate_POST(util, requestBody)
+            response = fn_m.authtokens_POST(util, requestBody)
 
         #### CONTENT
         elif resourcePath == "/content/{contentid}":
@@ -140,6 +140,12 @@ def parseEvent(event):
                     contentTypeHeader,
                 )
                 util.writeEventTiming("func", "fn_r.recipe_PUT()", startTime)
+
+        elif resourcePath == "/recipe/new":
+            if httpMethod not in ["GET"]:
+                raise methodNotSupportedException
+            response = fn_r.recipe_GET_ListNew(util)
+            util.writeEventTiming("func", "fn_r.recipe_GET_ListNew()", startTime)
 
         elif resourcePath == "/recipe/map":
             if httpMethod not in ["GET"]:
