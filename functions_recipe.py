@@ -1,6 +1,6 @@
 # Author:       Michael Rubin
 # Created:      10/9/2023
-# Modified:     2/1/2024
+# Modified:     2/13/2024
 #
 # Copyright 2023 - 2024 © Uptakeblue.com, All Rights Reserved
 # -----------------------------------------------------------
@@ -154,6 +154,9 @@ def recipe_POST(
             else:
                 result[key] = part.content.decode("utf-8")
 
+        if "route" in result and "imageFile" in result and "." in result['imageFile']:
+            result['imageFile'] = f"{result['route']}.{result['imageFile'].split(".")[0]}"
+
         recipeDto = dto.recipe_dto(result)
 
         util.writeEventDebug("Recipe POST data", recipeDto.getDictionary())
@@ -225,6 +228,9 @@ def recipe_PUT(
                 result[key] = tokens[2].split("=")[1].replace('"', "")
             else:
                 result[key] = part.content.decode("utf-8")
+
+        if "route" in result and "imageFile" in result and "." in result['imageFile']:
+            result['imageFile'] = f"{result['route']}.{result['imageFile'].split(".")[0]}"
 
         recipeDto = dto.recipe_dto(result)
 
