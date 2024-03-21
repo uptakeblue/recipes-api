@@ -1,11 +1,12 @@
 # Author:       Michael Rubin
 # Created:      10/10/2023
-# Modified:     1/7/2024
+# Modified:     3/21/2024
 #
 # Copyright 2023 - 2024 © Uptakeblue.com, All Rights Reserved
 # -----------------------------------------------------------
 import global_utility as gu
 import dto as dto
+import functions_misc as fn_m
 
 import time
 
@@ -182,8 +183,8 @@ def content_POST(
             contentDto = dto.content_dto(requestBody)
             args = [
                 contentDto.Title,
-                contentDto.Ingredients,
-                contentDto.Instructions,
+                fn_m.CleanRecipeText(contentDto.Ingredients),
+                fn_m.CleanRecipeText(contentDto.Instructions),
                 contentDto.RecipeId,
                 contentId,
             ]
@@ -221,8 +222,8 @@ def content_PUT(
             args = [
                 contentDto.ContentId,
                 contentDto.Title,
-                contentDto.Ingredients,
-                contentDto.Instructions,
+                fn_m.CleanRecipeText(contentDto.Ingredients),
+                fn_m.CleanRecipeText(contentDto.Instructions),
             ]
             startTime = time.perf_counter()
             cursor.callproc("dbo.rcp_content_Put", args)

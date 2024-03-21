@@ -1,6 +1,6 @@
 # Author:       Michael Rubin
 # Created:      1/30/2024
-# Modified:     2/1/2024
+# Modified:     3/21/2024
 #
 # Copyright 2023 - 2024 © Uptakeblue.com, All Rights Reserved
 # -----------------------------------------------------------
@@ -62,3 +62,17 @@ def authtokens_POST(util: gu.Global_Utility, requestBody: dict):
         )
 
     return response
+
+
+def CleanRecipeText(text):
+    return (
+        text.replace("¾", "3/4")
+        .replace("½", "1/2")
+        .replace("¼", "1/4")
+        .replace("⅓", "1/3")
+        .replace("\t", "")
+        .replace("teaspoons", "tsps")
+        .replace("teaspoon", "tsp")
+        .replace("tablespoons", "tbsp")
+        .replace("tablespoon", "tbsp")
+    )

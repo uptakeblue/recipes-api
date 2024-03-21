@@ -1,16 +1,16 @@
 # Author:       Michael Rubin
 # Created:      10/9/2023
-# Modified:     2/17/2024
+# Modified:     3/21/2024
 #
 # Copyright 2023 - 2024 © Uptakeblue.com, All Rights Reserved
 # -----------------------------------------------------------
 import base64
 import re
 import time
-import json
 
 from requests_toolbelt.multipart import decoder
 import functions_image as fn_i
+import functions_misc as fn_m
 import global_utility as gu
 import dto as dto
 
@@ -156,7 +156,7 @@ def recipe_POST(
 
         recipeDto = dto.recipe_dto(result)
 
-        if "." in recipeDto.ImageFile:
+        if recipeDto.ImageFile and "." in recipeDto.ImageFile:
             extension = recipeDto.ImageFile.split(".")[1].lower().replace("jpeg", "jpg")
             recipeDto.ImageFile = f"{recipeDto.Route}.{extension}"
 
@@ -172,8 +172,8 @@ def recipe_POST(
             recipeDto.PhotoCredit,
             recipeDto.Route,
             recipeDto.IsFavorite,
-            recipeDto.Ingredients,
-            recipeDto.Instructions,
+            fn_m.CleanRecipeText(recipeDto.Ingredients),
+            fn_m.CleanRecipeText(recipeDto.Instructions),
             recipeId,
         ]
         with util.pymysqlConnection.cursor() as cursor:
@@ -249,22 +249,21 @@ def recipe_PUT(
 
             util.writeEventDebug("Recipe PUT data", recipeDto.getDictionary())
 
-            if (
-                doImageUpdate == None
-                and fileBytes
-                and previousRecipeDto.ImageFile != recipeDto.ImageFile
-            ):
-                extension = (
-                    recipeDto.ImageFile.split(".")[1].lower().replace("jpeg", "jpg")
-                )
-                filename = recipeDto.Route
-                filenamePre = previousRecipeDto.ImageFile.split(".")[0]
-                if filenamePre[:2] == "-1":
-                    filename += "-0"
-                else:
-                    filename += "-1"
-                recipeDto.ImageFile = f"{filename}.{extension}"
-                doImageUpdate = True
+            if doImageUpdate == None and fileBytes:
+                if not previousRecipeDto.ImageFile:
+                    doImageUpdate = True
+                elif previousRecipeDto.ImageFile != recipeDto.ImageFile:
+                    extension = (
+                        recipeDto.ImageFile.split(".")[1].lower().replace("jpeg", "jpg")
+                    )
+                    filename = recipeDto.Route
+                    filenamePre = previousRecipeDto.ImageFile.split(".")[0]
+                    if filenamePre[:2] == "-1":
+                        filename += "-0"
+                    else:
+                        filename += "-1"
+                    recipeDto.ImageFile = f"{filename}.{extension}"
+                    doImageUpdate = True
 
             # update the recipe record
             args = [
