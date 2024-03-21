@@ -343,7 +343,11 @@ def recipe_GET_ListMap(
     response = None
 
     try:
-        result = {"recipes": [], "contentTitles": [], "newRecipes": []}
+        result = {
+            "recipes": [],
+            "contentTitles": [],
+            "newRecipes": [],
+        }
         with util.pymysqlConnection.cursor() as cursor:
             startTime = time.perf_counter()
             cursor.callproc("dbo.rcp_recipe_Get_List")
@@ -402,6 +406,7 @@ def recipe_GET_ListMapSearch(
         result = {
             "recipes": [],
             "contentTitles": [],
+            "newRecipes": [],
         }
 
         with util.pymysqlConnection.cursor() as cursor:
@@ -427,6 +432,21 @@ def recipe_GET_ListMapSearch(
                         {
                             "contentId": contentDto.ContentId,
                             "title": contentDto.Title,
+                        }
+                    )
+
+            startTime = time.perf_counter()
+            cursor.callproc("dbo.rcp_recipe_Get_ListNew")
+            rows = cursor.fetchall()
+            util.writeEventTiming("dbproc", "dbo.rcp_recipe_Get_ListNew()", startTime)
+            if rows:
+                for row in rows:
+                    recipeDto = dto.recipe_dto(row)
+                    result["newRecipes"].append(
+                        {
+                            "recipeId": recipeDto.RecipeId,
+                            "title": recipeDto.Title,
+                            "route": recipeDto.Route,
                         }
                     )
 
